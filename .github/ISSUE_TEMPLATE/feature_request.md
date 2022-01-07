@@ -1,11 +1,19 @@
-**할 일**
+---
+name: Feature Template
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+---
 
-- [ ] 할 일
+**Todo**
 
-**관련자**
+- [ ] Check List
 
-- 관련자 없음
+**Assignee**
 
-**기타**
+- None
 
-- 기타 의견 및 문제 상황
+**ETC**
+
+- Opinions & Problems
