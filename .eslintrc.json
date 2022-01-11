@@ -37,7 +37,7 @@
     "prettier/prettier": [
       "error",
       {
-        "arrowParens": "avoid",
+        "arrowParens": "always",
         "htmlWhitespaceSensitivity": "css",
         "bracketSameLine": false,
         "bracketSpacing": true,
