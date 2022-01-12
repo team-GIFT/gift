@@ -1,5 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv').config();
 const rootDir = process.cwd();
+
+const { GIPHY_API_KEY } = dotenv.parsed;
 
 const devConfig = {
   target: ['web'],
@@ -55,6 +59,11 @@ const devConfig = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      GIPHY_API_KEY: JSON.stringify(GIPHY_API_KEY),
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
