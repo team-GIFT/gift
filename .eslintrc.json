@@ -34,23 +34,23 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "arrowParens": "avoid",
-        "htmlWhitespaceSensitivity": "css",
-        "bracketSameLine": false,
-        "bracketSpacing": true,
-        "printWidth": 80,
-        "proseWrap": "preserve",
-        "quoteProps": "as-needed",
-        "semi": true,
-        "singleQuote": true,
-        "tabWidth": 2,
-        "trailingComma": "es5",
-        "useTabs": false
-      }
-    ],
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     "arrowParens": "avoid",
+    //     "htmlWhitespaceSensitivity": "css",
+    //     "bracketSameLine": false,
+    //     "bracketSpacing": true,
+    //     "printWidth": 80,
+    //     "proseWrap": "preserve",
+    //     "quoteProps": "as-needed",
+    //     "semi": true,
+    //     "singleQuote": true,
+    //     "tabWidth": 2,
+    //     "trailingComma": "es5",
+    //     "useTabs": false
+    //   }
+    // ],
     "react/self-closing-comp": "error",
     // "@typescript-eslint/no-explicit-any": "error",
     // "@typescript-eslint/explicit-function-return-type": "error",
