@@ -6,7 +6,7 @@ module.exports = {
       'babel-plugin-styled-components',
       {
         pure: true,
-        displayName: NODE_ENV === 'production',
+        displayName: NODE_ENV !== 'production',
       },
     ],
     [
