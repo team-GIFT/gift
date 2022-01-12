@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react';
 import { App as AppComponent, AppLogo, AppHeader, AppLink } from './App.styled';
 import Logo from '@/assets/logo.svg';
-import { Card, Icon } from '@/components';
-import { GlobalSvgSprite } from '@/components/GlobalSvgSprite/GlobalSvgSprite';
+import { Card, SvgIcon } from '@/components';
 
 interface AppProps {
   color: string;
@@ -27,9 +26,8 @@ function App(props: AppProps): ReactElement {
           </AppLink>
         </AppHeader>
         <Card />
-        <Icon type="favorite" />
       </AppComponent>
-      <GlobalSvgSprite />
+      <SvgIcon id="favorite" height={20} />
     </>
   );
 }
