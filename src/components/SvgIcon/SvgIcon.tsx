@@ -3,7 +3,6 @@ import sprites from './sprites.svg';
 
 type SvgIconId =
   | 'favorite'
-  | 'favorite-added'
   | 'link'
   | 'more'
   | 'search'
