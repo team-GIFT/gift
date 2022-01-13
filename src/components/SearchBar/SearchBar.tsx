@@ -25,8 +25,7 @@ export function SearchBar(): JSX.Element {
   const searchButton = useMemo(() => {
     return (
       <StyledSearchButton aria-label="search">
-        {/* TODO: Need modify SvgIcon to resize with viewbox */}
-        <SvgIcon id="search" width={30} height={30} fill="#fff" />
+        <SvgIcon id="search" width="100%" height="100%" fill="#fff" />
       </StyledSearchButton>
     );
   }, []);
@@ -34,7 +33,16 @@ export function SearchBar(): JSX.Element {
   return (
     <StyledSearchForm onSubmit={handleSubmit}>
       {/* TODO: Need placeholder animation */}
-      <StyledFormInput placeholder="temp" onChange={handleChange} />
+
+      <StyledFormInput
+        id="test"
+        label="test-label"
+        visibleLabel={false}
+        value={value}
+        inputProps={{ onChange: handleChange }}
+      >
+        플레이스 홀더 테스트 중
+      </StyledFormInput>
       {searchButton}
     </StyledSearchForm>
   );

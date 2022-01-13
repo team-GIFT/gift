@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FormInput } from '@/components/FormInput/FormInput';
 
 export const StyledSearchForm = styled.form`
   display: flex;
@@ -7,14 +8,14 @@ export const StyledSearchForm = styled.form`
   margin-right: auto;
 `;
 
-export const StyledFormInput = styled.input`
+export const StyledFormInput = styled(FormInput)`
   width: 100%;
-  flex-grow: 1;
 `;
 
 export const StyledSearchButton = styled.button`
-  height: 100%;
+  height: 44px;
+  width: 44px;
   padding: 5px;
   background-color: tomato;
-  flex-basis: auto;
+  flex-shrink: 0;
 `;
