@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import { App as AppComponent, AppLogo, AppHeader, AppLink } from './App.styled';
 import Logo from '@/assets/logo.svg';
-import { Card, SvgIcon } from '@/components';
 
 interface AppProps {
   color: string;
@@ -25,9 +24,7 @@ function App(props: AppProps): ReactElement {
             Learn React
           </AppLink>
         </AppHeader>
-        <Card />
       </AppComponent>
-      <SvgIcon id="favorite" height={20} />
     </>
   );
 }
