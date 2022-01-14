@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { StyledSlider } from './Carousel.styled';
-import { CardProps } from '@/components/Card/Card.types';
+import { CarouselCardsProps, CardProps } from './Carousel.types';
 import { Card } from '@/components';
 
-export function Carousel({ cards }): JSX.Element {
+export function Carousel({ cards }: CarouselCardsProps): JSX.Element {
   const settings = {
     infinite: false,
     slidesToShow: 3,
