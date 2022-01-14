@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
+import { color } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
  ${normalize}
@@ -8,6 +9,8 @@ export const GlobalStyle = createGlobalStyle`
   font-family:'Spoqa Han Sans Neo', 'Helvetica Neue', helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: ${color.black};
+  color: ${color.white}
   }
 
   body *,
