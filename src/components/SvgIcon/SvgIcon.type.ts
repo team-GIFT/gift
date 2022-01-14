@@ -10,6 +10,7 @@ export type SvgIconId =
 
 export interface SvgIconProps {
   id: SvgIconId;
+  label?: string;
   width?: number | string;
   height?: number | string;
   fill?: string;
