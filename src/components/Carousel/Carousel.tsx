@@ -5,10 +5,11 @@ import { Card } from '@/components';
 
 export function Carousel({ cards }: CarouselCardsProps): JSX.Element {
   const settings = {
+    accessibility: true,
     infinite: false,
     slidesToShow: 3,
     slidesToScroll: 3,
-    // lazyLoad: true,
+    lazyLoad: true,
     variableWidth: true,
   };
 
