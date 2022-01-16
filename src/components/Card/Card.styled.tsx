@@ -15,13 +15,10 @@ export const StyledCard = styled.div`
 
 export const StyledDetailLink = styled.a`
   display: block;
-`;
 
-export const StyledVideo = styled.video`
-  display: block;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  &:focus {
+    outline: solid #fff;
+  }
 `;
 
 export const StyledButtonGroup = styled.div`

@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import {
   StyledCard,
   StyledDetailLink,
-  StyledVideo,
   StyledButtonGroup,
   StyledButton,
   StyledUserLink,
@@ -13,7 +12,7 @@ import IconLink from './assets/icon_link.svg';
 import IconFavorite from './assets/icon_favorite.svg';
 import { Video } from '@/components';
 
-export function Card({ url, preview, user }: CardProps): JSX.Element {
+export function Card({ title, url, preview, user }: CardProps): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleIsHovered = useCallback(() => {
@@ -23,28 +22,24 @@ export function Card({ url, preview, user }: CardProps): JSX.Element {
   const children = useMemo(() => {
     return (
       <>
-        <StyledDetailLink href={url}>
+        <StyledDetailLink href={url} aria-label={title}>
           <Video src={preview.mp4} />
-          {/* 대체텍스트 */}
         </StyledDetailLink>
         <StyledButtonGroup className="buttonGroup">
-          <StyledButton $imageUrl={IconLink} />
-          {/* 대체텍스트 */}
-          <StyledButton $imageUrl={IconFavorite} />
-          {/* 대체텍스트 */}
+          <StyledButton $imageUrl={IconLink} aria-label="링크 복사" />
+          <StyledButton $imageUrl={IconFavorite} aria-label="좋아요" />
         </StyledButtonGroup>
         {user && (
           <StyledUserLink
             className="userLink"
             $userImageUrl={user.image}
             $userLinkUrl={user.link}
-          >
-            {/* 대체텍스트 */}
-          </StyledUserLink>
+            aria-label={user.name}
+          />
         )}
       </>
     );
-  }, [preview.mp4, url, user]);
+  }, [preview.mp4, title, url, user]);
 
   return (
     <StyledCard
