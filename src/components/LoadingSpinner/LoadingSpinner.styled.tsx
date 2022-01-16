@@ -11,5 +11,7 @@ export const StyledLoadingSpinnerItem = styled.div<LoadingSpinnerItemProps>`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   margin: 10px;
-  background: ${color.green01};
+  background: ${({ $color }) => {
+    return color[$color];
+  }};
 `;

@@ -4,4 +4,5 @@ export interface LoadingSpinnerProps {
 
 export interface LoadingSpinnerItemProps {
   $size: number;
+  $color: string;
 }

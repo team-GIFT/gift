@@ -8,9 +8,15 @@ import { LoadingSpinnerProps } from './LoadingSpinner.types';
 export function LoadingSpinner({
   size = 10,
 }: LoadingSpinnerProps): JSX.Element {
-  return (
-    <StyledLoadingSpinnerWrap>
-      <StyledLoadingSpinnerItem $size={size} />
-    </StyledLoadingSpinnerWrap>
-  );
+  const spinnerItems: string[] = [
+    'green01',
+    'blue01',
+    'violet01',
+    'pink01',
+    'yellow01',
+  ];
+  const spinnerItem = spinnerItems.map((color) => (
+    <StyledLoadingSpinnerItem key={color} $size={size} $color={color} />
+  ));
+  return <StyledLoadingSpinnerWrap>{spinnerItem}</StyledLoadingSpinnerWrap>;
 }
