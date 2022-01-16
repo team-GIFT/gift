@@ -6,4 +6,5 @@ export const color = {
   gray06: '#3e3e3e',
   blue: '#6e65ff',
   pink: '#ff6666',
+  neonGreen: '#00ff99',
 };
