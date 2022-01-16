@@ -11,6 +11,7 @@ import {
 import { CardProps } from './Card.types';
 import IconLink from './assets/icon_link.svg';
 import IconFavorite from './assets/icon_favorite.svg';
+import { Video } from '@/components';
 
 export function Card({ url, preview, user }: CardProps): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);
@@ -23,10 +24,7 @@ export function Card({ url, preview, user }: CardProps): JSX.Element {
     return (
       <>
         <StyledDetailLink href={url}>
-          <StyledVideo autoPlay loop muted>
-            <source src={preview.mp4} type="video/mp4" />이 문장은 여러분의
-            브라우저가 video 태그를 지원하지 않을 때 화면에 표시됩니다!
-          </StyledVideo>
+          <Video src={preview.mp4} />
           {/* 대체텍스트 */}
         </StyledDetailLink>
         <StyledButtonGroup className="buttonGroup">
