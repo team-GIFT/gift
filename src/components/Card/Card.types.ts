@@ -1,4 +1,5 @@
 export interface CardProps {
+  title: string;
   url: string;
   preview: {
     height: number;
@@ -9,6 +10,7 @@ export interface CardProps {
   user?: {
     image: string;
     link: string;
+    name: string;
   };
 }
 
