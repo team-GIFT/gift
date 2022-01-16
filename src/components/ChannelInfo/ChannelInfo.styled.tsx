@@ -48,7 +48,7 @@ export const StyledChannelName = styled.p`
 export const StyledChannelAvailableForWorking = styled.p`
   /* position: relative; */
   font-size: 14px;
-  color: ${color.neonGreen};
+  color: ${color.green};
   margin: 0;
 
   &::before {

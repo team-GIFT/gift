@@ -4,7 +4,10 @@ export const color = {
   gray04: '#b1b1b1',
   gray05: '#5c5c5c',
   gray06: '#3e3e3e',
-  blue: '#6e65ff',
-  pink: '#ff6666',
-  neonGreen: '#00ff99',
+  violet01: '#6e65ff',
+  violet02: '#9933ff',
+  pink01: '#ff6666',
+  green01: '#00ff99',
+  blue01: '#00ccff',
+  yellow01: '#fff35c',
 };
