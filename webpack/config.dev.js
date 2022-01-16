@@ -6,7 +6,7 @@ const rootDir = process.cwd();
 const { GIPHY_API_KEY } = dotenv.parsed;
 
 const devConfig = {
-  target: ['web'],
+  target: ['web', 'es5'],
   mode: 'development',
   devtool: 'source-map',
   output: {
