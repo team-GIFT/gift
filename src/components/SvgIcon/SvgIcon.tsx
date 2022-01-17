@@ -17,6 +17,7 @@ export function SvgIcon({
         height={height}
         fill={fill}
       >
+        {label && <title>{label}</title>}
         <use href={`${sprites}#${id}`} />
       </svg>
     </>
