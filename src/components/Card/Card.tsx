@@ -3,16 +3,13 @@ import classNames from 'classnames';
 import {
   StyledCard,
   StyledDetailLink,
-  StyledVideo,
   StyledButtonGroup,
-  StyledButton,
   StyledUserLink,
 } from './Card.styled';
 import { CardProps } from './Card.types';
-import IconLink from './assets/icon_link.svg';
-import IconFavorite from './assets/icon_favorite.svg';
+import { Video, CardButton } from '@/components';
 
-export function Card({ url, preview, user }: CardProps): JSX.Element {
+export function Card({ title, url, preview, user }: CardProps): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleIsHovered = useCallback(() => {
@@ -22,31 +19,36 @@ export function Card({ url, preview, user }: CardProps): JSX.Element {
   const children = useMemo(() => {
     return (
       <>
-        <StyledDetailLink href={url}>
-          <StyledVideo autoPlay loop muted>
-            <source src={preview.mp4} type="video/mp4" />이 문장은 여러분의
-            브라우저가 video 태그를 지원하지 않을 때 화면에 표시됩니다!
-          </StyledVideo>
-          {/* 대체텍스트 */}
+        <StyledDetailLink href={url} aria-label={title}>
+          <Video src={preview.mp4} />
         </StyledDetailLink>
         <StyledButtonGroup className="buttonGroup">
-          <StyledButton $imageUrl={IconLink} />
-          {/* 대체텍스트 */}
-          <StyledButton $imageUrl={IconFavorite} />
-          {/* 대체텍스트 */}
+          <CardButton
+            buttonName="clipboard"
+            aria-label="클립보드"
+            onClick={() => {
+              console.log('bye');
+            }}
+          />
+          <CardButton
+            buttonName="favorite"
+            aria-label="좋아요"
+            onClick={() => {
+              console.log('hi');
+            }}
+          />
         </StyledButtonGroup>
         {user && (
           <StyledUserLink
             className="userLink"
             $userImageUrl={user.image}
             $userLinkUrl={user.link}
-          >
-            {/* 대체텍스트 */}
-          </StyledUserLink>
+            aria-label={user.name}
+          />
         )}
       </>
     );
-  }, [preview.mp4, url, user]);
+  }, [preview.mp4, title, url, user]);
 
   return (
     <StyledCard
