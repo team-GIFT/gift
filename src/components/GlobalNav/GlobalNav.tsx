@@ -16,7 +16,6 @@ export function GlobalNav() {
     { id: 'artists', href: '/artists', text: 'Artists' },
     { id: 'more', href: '/more', text: '...' },
   ];
-
   return (
     <nav aria-labelledby="mainmenulabel">
       <A11yHidden as="h2">Main menu</A11yHidden>
