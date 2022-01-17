@@ -13,6 +13,7 @@ export const StyledChannelProfileImage = styled.span<StyledChannelProfileImagePr
   margin-right: ${({ $marginRight }) => $marginRight}px;
   background: url(${({ $imageUrl }) => $imageUrl}) no-repeat center center /
     cover;
+  transition: all 0.3s;
 `;
 export const StyledChnnelNamseWrap = styled.div`
   display: flex;
@@ -46,9 +47,8 @@ export const StyledChannelName = styled.p`
 `;
 
 export const StyledChannelAvailableForWorking = styled.p`
-  /* position: relative; */
   font-size: 14px;
-  color: ${color.green};
+  color: ${color.green01};
   margin: 0;
 
   &::before {
