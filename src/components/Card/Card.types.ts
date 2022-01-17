@@ -19,10 +19,6 @@ export interface StyledCardProps {
   $height: number;
 }
 
-export interface StyledButtonProps {
-  $imageUrl: string;
-}
-
 export interface StyledUserLinkProps {
   $userImageUrl: string;
   $userLinkUrl: string;
