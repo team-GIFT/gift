@@ -1,4 +1,5 @@
 export interface CardProps {
+  title: string;
   url: string;
   preview: {
     height: number;
@@ -9,16 +10,13 @@ export interface CardProps {
   user?: {
     image: string;
     link: string;
+    name: string;
   };
 }
 
 export interface StyledCardProps {
   $width: number;
   $height: number;
-}
-
-export interface StyledButtonProps {
-  $imageUrl: string;
 }
 
 export interface StyledUserLinkProps {
