@@ -4,13 +4,10 @@ import {
   StyledCard,
   StyledDetailLink,
   StyledButtonGroup,
-  StyledButton,
   StyledUserLink,
 } from './Card.styled';
 import { CardProps } from './Card.types';
-import IconLink from './assets/icon_link.svg';
-import IconFavorite from './assets/icon_favorite.svg';
-import { Video } from '@/components';
+import { Video, CardButton } from '@/components';
 
 export function Card({ title, url, preview, user }: CardProps): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);
@@ -26,8 +23,20 @@ export function Card({ title, url, preview, user }: CardProps): JSX.Element {
           <Video src={preview.mp4} />
         </StyledDetailLink>
         <StyledButtonGroup className="buttonGroup">
-          <StyledButton $imageUrl={IconLink} aria-label="링크 복사" />
-          <StyledButton $imageUrl={IconFavorite} aria-label="좋아요" />
+          <CardButton
+            buttonName="clipboard"
+            aria-label="클립보드"
+            onClick={() => {
+              console.log('bye');
+            }}
+          />
+          <CardButton
+            buttonName="favorite"
+            aria-label="좋아요"
+            onClick={() => {
+              console.log('hi');
+            }}
+          />
         </StyledButtonGroup>
         {user && (
           <StyledUserLink
