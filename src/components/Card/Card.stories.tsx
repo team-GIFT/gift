@@ -11,6 +11,7 @@ const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
 
 export const Card1 = Template.bind({});
 Card1.args = {
+  title: 'hihi',
   url: 'https://giphy.com/gifs/studiosoriginals-TmhCoUsBQrzWrcsqAd',
   preview: {
     height: 228,
@@ -21,11 +22,13 @@ Card1.args = {
   user: {
     image: 'https://media3.giphy.com/avatars/studiosoriginals/YkMcrX3ELQ7C.gif',
     link: 'https://giphy.com/studiosoriginals/',
+    name: 'park',
   },
 };
 
 export const Card2 = Template.bind({});
 Card2.args = {
+  title: 'hihi',
   url: 'https://giphy.com/gifs/lego-baby-yoda-legos-lego-star-wars-holiday-special-l7fdqmHQ1jCg2HzQlx',
   preview: {
     height: 238,
@@ -36,11 +39,13 @@ Card2.args = {
   user: {
     image: 'https://media3.giphy.com/channel_assets/lego/OZpuno6GstOM.png',
     link: 'https://giphy.com/lego/',
+    name: 'park',
   },
 };
 
 export const Card3 = Template.bind({});
 Card3.args = {
+  title: 'hihi',
   url: 'https://giphy.com/gifs/cbs-kids-say-the-darndest-things-darnedest-season-2-z8XtwKGIRQSBCmU4sW',
   preview: {
     height: 200,
@@ -51,11 +56,13 @@ Card3.args = {
   user: {
     image: 'https://media3.giphy.com/avatars/cbs/pIz1VJ98eZf3.png',
     link: 'https://giphy.com/cbs/',
+    name: 'park',
   },
 };
 
 export const Card4 = Template.bind({});
 Card4.args = {
+  title: 'hihi',
   url: 'https://giphy.com/gifs/theoffice-the-office-episode-23-tv-DhstvI3zZ598Nb1rFf',
   preview: {
     height: 124,
@@ -66,11 +73,13 @@ Card4.args = {
   user: {
     image: 'https://media0.giphy.com/avatars/theoffice/UYGpbCVMjlBo.jpg',
     link: 'https://giphy.com/theoffice/',
+    name: 'park',
   },
 };
 
 export const Card5 = Template.bind({});
 Card5.args = {
+  title: 'hihi',
   url: 'https://giphy.com/gifs/happy-birthday-zM4tBLfudy0rS',
   preview: {
     height: 202,
