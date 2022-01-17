@@ -8,9 +8,9 @@ interface AppProps {
 
 function App(props: AppProps): ReactElement {
   return (
-    <>
-      <Logo />
-    </>
+    <div style={{ height: '98vh', display: 'flex', alignItems: 'center' }}>
+      <Logo height={100} />
+    </div>
   );
 }
 
