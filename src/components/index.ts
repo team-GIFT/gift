@@ -6,3 +6,4 @@ export * from './Card/Card';
 export * from './FormInput/FormInput';
 export * from './SearchBar/SearchBar';
 export * from './Logo/Logo';
+export * from './GlobalNav/GlobalNav';

@@ -1,11 +1,13 @@
-export type listItemProps =
-  | 'Reactions'
-  | 'Entertainment'
-  | 'Sports'
-  | 'Stickers'
-  | 'Artists'
-  | 'More';
+export type GlobalNavIdProps =
+  | 'reactions'
+  | 'entertainment'
+  | 'sports'
+  | 'stickers'
+  | 'artists'
+  | 'more';
 
-export interface GlobalNavProps {
-  listItems: listItemProps[];
+export interface GlobalNavItemProps {
+  id: GlobalNavIdProps;
+  href: string;
+  text: string;
 }
