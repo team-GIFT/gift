@@ -2,6 +2,19 @@ import styled, { keyframes } from 'styled-components';
 import { LoadingSpinnerItemProps } from './LoadingSpinner.types';
 import { color } from '@/styles/theme';
 
+interface Color {
+  white: string;
+  black: string;
+  gray04: string;
+  gray05: string;
+  gray06: string;
+  violet01: string;
+  violet02: string;
+  pink01: string;
+  green01: string;
+  blue01: string;
+  yellow01: string;
+}
 const loading = keyframes`
   0% {
     transform: scale(1) translateY(0);
@@ -27,8 +40,9 @@ export const StyledLoadingSpinnerItem = styled.div<LoadingSpinnerItemProps>`
   margin: 10px;
   animation: ${loading} 1s infinite;
   background: ${({ $color }) => {
-    return color[$color];
+    return color[$color as keyof Color];
   }};
+
   &:nth-child(2) {
     animation-delay: 0.2s;
   }

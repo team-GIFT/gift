@@ -1,5 +1,5 @@
 export interface LoadingSpinnerProps {
-  size: number;
+  size?: number;
 }
 
 export interface LoadingSpinnerItemProps {
