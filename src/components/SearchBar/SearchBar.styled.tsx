@@ -4,8 +4,7 @@ import { FormInput } from '@/components/FormInput/FormInput';
 export const StyledSearchForm = styled.form`
   display: flex;
   height: 44px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 12px auto;
 `;
 
 export const StyledFormInput = styled(FormInput)`
