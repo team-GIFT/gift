@@ -4,8 +4,8 @@ import { SvgIconProps } from './SvgIcon.type';
 export function SvgIcon({
   id,
   label = undefined,
-  width = 64,
-  height = 64,
+  width,
+  height,
   fill = 'currentColor',
 }: SvgIconProps) {
   return (
