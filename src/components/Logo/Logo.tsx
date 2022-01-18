@@ -7,7 +7,7 @@ const transition = {
   ease: 'easeInOut',
 };
 
-export function Logo({ height = '100%', width = '100%' }: LogoProps) {
+export function Logo({ height, width, title }: LogoProps) {
   return (
     <MotionConfig transition={transition}>
       <motion.svg
@@ -17,6 +17,7 @@ export function Logo({ height = '100%', width = '100%' }: LogoProps) {
         xmlns="http://www.w3.org/2000/svg"
         initial="hidden"
       >
+        <title>{title}</title>
         <g id="LogoImage">
           <motion.path
             d="M20 16H0V164H20V16Z"
