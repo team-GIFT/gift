@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { color } from '@/styles/theme';
 import { StyledChannelProfileImageProps } from './ChannelInfo.types';
 
 export const StyledChannelInfoWrap = styled.div``;
@@ -32,7 +31,7 @@ export const StyledChannelUserName = styled.p`
 `;
 export const StyledChannelName = styled.p`
   font-size: 14px;
-  color: ${color.gray04};
+  color: ${({ theme }) => theme.color.gray04};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -48,7 +47,7 @@ export const StyledChannelName = styled.p`
 
 export const StyledChannelAvailableForWorking = styled.p`
   font-size: 14px;
-  color: ${color.green01};
+  color: ${({ theme }) => theme.color.green01};
   margin: 0;
 
   &::before {
