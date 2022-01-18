@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { color } from '@/styles/theme';
 
 export const StyledTagListWrap = styled.div`
   display: flex;
@@ -14,7 +13,7 @@ export const StyledTagListLink = styled.a`
   padding: 10px 16px;
   margin-right: 8px;
   margin-bottom: 8px;
-  background: ${color.gray06};
+  background: ${({ theme: { color } }) => color.gray06};
   font-size: 15px;
   font-style: italic;
   font-weight: bold;
@@ -30,11 +29,11 @@ export const StyledMoreButton = styled.button`
   padding: 10px 16px;
   margin-right: 8px;
   margin-bottom: 8px;
-  background: ${color.gray06};
+  background: ${({ theme: { color } }) => color.gray06};
   font-size: 15px;
   font-style: italic;
   font-weight: bold;
-  color: ${color.white};
+  color: ${({ theme: { color } }) => color.white};
   border-width: 0px;
   border-radius: 20px;
   transition: all 0.2s;
