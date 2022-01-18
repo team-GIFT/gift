@@ -22,6 +22,7 @@ export function GlobalNav() {
       <StyledGlobalNav>
         {listItems.map(({ id, href, text }: GlobalNavItemProps) => (
           <StyledGlobalNavItems key={id}>
+            {/* TODO: If more : button */}
             <StyledLink href={href}>{text}</StyledLink>
           </StyledGlobalNavItems>
         ))}
