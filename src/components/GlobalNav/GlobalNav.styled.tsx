@@ -14,7 +14,6 @@ export const StyledGlobalNav = styled.ul`
     0% 50% / 200% 50%;
   display: flex;
   justify-content: space-around;
-  margin: 10 0 0 14;
 `;
 
 export const StyledGlobalNavItems = styled.li`
