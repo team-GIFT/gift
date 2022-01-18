@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { color } from '@/styles/theme';
 
 export const StyledGlobalNav = styled.ul`
   background: linear-gradient(
@@ -19,7 +18,7 @@ export const StyledGlobalNav = styled.ul`
 
 export const StyledGlobalNavItems = styled.li`
   height: 36px;
-  border-right: 5px solid ${color.black};
+  border-right: 5px solid ${({ theme }) => theme.color.black};
   position: relative;
   display: flex;
   justify-content: center;
@@ -28,7 +27,7 @@ export const StyledGlobalNavItems = styled.li`
   &::before {
     content: '';
     position: absolute;
-    background-color: ${color.black};
+    background-color: ${({ theme }) => theme.color.black};
     opacity: 1;
     inset: 0px -1px 4px;
     z-index: 1;

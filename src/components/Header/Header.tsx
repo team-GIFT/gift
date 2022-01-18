@@ -1,4 +1,4 @@
-import { color } from '@/styles/theme';
+import { theme } from '@/styles';
 import React from 'react';
 import { GlobalNav, Logo, SearchBar, SvgIcon } from '..';
 import {
@@ -28,7 +28,12 @@ export function Header() {
         </StyledLinkWrap>
         <StyledUserWrap>
           {/* login */}
-          <SvgIcon id="user" fill={color.gray05} height={35} width={35} />
+          <SvgIcon
+            id="user"
+            fill={theme.darkMode.color.gray05}
+            height={35}
+            width={35}
+          />
           <span>Log in</span>
         </StyledUserWrap>
       </StyledMenuWrap>

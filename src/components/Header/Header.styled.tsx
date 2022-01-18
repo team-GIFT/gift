@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { color } from '@/styles/theme';
 
 export const StyledHeader = styled.header`
   // max-width: 1040px;
@@ -24,12 +23,12 @@ export const StyledLinkWrap = styled.div`
 `;
 
 export const StyledLink = styled.a`
-  color: ${color.white};
-  background-color: ${color.violet02};
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.violet01};
   padding: 8.5px 16px;
   display: inline-block;
   &:hover {
-    background-color: ${color.violet01};
+    background-color: ${({ theme }) => theme.color.violet02};
   }
 `;
 
@@ -37,7 +36,7 @@ export const StyledUserWrap = styled.div`
   display: inline-flex;
   align-items: center;
   width: 100%;
-  background-color: ${color.gray06};
+  background-color: ${({ theme }) => theme.color.gray06};
   min-width: 124px;
   span {
     flex-grow: 1;
