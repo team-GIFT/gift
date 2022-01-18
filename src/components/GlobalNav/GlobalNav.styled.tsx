@@ -14,11 +14,12 @@ export const StyledGlobalNav = styled.ul`
     0% 50% / 200% 50%;
   display: flex;
   justify-content: space-around;
+  min-width: 496px;
 `;
 
 export const StyledGlobalNavItems = styled.li`
   height: 36px;
-  border-right: ${color.black};
+  border-right: 5px solid ${color.black};
   position: relative;
   display: flex;
   justify-content: center;
