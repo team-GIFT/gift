@@ -3,11 +3,10 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { GlobalNav } from './GlobalNav';
 
 export default {
-  title: 'components/ChannelInfo',
+  title: 'components/GlobalNav',
   component: GlobalNav,
 } as ComponentMeta<typeof GlobalNav>;
 
-// TODO: Doesn't appear
 const Template: ComponentStory<typeof GlobalNav> = () => <GlobalNav />;
 
 export const GNBBasic = Template.bind({});
