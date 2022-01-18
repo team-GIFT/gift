@@ -1,12 +1,15 @@
 import ko from 'axe-core/locales/ko.json';
 import React from 'react';
 import { addDecorator } from '@storybook/react';
-import { GlobalStyle } from '@/styles/global.styled';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle, theme } from '@/styles';
 
-addDecorator((story) => (
+addDecorator((Story) => (
   <>
-    <GlobalStyle />
-    {story()}
+    <ThemeProvider theme={theme.darkMode}>
+      <GlobalStyle />
+      <Story />
+    </ThemeProvider>
   </>
 ));
 

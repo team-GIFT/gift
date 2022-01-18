@@ -3,11 +3,6 @@ declare module '*.svg' {
   export default src;
 }
 
-declare module '*.txt' {
-  const content: string;
-  export default content;
-}
-
 declare module '*.svg?react' {
   import * as React from 'react';
 
@@ -18,6 +13,11 @@ declare module '*.svg?react' {
 }
 
 declare module '*.png' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.txt' {
   const src: string;
   export default src;
 }
