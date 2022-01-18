@@ -1,12 +1,15 @@
 import React, { StrictMode } from 'react';
 import { render } from 'react-dom';
-import { GlobalStyle } from '@/styles/global.styled';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle, theme } from '@/styles';
 import App from '@/App/App';
 
 render(
   <StrictMode>
-    <GlobalStyle />
-    <App />
+    <ThemeProvider theme={theme.darkMode}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
   </StrictMode>,
   document.getElementById('root')
 );
