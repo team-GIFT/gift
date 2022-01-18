@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 import { LoadingSpinnerItemProps } from './LoadingSpinner.types';
-import { color } from '@/styles/theme';
 
 interface Color {
   white: string;
@@ -39,8 +38,8 @@ export const StyledLoadingSpinnerItem = styled.div<LoadingSpinnerItemProps>`
   height: ${({ $size }) => $size}px;
   margin: 10px;
   animation: ${loading} 1s infinite;
-  background: ${({ $color }) => {
-    return color[$color as keyof Color];
+  background: ${({ $color, theme }) => {
+    return theme.color[$color as keyof Color];
   }};
 
   &:nth-child(2) {
