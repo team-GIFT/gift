@@ -17,10 +17,10 @@ export function Video({ src, className }: VideoProps): JSX.Element {
         pointer-events: none;
       `}
     >
-      <source src={src} type="video/mp4" />
+      <source className="cardSource" data-src={src} type="video/mp4" />
       <p>
-        이 문장은 여러분의 브라우저가 video 태그를 지원하지 않을 때 화면에
-        표시됩니다!
+        This sentence appears on the screen when your browser does not support
+        video tags!
       </p>
     </video>
   );
