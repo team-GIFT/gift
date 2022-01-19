@@ -12,7 +12,7 @@ export function TagList(): JSX.Element {
   const [moreList, setMoreList] = useState<(string | null)[]>([]);
 
   useEffect(() => {
-    const dumyTags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6'];
+    const dumyTags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6', 'tag6'];
     setInitialList(dumyTags);
   }, []);
 
@@ -30,9 +30,10 @@ export function TagList(): JSX.Element {
     let totalItemWidth = 0;
     // 태그 아이템 전체 너비가 부모의 너비보다 작으면 return (more item으로 분류할 아이템이 없기 때문)
     if (tagItem && tagWrapWidth) {
-      for (let i = 0; i < tagItem.length; i++) {
-        totalItemWidth += tagItem[i].offsetWidth + ITEM_MARGIN;
-      }
+      tagItem.forEach(
+        (tagItem) => (totalItemWidth += tagItem.offsetWidth + ITEM_MARGIN)
+      );
+
       if (totalItemWidth < tagWrapWidth) return;
     }
 
@@ -87,7 +88,7 @@ export function TagList(): JSX.Element {
         <StyledMoreButton
           onClick={handleChange}
           type="button"
-          aria-label="더보기"
+          aria-label="more"
         >
           ...
         </StyledMoreButton>
