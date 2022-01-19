@@ -10,4 +10,3 @@ export default {
 const Template: ComponentStory<typeof Header> = () => <Header />;
 
 export const GNBBasic = Template.bind({});
-GNBBasic.args = {};
