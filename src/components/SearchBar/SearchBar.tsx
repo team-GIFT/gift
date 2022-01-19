@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { SvgIcon } from '..';
+import { SvgIcon } from '@/components';
 import {
   StyledSearchForm,
   StyledSearchButton,
