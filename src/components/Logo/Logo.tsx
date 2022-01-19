@@ -1,49 +1,66 @@
-import React from 'react';
-import { motion, MotionConfig } from 'framer-motion';
+import React, { useEffect } from 'react';
+import { motion, MotionConfig, useAnimation } from 'framer-motion';
 import { LogoProps } from './Logo.types';
 
-const transition = {
-  duration: 2,
-  ease: 'easeInOut',
-};
-
 export function Logo({ height, width, title }: LogoProps) {
+  const control1 = useAnimation();
+  const control2 = useAnimation();
+  const control3 = useAnimation();
+  const control4 = useAnimation();
+  const control5 = useAnimation();
+
+  useEffect(() => {
+    function loopSequenceAnimation() {
+      control1.set({ opacity: 0, scale: 0 });
+      control2.set({ scaleX: 0, x: '-5%' });
+      control3.set({ scaleY: 0, y: '-50%' });
+      control4.set({ scaleX: 0, x: '-10%' });
+      control5.set({ scaleY: 0, y: '50%' });
+
+      const sequences = async () => {
+        await control1.start({
+          opacity: 1,
+          scale: 1,
+          transition: { duration: 0.2 },
+        });
+        await control2.start({ scaleX: 1, x: 0 });
+        await control3.start({ scaleY: 1, y: 0 });
+        await control4.start({ scaleX: 1, x: 0 });
+        await control5.start({ scaleY: 1, y: 0 });
+      };
+      sequences();
+    }
+    loopSequenceAnimation();
+    const clearId = setInterval(loopSequenceAnimation, 6000);
+    return () => clearInterval(clearId);
+  }, [control1, control2, control3, control4, control5]);
+
   return (
-    <MotionConfig transition={transition}>
-      <motion.svg
-        height={height}
-        width={width}
-        viewBox="0 0 689 180"
-        xmlns="http://www.w3.org/2000/svg"
-        initial="hidden"
-      >
+    <MotionConfig transition={{ duration: 0.15 }}>
+      <motion.svg height={height} width={width} viewBox="0 0 689 180">
         <title>{title}</title>
         <g id="LogoImage">
           <motion.path
             d="M20 16H0V164H20V16Z"
             fill="#00FF99"
-            initial={{ scaleY: 0, y: '-50%' }}
-            animate={{ scaleY: 1, y: 0 }}
+            animate={control3}
           />
           <motion.path
             d="M140 56H120V164H140V56Z"
             fill="#9933FF"
-            initial={{ scaleY: 0, y: '50%' }}
-            animate={{ scaleY: 1, y: 0 }}
+            animate={control5}
           />
           <motion.path
             d="M140 160H0V180H140V160Z"
             fill="#00CCFF"
-            initial={{ scaleX: 0, x: '-10%' }}
-            animate={{ scaleX: 1, x: 0 }}
+            animate={control4}
           />
           <motion.path
             fillRule="evenodd"
             clipRule="evenodd"
             d="M120 40V20H100V0H80V20.13V20.16V40.1V40.13V60H100.42H120.38H140V40H120Z"
             fill="#FF6666"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={control1}
           />
           <path
             opacity="0.4"
@@ -52,12 +69,7 @@ export function Logo({ height, width, title }: LogoProps) {
             d="M120 80.16V60H140L120 80.16Z"
             fill="#0F0F0F"
           />
-          <motion.path
-            d="M80 0H0V20H80V0Z"
-            fill="#FFF35C"
-            initial={{ scaleX: 0, x: '5%' }}
-            animate={{ scaleX: 1, x: 0 }}
-          />
+          <motion.path d="M80 0H0V20H80V0Z" fill="#FFF35C" animate={control2} />
           <path
             opacity="0.4"
             fillRule="evenodd"
