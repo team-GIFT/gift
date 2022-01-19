@@ -8,3 +8,5 @@ export * from './SvgIcon/SvgIcon';
 export * from './FormInput/FormInput';
 export * from './SearchBar/SearchBar';
 export * from './Logo/Logo';
+export * from './GlobalNav/GlobalNav';
+export * from './Header/Header';

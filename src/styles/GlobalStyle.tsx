@@ -59,4 +59,9 @@ export const GlobalStyle = createGlobalStyle`
   margin: -1px;
   white-space: nowrap;
 }
+ul{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
 `;
