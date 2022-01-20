@@ -45,7 +45,6 @@ export const StyledUserLink = styled.a.attrs(
   background-image: url(${({ $userImageUrl }: StyledUserLinkProps) =>
     $userImageUrl});
   opacity: 0;
-
   .card.isHovered & {
     opacity: 1;
     transition: opacity 0.4s;
