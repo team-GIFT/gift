@@ -12,11 +12,8 @@ export interface CardProps {
     link: string;
     name: string;
   };
-}
-
-export interface StyledCardProps {
-  $width: number;
-  $height: number;
+  className?: string;
+  containerType: string;
 }
 
 export interface StyledUserLinkProps {

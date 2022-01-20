@@ -70,11 +70,24 @@ export const StyledButton = styled.button<StyledButtonProps>`
   border: 0;
   cursor: pointer;
 
+  transform: ${({ $name }) =>
+    /mute/i.test($name) ? 'scale(0.8)' : 'scale(0.9)'};
+
+  opacity: ${({ $name }) => (/mute/i.test($name) ? 1 : 0)};
+
   background: ${({ $name }) => buttonInfos[$name]?.backgroundUrl};
+
+  .card.isHovered &,
+  .card.isFocus & {
+    opacity: 1;
+    transition: opacity 0.4s;
+  }
 
   &:hover {
     animation: ${({ $name }) =>
       $name !== 'mute' && $name !== 'nonMute' && buttonInfos[$name].animation};
+
+    transform: ${({ $name }) => /mute/i.test($name) && 'scale(0.9)'};
   }
 
   button&:focus-visible {
