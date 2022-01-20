@@ -14,6 +14,7 @@ const color = {
   blue01: '#00ccff',
   yellow01: '#fff35c',
   primary: '#000000',
+  outline: '#ffffff',
 };
 
 const fontSize = {
@@ -30,6 +31,7 @@ export const theme: { liteMode: DefaultTheme; darkMode: DefaultTheme } = {
     color: {
       ...color,
       primary: '#ffffff',
+      outline: '#00ccff',
     },
     fontSize,
   },
