@@ -15,6 +15,7 @@ declare module 'styled-components' {
       blue01: string;
       yellow01: string;
       primary: string;
+      outline: string;
     };
 
     fontSize: {
