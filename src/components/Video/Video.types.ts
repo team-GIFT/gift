@@ -7,5 +7,4 @@ export interface VideoProps {
 
 export interface StyledVideoContainerProps {
   $width: string | null;
-  ref: RefObject<HTMLDivElement>;
 }

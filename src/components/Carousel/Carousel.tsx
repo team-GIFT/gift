@@ -1,14 +1,10 @@
 import React, { useCallback } from 'react';
-import Swiper, { Navigation, Keyboard, A11y, Lazy } from 'swiper';
+import Swiper, { Navigation, Keyboard, A11y } from 'swiper';
 import { SwiperSlide, SwiperProps } from 'swiper/react';
 import { StyledSlider } from './Carousel.styled';
-import {
-  CarouselCardsProps,
-  OnLazyImageReadyProps,
-  CardProps,
-} from './Carousel.types';
+import { CarouselCardsProps, CardProps } from './Carousel.types';
 import { Card } from '@/components';
-import { getFocusableElements } from '@/utils/focusOrTabbable';
+import { getFocusableElements } from '@/utils';
 
 export function Carousel({ cards }: CarouselCardsProps): JSX.Element {
   const createSlide = (cardProps: CardProps, key: number) => {
@@ -33,17 +29,12 @@ export function Carousel({ cards }: CarouselCardsProps): JSX.Element {
   }, []);
 
   const settings: SwiperProps = {
-    modules: [Navigation, Keyboard, A11y, Lazy],
-    lazy: { elementClass: 'cardSource' },
+    modules: [Navigation, Keyboard, A11y],
     slidesPerGroupAuto: true,
     slidesPerView: 'auto',
     navigation: true,
     keyboard: { enabled: true },
     watchSlidesProgress: true,
-    onLazyImageReady(...props: OnLazyImageReadyProps) {
-      const [, , cardSource] = props;
-      (cardSource.parentNode as HTMLVideoElement).load();
-    },
     onTransitionEnd: handleA11y,
     onAfterInit: handleA11y,
   };
