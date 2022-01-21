@@ -1,20 +1,46 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
-import {
-  StyledCard,
-  StyledDetailLink,
-  StyledButtonGroup,
-  StyledUserLink,
-} from './Card.styled';
+import { StyledCard, StyledDetailLink, StyledButtonGroup } from './Card.styled';
 import { CardProps } from './Card.types';
-import { Video, CardButton } from '@/components';
+import { Video, CardButton, ChannelInfo } from '@/components';
 
-export function Card({ title, url, preview, user }: CardProps): JSX.Element {
+export function Card({
+  title,
+  url,
+  preview,
+  user,
+  className,
+  containerType,
+}: CardProps): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
-  const handleIsHovered = useCallback(() => {
-    setIsHovered(!isHovered);
-  }, [isHovered]);
+  const handleIsHovered = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      e.type === 'mouseenter' ? setIsHovered(true) : setIsHovered(false);
+    },
+    []
+  );
+
+  const handleIsFocus = useCallback(
+    (e: React.FocusEvent<HTMLDivElement, Element>) => {
+      const { type, relatedTarget, target } = e;
+
+      const isOutOfRange =
+        containerType === 'clips' &&
+        (target.closest('.channel') || relatedTarget?.closest('.channel'));
+
+      if (isOutOfRange) {
+        setIsFocus(false);
+        return;
+      }
+
+      type === 'blur' && !relatedTarget?.closest('.card')
+        ? setIsFocus(false)
+        : setIsFocus(true);
+    },
+    [containerType]
+  );
 
   const children = useMemo(() => {
     return (
@@ -25,38 +51,53 @@ export function Card({ title, url, preview, user }: CardProps): JSX.Element {
         <StyledButtonGroup className="buttonGroup">
           <CardButton
             buttonName="clipboard"
-            aria-label="클립보드"
+            aria-label="clipboard"
             onClick={() => {
               console.log('bye');
             }}
           />
           <CardButton
             buttonName="favorite"
-            aria-label="좋아요"
+            aria-label="favorite"
             onClick={() => {
               console.log('hi');
             }}
           />
+          {containerType === 'clips' && (
+            <CardButton
+              buttonName="mute"
+              aria-label="mute"
+              onClick={() => {
+                console.log('hi');
+              }}
+            />
+          )}
         </StyledButtonGroup>
         {user && (
-          <StyledUserLink
-            className="userLink"
-            $userImageUrl={user.image}
-            $userLinkUrl={user.link}
-            aria-label={user.name}
+          <ChannelInfo
+            {...{
+              imgUrl: 'http://placehold.it/50x50',
+              channelLink: '#',
+              userName: '임씨 유저 소형',
+              channelName: '@sosoyim',
+              size: 50,
+              verified: true,
+              useUserName: true,
+              useChannelName: true,
+            }}
           />
         )}
       </>
     );
-  }, [preview.mp4, title, url, user]);
+  }, [containerType, preview.mp4, title, url, user]);
 
   return (
     <StyledCard
-      $width={preview.width}
-      $height={preview.height}
-      className={classNames('card', { isHovered })}
+      className={classNames('card', className, { isHovered }, { isFocus })}
       onMouseEnter={handleIsHovered}
       onMouseLeave={handleIsHovered}
+      onFocus={handleIsFocus}
+      onBlur={handleIsFocus}
     >
       {children}
     </StyledCard>

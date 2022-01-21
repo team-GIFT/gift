@@ -10,9 +10,10 @@ export function Video({ src, className }: VideoProps): JSX.Element {
       className={className}
       autoPlay={isAutoPlayMode}
       loop={isAutoPlayMode}
-      muted={true}
-      playsInline={true}
+      muted
+      playsInline
       css={`
+        display: block;
         width: 100%;
         pointer-events: none;
       `}
