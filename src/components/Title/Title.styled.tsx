@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { StyeldTitleProps } from './Title.types';
+import { px2rem } from '@/styles/utils';
 
 export const StyledTitle = styled.span<StyeldTitleProps>`
   margin-top: ${({ $marginTop }) => $marginTop}px;
@@ -10,7 +11,7 @@ export const StyledTitle = styled.span<StyeldTitleProps>`
 `;
 
 export const StyledTitleIcon = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+  width: ${px2rem(24)};
+  height: ${px2rem(24)};
+  margin-right: ${px2rem(10)};
 `;
