@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { px2rem } from '@/styles';
+
+const globalNavHeight = px2rem(36);
 
 export const StyledGlobalNav = styled.ul`
   background: linear-gradient(
@@ -17,14 +20,14 @@ export const StyledGlobalNav = styled.ul`
 `;
 
 export const StyledGlobalNavItems = styled.li`
-  height: 36px;
+  height: ${globalNavHeight};
   border-right: 5px solid ${({ theme }) => theme.color.black};
   position: relative;
   display: flex;
   justify-content: center;
   flex-grow: 1;
   align-items: center;
-  &::before {
+  &::after {
     content: '';
     position: absolute;
     background-color: ${({ theme }) => theme.color.black};
@@ -33,7 +36,7 @@ export const StyledGlobalNavItems = styled.li`
     z-index: 1;
     transition: opacity 0.35s ease 0s;
   }
-  &:hover::before {
+  &:hover::after {
     opacity: 0.3;
     transition: background-color 0.25s ease 0s;
   }
@@ -41,4 +44,17 @@ export const StyledGlobalNavItems = styled.li`
 
 export const StyledLink = styled.a`
   z-index: 2;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: ${globalNavHeight};
+`;
+
+export const StyledButton = styled.button`
+  z-index: 2;
+  background-color: transparent;
+  color: white;
+  width: 100%;
+  height: 100%;
+  border: 0;
 `;

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { A11yHidden } from '@/components';
 import { GlobalNavItemProps } from './GlobalNav.types';
 import {
   StyledGlobalNav,
   StyledGlobalNavItems,
   StyledLink,
+  StyledButton,
 } from './GlobalNav.styled';
 
 export function GlobalNav() {
@@ -14,16 +15,23 @@ export function GlobalNav() {
     { id: 'sports', href: '/sports', text: 'Sports' },
     { id: 'stickers', href: '/stickers', text: 'Stickers' },
     { id: 'artists', href: '/artists', text: 'Artists' },
-    { id: 'more', href: '/more', text: '...' },
+    { id: 'more', href: '', text: '...' },
   ];
+
+  const previousFocusRef = useRef<HTMLElement>(null);
+  const nextFocusRef = useRef<HTMLElement>(null);
+
   return (
     <nav aria-labelledby="mainmenulabel">
       <A11yHidden as="h2">Main menu</A11yHidden>
       <StyledGlobalNav>
         {listItems.map(({ id, href, text }: GlobalNavItemProps) => (
           <StyledGlobalNavItems key={id}>
-            {/* TODO: If more : button */}
-            <StyledLink href={href}>{text}</StyledLink>
+            {id === 'more' ? (
+              <StyledButton>{text}</StyledButton>
+            ) : (
+              <StyledLink href={href}>{text}</StyledLink>
+            )}
           </StyledGlobalNavItems>
         ))}
       </StyledGlobalNav>
