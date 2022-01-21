@@ -7,6 +7,7 @@ export const StyledCard = styled.div`
 
 export const StyledDetailLink = styled.a`
   display: block;
+  height: 100%;
 
   &:focus:visible {
     outline: solid #fff;
