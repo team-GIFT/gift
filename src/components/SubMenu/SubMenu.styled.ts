@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { px2rem } from '@/styles';
-import { StyledTopSectionListItemUlProps } from './SubMenu.types';
+import {
+  StyledTopSectionListItemUlProps,
+  StyledSubMenuWrapperProps,
+} from './SubMenu.types';
 
 // TODO: 반응형 : flex-direction: column;
-export const StyledSubMenuWrapper = styled.div`
+export const StyledSubMenuWrapper = styled.div<StyledSubMenuWrapperProps>`
   display: flex;
   flex-direction: column;
   animation: 0.5s ease 0s 1 normal none running;
