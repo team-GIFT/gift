@@ -1,5 +1,3 @@
-import { RefObject } from 'react';
-
 export interface VideoProps {
   src: string;
   className?: string;
