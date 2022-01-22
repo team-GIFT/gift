@@ -7,9 +7,9 @@ import { Card } from '@/components';
 import { getFocusableElements } from '@/utils';
 
 export function Carousel({ cards }: CarouselCardsProps): JSX.Element {
-  const createSlide = (cardProps: CardProps, key: number) => {
+  const createSlide = (cardProps: CardProps) => {
     return (
-      <SwiperSlide key={key}>
+      <SwiperSlide key={cardProps.id}>
         <Card {...cardProps} />
       </SwiperSlide>
     );
