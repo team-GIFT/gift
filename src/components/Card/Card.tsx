@@ -1,14 +1,12 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useRef } from 'react';
 import classNames from 'classnames';
 import { StyledCard, StyledDetailLink, StyledButtonGroup } from './Card.styled';
 import { CardProps } from './Card.types';
 import { Video, CardButton, ChannelInfo } from '@/components';
 
 export function Card({
+  original,
   title,
-  url,
-  preview,
-  user,
   className,
   containerType,
 }: CardProps): JSX.Element {
@@ -45,8 +43,8 @@ export function Card({
   const children = useMemo(() => {
     return (
       <>
-        <StyledDetailLink href={url} aria-label={title}>
-          <Video src={preview.mp4} />
+        <StyledDetailLink href="#" aria-label={title}>
+          <Video src={original.mp4} />
         </StyledDetailLink>
         <StyledButtonGroup className="buttonGroup">
           <CardButton
@@ -73,7 +71,7 @@ export function Card({
             />
           )}
         </StyledButtonGroup>
-        {user && (
+        {/* {user && (
           <ChannelInfo
             {...{
               imgUrl: 'http://placehold.it/50x50',
@@ -86,10 +84,10 @@ export function Card({
               useChannelName: true,
             }}
           />
-        )}
+        )} */}
       </>
     );
-  }, [containerType, preview.mp4, title, url, user]);
+  }, [containerType, original.mp4, title]);
 
   return (
     <StyledCard
