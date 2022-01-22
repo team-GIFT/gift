@@ -17,3 +17,5 @@ export * from './LoadingSpinner/LoadingSpinner';
 export * from './TagList/TagList';
 export * from './Title/Title';
 export * from './Wrapper/Wrapper';
+export * from './SubMenu/SubMenu';
+export * from './Header/Header';
