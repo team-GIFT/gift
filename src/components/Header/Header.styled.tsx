@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
+  position: fixed;
   // max-width: 1040px;
   padding-top: 15px;
 `;

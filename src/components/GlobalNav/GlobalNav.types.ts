@@ -11,3 +11,8 @@ export interface GlobalNavItemProps {
   href: string;
   text: string;
 }
+
+export interface GlobalNavProps {
+  activeClassName?: string;
+  className?: string;
+}
