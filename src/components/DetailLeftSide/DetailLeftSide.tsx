@@ -6,7 +6,7 @@ import {
   StyledLeftSideFollowon,
   StyledLeftSideSource,
 } from './DetailLeftSide.styled';
-import { ChannelInfo, SvgIcon } from '@/components';
+import { ChannelInfo, SvgIcon, A11yHidden } from '@/components';
 import { useGetGifByIdQuery } from '@/services';
 
 export function DetailLeftSide() {
@@ -31,7 +31,18 @@ export function DetailLeftSide() {
                 overflow="initial"
               />
               <StyledLeftSideDesc>{data.user.description}</StyledLeftSideDesc>
-              <StyledLeftSideFollowon>Follow on:</StyledLeftSideFollowon>
+              {data.user.instagram_url && (
+                <StyledLeftSideFollowon>
+                  <p>Follow on:</p>
+                  <a
+                    href={`//${data.user.instagram_url}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <A11yHidden>go to instagram</A11yHidden>
+                  </a>
+                </StyledLeftSideFollowon>
+              )}
             </StyledLeftSideChannelInfoWrap>
           ) : null}
           <StyledLeftSideSource>
