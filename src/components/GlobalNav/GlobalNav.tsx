@@ -1,4 +1,4 @@
-import React, { useCallback, createRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { A11yHidden } from '@/components';
 import { GlobalNavItemProps, GlobalNavProps } from './GlobalNav.types';
 import classNames from 'classnames';
@@ -38,7 +38,7 @@ export function GlobalNav({
     { id: 'more', href: '', text: '...' },
   ];
 
-  const subMenuRef = createRef<HTMLDivElement>();
+  const subMenuRef = useRef<HTMLDivElement>();
 
   const active = useCallback(() => {
     subMenuRef.current?.classList.add(activeClassName);
