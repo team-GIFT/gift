@@ -9,7 +9,7 @@ import {
 export const StyledSubMenuWrapper = styled.div<StyledSubMenuWrapperProps>`
   display: flex;
   flex-direction: column;
-  animation: 0.5s ease 0s 1 normal none running;
+  /* animation: 0.5s ease 0s 1 normal none running; */
   /* width: 1040px; */
   position: absolute;
 

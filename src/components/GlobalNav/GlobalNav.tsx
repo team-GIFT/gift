@@ -55,20 +55,24 @@ export function GlobalNav({
         {listItems.map(({ id, href, text }: GlobalNavItemProps) => (
           <StyledGlobalNavItems key={id}>
             {id === 'more' ? (
-              <StyledButton
-                onMouseEnter={active}
-                onMouseLeave={deactive}
-                className={classNames('more-button', className)}
-              >
-                {text}
-              </StyledButton>
+              <>
+                <StyledButton
+                  onMouseEnter={active}
+                  onMouseLeave={deactive}
+                  className={classNames('more-button', className)}
+                >
+                  <span>{text}</span>
+                </StyledButton>
+                <SubMenu className={className} subMenuRef={subMenuRef} />
+              </>
             ) : (
-              <StyledLink href={href}>{text}</StyledLink>
+              <StyledLink href={href}>
+                <span>{text}</span>
+              </StyledLink>
             )}
           </StyledGlobalNavItems>
         ))}
       </StyledGlobalNav>
-      <SubMenu className={className} subMenuRef={subMenuRef} />
     </StyledNav>
   );
 }
