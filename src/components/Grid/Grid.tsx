@@ -1,25 +1,15 @@
 import React, { useCallback } from 'react';
+import { trendingGifsSelector } from '@/store/featrues/giphy/giphy';
+import { useSelector } from 'react-redux';
 import { StyledGridItem, SytledGridContainer } from './Grid.styled';
 import { Card } from '@/components';
 import { getRandomCount } from '@/utils';
 
 export function Grid() {
-  const card = {
-    title: 'hihi',
-    url: 'https://giphy.com/gifs/studiosoriginals-TmhCoUsBQrzWrcsqAd',
-    preview: {
-      height: 228,
-      mp4: 'https://media2.giphy.com/media/TmhCoUsBQrzWrcsqAd/giphy-preview.mp4?cid=cba2429cg7wsgc2opasvqed5sf3rge2u3o45dpf2d2zmldey&rid=giphy-preview.mp4&ct=g',
-      mp4_size: '38984',
-      width: 304,
-    },
-    containerType: 'clips',
-  };
+  const { isLoading, cards } = useSelector(trendingGifsSelector);
 
-  const createGridInfos = useCallback(() => {
+  const createGridInfos = useCallback((gifs) => {
     const gridColumnVariations = ['1111', '211', '121', '112'];
-
-    const gifs = Array.from({ length: 25 }, (_, i) => i + 1); // redux data
 
     let count = 0;
     const gifsInfo: string[] = [];
@@ -52,23 +42,23 @@ export function Grid() {
     return gifsInfo;
   }, []);
 
-  const gridInfos = createGridInfos();
+  const gridInfos = createGridInfos(cards).join('').split('');
 
   return (
-    <SytledGridContainer className="container">
-      {gridInfos.map((item, i) => (
-        <React.Fragment key={i}>
-          {Array.from({ length: item.length }, (_, index) => (
+    <>
+      {!isLoading && (
+        <SytledGridContainer className="container">
+          {gridInfos.map((width, index) => (
             <StyledGridItem
-              data-width={item[index]}
+              data-width={width}
               className="gridItem"
-              key={'0' + index}
+              key={cards[index].id}
             >
-              <Card {...card} />
+              <Card gridWidth={width} containerType="grid" {...cards[index]} />
             </StyledGridItem>
           ))}
-        </React.Fragment>
-      ))}
-    </SytledGridContainer>
+        </SytledGridContainer>
+      )}
+    </>
   );
 }
