@@ -34,6 +34,11 @@ export const giphySearchApi = createApi({
     getSearchSuggestions: builder.query({
       query: (word) => `tags/related/${word}?api_key=${GIPHY_API_KEY}`,
     }),
+
+    getGifById: builder.query({
+      query: (id) => `gifs/${id}?api_key=${GIPHY_API_KEY}`,
+      transformResponse: (response) => response.data,
+    }),
   }),
 });
 
@@ -41,4 +46,5 @@ export const {
   useGetAutoCompleteQuery,
   useGetChannelsQuery,
   useGetSearchSuggestionsQuery,
+  useGetGifByIdQuery,
 } = giphySearchApi;
