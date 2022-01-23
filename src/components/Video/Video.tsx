@@ -9,10 +9,13 @@ export function Video({ src, className }: VideoProps): JSX.Element {
   const { width, observerRef, videoRef, inView } = useVideo();
 
   return (
-    <StyledVideoContainer $width={width} ref={observerRef}>
+    <StyledVideoContainer
+      className={className}
+      ref={observerRef}
+      $width={width}
+    >
       {inView && (
         <StyledVideo
-          className={className}
           autoPlay={isAutoPlayMode}
           loop={isAutoPlayMode}
           ref={videoRef}
