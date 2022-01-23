@@ -26,6 +26,9 @@ export function DetailLeftSide() {
                 channelName={data.user.username}
                 channelLink={data.user.profile_url}
                 verified={data.user.is_verified}
+                textOverflow="initial"
+                whiteSpace="initial"
+                overflow="initial"
               />
               <StyledLeftSideDesc>{data.user.description}</StyledLeftSideDesc>
               <StyledLeftSideFollowon>Follow on:</StyledLeftSideFollowon>
