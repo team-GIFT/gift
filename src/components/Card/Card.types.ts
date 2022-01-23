@@ -5,7 +5,7 @@ export interface CardProps {
   height?: number;
   className?: string;
   containerType?: string;
-  gridWidth?: number;
+  gridWidth?: string;
 }
 
 export interface StyledCardProps {
