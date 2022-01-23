@@ -8,7 +8,8 @@ export type SvgIconId =
   | 'sound-on'
   | 'verified'
   | 'user'
-  | 'flech-sharp';
+  | 'flech-sharp'
+  | 'new-window';
 
 export interface SvgIconProps {
   id: SvgIconId;

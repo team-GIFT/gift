@@ -3,12 +3,20 @@ export interface StyledChannelProfileImageProps {
   $size: number;
   $marginRight: number;
 }
+export interface StyledChannelChannelName {
+  $overflow: string;
+  $whiteSapce: string;
+  $textOverflow: string;
+}
 
 export interface ChannelInfoProps {
   imgUrl: string;
   userName: string;
   channelName: string;
   channelLink: string;
+  overflow?: string;
+  whiteSpace?: string;
+  textOverflow?: string;
   size?: number;
   marginRight?: number;
   verified?: boolean;

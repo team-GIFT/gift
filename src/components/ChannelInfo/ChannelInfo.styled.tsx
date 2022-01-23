@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { StyledChannelProfileImageProps } from './ChannelInfo.types';
+import {
+  StyledChannelProfileImageProps,
+  StyledChannelChannelName,
+} from './ChannelInfo.types';
 
 export const StyledChannelInfoWrap = styled.div``;
 export const StyledChannelInfoLink = styled.a`
@@ -9,6 +12,7 @@ export const StyledChannelInfoLink = styled.a`
 export const StyledChannelProfileImage = styled.span<StyledChannelProfileImageProps>`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
+  flex-shrink: 0;
   margin-right: ${({ $marginRight }) => $marginRight}px;
   background: url(${({ $imageUrl }) => $imageUrl}) no-repeat center center /
     cover;
@@ -20,10 +24,10 @@ export const StyledChnnelNamseWrap = styled.div`
   justify-content: center;
   font-weight: bold;
 `;
-export const StyledChannelUserName = styled.p`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+export const StyledChannelUserName = styled.p<StyledChannelChannelName>`
+  overflow: ${({ $overflow }) => $overflow};
+  text-overflow: ${({ $textOverflow }) => $textOverflow};
+  white-space: ${({ $whiteSapce }) => $whiteSapce};
   margin: 0;
   & + p {
     margin-top: 3px;
