@@ -28,4 +28,8 @@ export const StyledLeftSideSource = styled.div`
     margin-bottom: ${px2rem(8)};
     color: ${({ theme: { color } }) => color.gray04};
   }
+
+  svg {
+    margin-right: ${px2rem(6)};
+  }
 `;

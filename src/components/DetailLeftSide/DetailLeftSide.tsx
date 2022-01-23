@@ -6,7 +6,7 @@ import {
   StyledLeftSideFollowon,
   StyledLeftSideSource,
 } from './DetailLeftSide.styled';
-import { ChannelInfo } from '@/components';
+import { ChannelInfo, SvgIcon } from '@/components';
 import { useGetGifByIdQuery } from '@/services';
 
 export function DetailLeftSide() {
@@ -38,6 +38,13 @@ export function DetailLeftSide() {
               target="_blank"
               rel="noopener noreferrer"
             >
+              <SvgIcon
+                id="new-window"
+                fill="none"
+                width={14}
+                height={14}
+                aria-hidden={true}
+              />
               {data.source}
             </a>
           </StyledLeftSideSource>
