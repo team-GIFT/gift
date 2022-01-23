@@ -6,11 +6,11 @@ import { CarouselCardsProps, CardProps } from './Carousel.types';
 import { Card } from '@/components';
 import { getFocusableElements } from '@/utils';
 
-export function Carousel({ cards }: CarouselCardsProps): JSX.Element {
+export function Carousel({ cards, height }: CarouselCardsProps): JSX.Element {
   const createSlide = (cardProps: CardProps) => {
     return (
       <SwiperSlide key={cardProps.id}>
-        <Card {...cardProps} />
+        <Card height={height} {...cardProps} />
       </SwiperSlide>
     );
   };
@@ -33,7 +33,7 @@ export function Carousel({ cards }: CarouselCardsProps): JSX.Element {
     slidesPerGroupAuto: true,
     slidesPerView: 'auto',
     navigation: true,
-    keyboard: { enabled: true },
+    // keyboard: { enabled: true },
     watchSlidesProgress: true,
     onTransitionEnd: handleA11y,
     onAfterInit: handleA11y,
