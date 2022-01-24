@@ -1,4 +1,5 @@
 import React from 'react';
+import 'styled-components/macro';
 import {
   StyledRightSiedWrap,
   StyledDetailTitle,
@@ -6,6 +7,7 @@ import {
   StyledGifLink,
   StyledButtonGroup,
   StyledButton,
+  StyledTagList,
 } from './DetailRightSide.styled';
 import { TagList } from '@/components';
 import { useGetGifByIdQuery } from '@/services';
@@ -39,6 +41,9 @@ export function DetailRightSide() {
             </StyledGifLink>
             <StyledButtonGroup>{buttonList}</StyledButtonGroup>
           </StyledGifButtonWrap>
+          <StyledTagList>
+            <TagList />
+          </StyledTagList>
         </StyledRightSiedWrap>
       )}
     </>

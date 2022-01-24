@@ -6,7 +6,7 @@ export const StyledTagListWrap = styled.div`
   list-style: none;
   padding: 0;
   margin: 0;
-  max-width: 500px;
+  width: 100%;
 `;
 export const StyledTagListLink = styled.a`
   display: block;

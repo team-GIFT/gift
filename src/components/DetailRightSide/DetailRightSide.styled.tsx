@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StyledTagListWrap } from '@/components/TagList/TagList.styled';
 import { px2rem } from '@/styles';
 
 export const StyledRightSiedWrap = styled.div``;
@@ -29,4 +30,8 @@ export const StyledButton = styled.button`
   border: none;
   background: transparent;
   padding: ${px2rem(10)} 0;
+`;
+
+export const StyledTagList = styled(StyledTagListWrap)`
+  margin-top: ${px2rem(30)};
 `;

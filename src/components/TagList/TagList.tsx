@@ -12,7 +12,7 @@ export function TagList(): JSX.Element {
   const [moreList, setMoreList] = useState<(string | null)[]>([]);
 
   useEffect(() => {
-    const dumyTags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6', 'tag6'];
+    const dumyTags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6', 'tag7'];
     setInitialList(dumyTags);
   }, []);
 
@@ -33,6 +33,7 @@ export function TagList(): JSX.Element {
       tagItem.forEach(
         (tagItem) => (totalItemWidth += tagItem.offsetWidth + ITEM_MARGIN)
       );
+      console.log({ totalItemWidth });
 
       if (totalItemWidth < tagWrapWidth) return;
     }
