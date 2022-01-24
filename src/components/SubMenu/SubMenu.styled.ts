@@ -9,8 +9,7 @@ import {
 export const StyledSubMenuWrapper = styled.div<StyledSubMenuWrapperProps>`
   display: flex;
   flex-direction: column;
-  /* animation: 0.5s ease 0s 1 normal none running; */
-  /* width: 1040px; */
+  width: 100%;
   position: absolute;
 
   background: linear-gradient(
@@ -31,7 +30,7 @@ export const StyledSubMenuWrapper = styled.div<StyledSubMenuWrapperProps>`
 export const StyledTopSection = styled.ul`
   display: flex;
   padding: ${px2rem(32)} ${px2rem(60)} ${px2rem(20)} ${px2rem(60)};
-  gap: ${px2rem(36)};
+  justify-content: space-between;
   font-size: ${({ theme: { fontSize } }) => fontSize.xl};
   & a {
     margin-bottom: ${px2rem(15)};

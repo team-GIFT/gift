@@ -2,8 +2,12 @@ import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   position: fixed;
-  // max-width: 1040px;
-  padding-top: 15px;
+  padding: 15px;
+  max-width: 1070px;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
 `;
 
 export const StyledMenuWrap = styled.div`
