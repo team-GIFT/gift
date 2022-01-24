@@ -1,4 +1,5 @@
 import React, { useLayoutEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   trendingGifsSelector,
@@ -27,6 +28,9 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>GIFT-Home</title>
+      </Helmet>
       {!isTrendingGifsLoading && !isArtistGifsLoading && (
         <>
           <StyledSection>

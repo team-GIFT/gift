@@ -1,18 +1,21 @@
-import React, { ReactElement } from 'react';
-import { Logo } from '@/components';
-
+import React, { ReactElement, Suspense } from 'react';
+import { Navigate, Routes, Route } from 'react-router-dom';
+import { LoadingSpinner } from '@/components';
+import { Home, SearchResult, CardDetail, PageNotFound } from '@/pages';
+import { Layout } from '@/layout';
 function App(): ReactElement {
   return (
-    <div
-      style={{
-        height: '98vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Logo height={100} title="GIFT" />
-    </div>
+    <Suspense fallback={<LoadingSpinner />}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="404" element={<PageNotFound />} />
+          <Route path="card-detail/:gifId" element={<CardDetail />} />
+          <Route path="search/:keyword" element={<SearchResult />} />
+          <Route path="*" element={<Navigate to="404" replace />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
