@@ -6,7 +6,10 @@ export type SvgIconId =
   | 'search'
   | 'sound-off'
   | 'sound-on'
-  | 'verified';
+  | 'verified'
+  | 'user'
+  | 'flech-sharp'
+  | 'new-window';
 
 export interface SvgIconProps {
   id: SvgIconId;

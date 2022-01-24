@@ -1,22 +1,16 @@
 export interface CardProps {
+  id: string | number;
   title: string;
-  url: string;
-  preview: {
-    height: number;
-    mp4: string;
-    mp4_size: string;
-    width: number;
-  };
-  user?: {
-    image: string;
-    link: string;
-    name: string;
-  };
+  original: { width: number; height: number; mp4: string; mp4_size: string };
+  height?: number;
+  className?: string;
+  containerType?: string;
+  gridWidth?: string;
 }
 
 export interface StyledCardProps {
-  $width: number;
   $height: number;
+  $ratio: number;
 }
 
 export interface StyledUserLinkProps {
