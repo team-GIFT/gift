@@ -19,3 +19,5 @@ export * from './Wrapper/Wrapper';
 export * from './Grid/Grid';
 export * from './Clips/Clips';
 export * from './DetailLeftSide/DetailLeftSide';
+export * from './SubMenu/SubMenu';
+export * from './Header/Header';
