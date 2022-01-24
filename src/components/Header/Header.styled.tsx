@@ -7,6 +7,7 @@ export const StyledHeader = styled.header`
   width: 100%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 999;
 `;
 
 export const StyledMenuWrap = styled.div`

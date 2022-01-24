@@ -1,4 +1,4 @@
 export { default as Home } from './Home/Home';
-export * from './CardDetail/CardDetail';
-export * from './PageNotFound/PageNotFound';
-export * from './SearchResult/SearchResult';
+export { default as CardDetail } from './CardDetail/CardDetail';
+export { default as PageNotFound } from './PageNotFound/PageNotFound';
+export { default as SearchResult } from './SearchResult/SearchResult';

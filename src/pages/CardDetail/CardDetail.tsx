@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-export function CardDetail() {
+export default function CardDetail() {
   // 임시로 유저
   const { gifId } = useParams();
   console.log(gifId);
