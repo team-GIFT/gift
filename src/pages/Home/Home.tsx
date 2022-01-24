@@ -9,7 +9,7 @@ import {
 } from '@/store/featrues/giphy/giphy';
 import { StyledSection } from './Home.styled';
 
-import { Header, Wrapper, Title, Carousel, Clips, Grid } from '@/components';
+import { Title, Carousel, Clips, Grid } from '@/components';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -28,8 +28,7 @@ export default function Home() {
   return (
     <>
       {!isTrendingGifsLoading && !isArtistGifsLoading && (
-        <Wrapper>
-          <Header />
+        <>
           <StyledSection>
             <Title title="Trending" as="h2" />
             <Carousel height={140} cards={trendingGifs} />
@@ -46,7 +45,7 @@ export default function Home() {
             <Title title="Stories" as="h2" iconType="stories" />
             <Grid />
           </StyledSection>
-        </Wrapper>
+        </>
       )}
     </>
   );
