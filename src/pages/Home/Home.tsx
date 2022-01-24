@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@/store';
 import {
   trendingGifsSelector,
   artistGifsSelector,
@@ -9,10 +9,10 @@ import {
 } from '@/store/featrues/giphy/giphy';
 import { StyledSection } from './Home.styled';
 
-import { Title, Carousel, Clips, Grid } from '@/components';
+import { Header, Wrapper, Title, Carousel, Clips, Grid } from '@/components';
 
 export default function Home() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     dispatch(fetchTrendingGifs());
@@ -20,15 +20,15 @@ export default function Home() {
     dispatch(fetchTrendingClips());
   }, [dispatch]);
 
-  const { isLoading: isTrendingGifsLoading, cards: trendingGifs } =
-    useSelector(trendingGifsSelector);
-  const { isLoading: isArtistGifsLoading, cards: artistGifs } =
-    useSelector(artistGifsSelector);
+  const { isLoading: isTrendingGifsLoading, gifs: trendingGifs } =
+    useAppSelector(trendingGifsSelector);
+  const { isLoading: isArtistGifsLoading, gifs: artistGifs } =
+    useAppSelector(artistGifsSelector);
 
   return (
     <>
       {!isTrendingGifsLoading && !isArtistGifsLoading && (
-        <>
+        <Wrapper>
           <StyledSection>
             <Title title="Trending" as="h2" />
             <Carousel height={140} cards={trendingGifs} />
@@ -45,7 +45,7 @@ export default function Home() {
             <Title title="Stories" as="h2" iconType="stories" />
             <Grid />
           </StyledSection>
-        </>
+        </Wrapper>
       )}
     </>
   );
