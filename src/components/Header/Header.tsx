@@ -1,5 +1,5 @@
 import { theme } from '@/styles';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { GlobalNav, Logo, SearchBar, SvgIcon } from '..';
 import {
   StyledHeader,
