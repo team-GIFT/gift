@@ -2,9 +2,15 @@ import {
   createSlice,
   createAsyncThunk,
   createSelector,
+  PayloadAction,
 } from '@reduxjs/toolkit';
-import { getTrendingGifs, getTrendingClips, getArtistGifs } from '@/services';
-import { GiphyStateProps, CardProps, Response } from './giphy.types';
+import {
+  getTrendingGifs,
+  getTrendingClips,
+  getArtistGifs,
+  getStoryGifs,
+} from '@/services';
+import { GiphyStateProps, CardProps, Response, IGif } from './giphy.types';
 
 export const fetchTrendingGifs = createAsyncThunk(
   'gifs/trending',
@@ -21,17 +27,16 @@ export const fetchTrendingClips = createAsyncThunk(
   async () => await getTrendingClips()
 );
 
+export const fetchStoryGifs = createAsyncThunk(
+  'gifs/story',
+  async (offset: number) => await getStoryGifs(offset)
+);
+
 const initialState: GiphyStateProps = {
-  isLoading: {
-    trendingGifs: true,
-    trendingClips: true,
-    artistGifs: true,
-  },
-  gifs: {
-    trendingGifs: [],
-    trendingClips: [],
-    artistGifs: [],
-  },
+  trendingGifs: { items: [], isLoading: true },
+  trendingClips: { items: [], isLoading: true },
+  artistGifs: { items: [], isLoading: true },
+  storyGifs: { items: [], isLoading: true },
 };
 
 const giphySlice = createSlice({
@@ -41,52 +46,77 @@ const giphySlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(fetchTrendingGifs.pending, (state) => {
-      state.isLoading.trendingGifs = true;
+      state.trendingGifs.isLoading = true;
     });
 
-    builder.addCase(fetchTrendingGifs.fulfilled, (state, action) => {
-      state.isLoading.trendingGifs = false;
-      state.gifs.trendingGifs.push(...action.payload);
-    });
+    builder.addCase(
+      fetchTrendingGifs.fulfilled,
+      (state, action: PayloadAction<IGif[]>) => {
+        state.trendingGifs.isLoading = false;
+        state.trendingGifs.items.push(...action.payload);
+      }
+    );
 
     builder.addCase(fetchTrendingGifs.rejected, (state) => {
-      state.isLoading.trendingGifs = true;
+      state.trendingGifs.isLoading = true;
     });
 
     builder.addCase(fetchArtistGifs.pending, (state) => {
-      state.isLoading.artistGifs = true;
+      state.artistGifs.isLoading = true;
     });
 
-    builder.addCase(fetchArtistGifs.fulfilled, (state, action) => {
-      state.isLoading.artistGifs = false;
-      state.gifs.artistGifs.push(...action.payload);
-    });
+    builder.addCase(
+      fetchArtistGifs.fulfilled,
+      (state, action: PayloadAction<IGif[]>) => {
+        state.artistGifs.isLoading = false;
+        state.artistGifs.items.push(...action.payload);
+      }
+    );
 
     builder.addCase(fetchArtistGifs.rejected, (state) => {
-      state.isLoading.artistGifs = true;
+      state.artistGifs.isLoading = true;
     });
 
     builder.addCase(fetchTrendingClips.pending, (state) => {
-      state.isLoading.trendingClips = true;
+      state.trendingClips.isLoading = true;
     });
 
-    builder.addCase(fetchTrendingClips.fulfilled, (state, action) => {
-      state.isLoading.trendingClips = false;
-      state.gifs.trendingClips.push(...action.payload);
-    });
+    builder.addCase(
+      fetchTrendingClips.fulfilled,
+      (state, action: PayloadAction<IGif[]>) => {
+        state.trendingClips.isLoading = false;
+        state.trendingClips.items.push(...action.payload);
+      }
+    );
 
     builder.addCase(fetchTrendingClips.rejected, (state) => {
-      state.isLoading.trendingClips = true;
+      state.trendingClips.isLoading = true;
+    });
+
+    builder.addCase(fetchStoryGifs.pending, (state) => {
+      state.storyGifs.isLoading = true;
+    });
+
+    builder.addCase(
+      fetchStoryGifs.fulfilled,
+      (state, action: PayloadAction<IGif[]>) => {
+        state.storyGifs.isLoading = false;
+        state.storyGifs.items.push(...action.payload);
+      }
+    );
+
+    builder.addCase(fetchStoryGifs.rejected, (state) => {
+      state.storyGifs.isLoading = true;
     });
   },
 });
 
 export const trendingGifsSelector = createSelector(
-  (state: Response) => state.giphy.isLoading.trendingGifs,
-  (state: Response) => state.giphy.gifs,
-  (trendingGifs, gifs) => ({
-    isLoading: trendingGifs,
-    cards: gifs.trendingGifs.map(
+  (state: Response) => state.giphy.trendingGifs.isLoading,
+  (state: Response) => state.giphy.trendingGifs.items,
+  (isLoading, items) => ({
+    isLoading,
+    gifs: items.map(
       ({ id, title, images }): CardProps => ({
         id,
         title,
@@ -97,11 +127,11 @@ export const trendingGifsSelector = createSelector(
 );
 
 export const artistGifsSelector = createSelector(
-  (state: Response) => state.giphy.isLoading.artistGifs,
-  (state: Response) => state.giphy.gifs,
-  (artistGifs, gifs) => ({
-    isLoading: artistGifs,
-    cards: gifs.artistGifs.map(
+  (state: Response) => state.giphy.artistGifs.isLoading,
+  (state: Response) => state.giphy.artistGifs.items,
+  (isLoading, items) => ({
+    isLoading,
+    gifs: items.map(
       ({ id, title, images }): CardProps => ({
         id,
         title,
@@ -112,11 +142,26 @@ export const artistGifsSelector = createSelector(
 );
 
 export const trendingClipsSelector = createSelector(
-  (state: Response) => state.giphy.isLoading.trendingClips,
-  (state: Response) => state.giphy.gifs,
-  (trendingClips, gifs) => ({
-    isLoading: trendingClips,
-    cards: gifs.trendingClips.map(
+  (state: Response) => state.giphy.trendingClips.isLoading,
+  (state: Response) => state.giphy.trendingClips.items,
+  (isLoading, items) => ({
+    isLoading,
+    gifs: items.map(
+      ({ id, title, images }): CardProps => ({
+        id,
+        title,
+        original: images.original_mp4,
+      })
+    ),
+  })
+);
+
+export const storyGifsSelector = createSelector(
+  (state: Response) => state.giphy.storyGifs.isLoading,
+  (state: Response) => state.giphy.storyGifs.items,
+  (isLoading, items) => ({
+    isLoading,
+    gifs: items.map(
       ({ id, title, images }): CardProps => ({
         id,
         title,
