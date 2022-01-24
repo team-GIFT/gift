@@ -34,9 +34,12 @@ export interface ButtonInfoProps {
 export interface CardButtonProps {
   buttonName: keyof ButtonInfoProps;
   ['aria-label']: string;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  isTextMode?: boolean;
+  children: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface StyledButtonProps {
   $name: keyof ButtonInfoProps;
+  $isTextMode: boolean;
 }
