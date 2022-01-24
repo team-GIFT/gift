@@ -1,13 +1,19 @@
 import styled from 'styled-components';
-import { StyledUserLinkProps } from './Card.types';
+import { StyledCardProps, StyledUserLinkProps } from './Card.types';
 
-export const StyledCard = styled.div`
+export const StyledCard = styled.div<StyledCardProps>`
   position: relative;
+  width: ${({ $height, $ratio }) => $height * $ratio}px;
+  height: ${({ $height }) => $height}px;
 `;
 
 export const StyledDetailLink = styled.a`
   display: block;
   height: 100%;
+
+  &.clipsLink {
+    height: initial;
+  }
 
   &:focus:visible {
     outline: solid #fff;

@@ -3,7 +3,6 @@ import { Card } from '@/components';
 
 export const StyledSection = styled.section`
   display: flex;
-  width: 739px;
   justify-content: space-between;
 `;
 

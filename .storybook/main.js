@@ -14,7 +14,7 @@ module.exports = {
   core: {
     builder: 'webpack5',
   },
-  webpackFinal: async storyConfig => {
+  webpackFinal: async (storyConfig) => {
     const filteredStoryRules = storyConfig.module.rules.filter(
       ({ test }) => !test.test('.svg')
     );
@@ -27,6 +27,7 @@ module.exports = {
 
     storyConfig.module.rules = [...filteredStoryRules, ...filteredWebpackRules];
     storyConfig.resolve.alias = webpackConfig.resolve.alias;
+    storyConfig.plugins = [...storyConfig.plugins, ...webpackConfig.plugins];
 
     return storyConfig;
   },

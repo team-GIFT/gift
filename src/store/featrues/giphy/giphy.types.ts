@@ -1,8 +1,16 @@
 import { IGif } from '@giphy/js-types';
 
 export interface GiphyStateProps {
-  isLoading: boolean;
-  data: IGif[];
+  isLoading: {
+    trendingGifs: boolean;
+    artistGifs: boolean;
+    trendingClips: boolean;
+  };
+  gifs: {
+    trendingGifs: IGif[];
+    artistGifs: IGif[];
+    trendingClips: IGif[];
+  };
 }
 
 export interface Response {

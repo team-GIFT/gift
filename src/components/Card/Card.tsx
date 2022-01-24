@@ -9,6 +9,8 @@ export function Card({
   title,
   className,
   containerType,
+  height,
+  gridWidth,
 }: CardProps): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
@@ -43,8 +45,19 @@ export function Card({
   const children = useMemo(() => {
     return (
       <>
-        <StyledDetailLink href="#" aria-label={title}>
-          <Video src={original.mp4} />
+        <StyledDetailLink
+          className={classNames({ clipsLink: containerType === 'clips' })}
+          href="#"
+          aria-label={title}
+        >
+          <Video
+            className={classNames(
+              { clipsVideo: containerType === 'clips' },
+              { gridVideo: containerType === 'grid' }
+            )}
+            src={original.mp4}
+            width={gridWidth}
+          />
         </StyledDetailLink>
         <StyledButtonGroup className="buttonGroup">
           <CardButton
@@ -71,7 +84,7 @@ export function Card({
             />
           )}
         </StyledButtonGroup>
-        {/* {user && (
+        {containerType === 'clips' && (
           <ChannelInfo
             {...{
               imgUrl: 'http://placehold.it/50x50',
@@ -84,10 +97,10 @@ export function Card({
               useChannelName: true,
             }}
           />
-        )} */}
+        )}
       </>
     );
-  }, [containerType, original.mp4, title]);
+  }, [containerType, gridWidth, original.mp4, title]);
 
   return (
     <StyledCard
@@ -96,6 +109,8 @@ export function Card({
       onMouseLeave={handleIsHovered}
       onFocus={handleIsFocus}
       onBlur={handleIsFocus}
+      $ratio={original.width / original.height}
+      $height={height as number}
     >
       {children}
     </StyledCard>

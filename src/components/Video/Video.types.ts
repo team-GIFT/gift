@@ -1,4 +1,5 @@
 export interface VideoProps {
+  width?: string;
   src: string;
   className?: string;
 }
