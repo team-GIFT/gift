@@ -3,17 +3,18 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 export default function CardDetail() {
-  // 임시로 유저
   const { gifId } = useParams();
-  console.log(gifId);
+  // (임시) gifId로 파일 이름 받았다 치고
+  const fakeTitle = 'fake 파일 이름';
+  console.log(fakeTitle);
 
   return (
     <>
       <Helmet>
-        <title>GIFT-Card Detail</title>
+        <title>{fakeTitle} on GIFT</title>
       </Helmet>
 
-      <div>여기는 card-detail/{gifId}</div>
+      <div>여기는 detail/{gifId}</div>
     </>
   );
 }

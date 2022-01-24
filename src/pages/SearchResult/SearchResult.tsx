@@ -1,15 +1,17 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 export default function SearchResult() {
-  const { keyword } = useParams();
+  // const { keyword } = useParams();
+  console.log('search page');
+  // console.log(keyword);
   return (
     <>
       <Helmet>
-        <title>GIFT-Search</title>
+        <title> GIFs on GIFT</title>
       </Helmet>
-      <div>여기는 search/{keyword}</div>
+      <div>여기는 search/</div>
     </>
   );
 }

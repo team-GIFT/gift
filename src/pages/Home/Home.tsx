@@ -28,9 +28,6 @@ export default function Home() {
 
   return (
     <>
-      <Helmet>
-        <title>GIFT-Home</title>
-      </Helmet>
       {!isTrendingGifsLoading && !isArtistGifsLoading && (
         <>
           <StyledSection>
