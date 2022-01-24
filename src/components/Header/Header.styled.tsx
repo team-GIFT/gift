@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
+  position: fixed;
   // max-width: 1040px;
   padding-top: 15px;
 `;
@@ -9,6 +10,7 @@ export const StyledMenuWrap = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 10px;
+  position: relative;
 `;
 
 export const StyledLogoWrap = styled.h1`

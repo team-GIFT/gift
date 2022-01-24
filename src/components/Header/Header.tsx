@@ -20,7 +20,7 @@ export function Header() {
           </a>
         </StyledLogoWrap>
 
-        <GlobalNav />
+        <GlobalNav activeClassName="isActive" />
 
         <StyledLinkWrap>
           <StyledLink href="#">Upload</StyledLink>

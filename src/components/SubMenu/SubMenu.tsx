@@ -8,9 +8,10 @@ import {
   StyledCopyright,
   StyledBottomSectionList,
 } from './SubMenu.styled';
-import { LinkProps } from './SubMenu.types';
+import { LinkProps, SubMenuProps } from './SubMenu.types';
+import classNames from 'classnames';
 
-export function SubMenu() {
+export function SubMenu({ subMenuRef, className }: SubMenuProps) {
   const subMenuTopLinks: LinkProps[] = useMemo(
     () => [
       {
@@ -23,20 +24,20 @@ export function SubMenu() {
             href: '/giphy-studios',
             text: 'GIPHY Studios',
           },
-          { id: 'giphy-studios', href: '/giphy-studios', text: 'Animals' },
-          { id: 'giphy-studios', href: '/giphy-studios', text: 'Actions' },
-          { id: 'giphy-studios', href: '/giphy-studios', text: 'Anime' },
-          { id: 'giphy-studios', href: '/giphy-studios', text: 'Cartoons' },
-          { id: 'giphy-studios', href: '/giphy-studios', text: 'Emoticons' },
-          { id: 'giphy-studios', href: '/giphy-studios', text: 'Food/Drink' },
-          { id: 'giphy-studios', href: '/giphy-studios', text: 'Gaming' },
+          { id: 'animals', href: '/animals', text: 'Animals' },
+          { id: 'action', href: '/action', text: 'Actions' },
+          { id: 'anime', href: '/anime', text: 'Anime' },
+          { id: 'cartoons', href: '/cartoons', text: 'Cartoons' },
+          { id: 'emoticons', href: '/emoticons', text: 'Emoticons' },
+          { id: 'food-drinks', href: '/food-drinks', text: 'Food/Drink' },
+          { id: 'gaming', href: '/gaming', text: 'Gaming' },
           {
-            id: 'giphy-studios',
-            href: '/giphy-studios',
+            id: 'holidays-greetings',
+            href: '/holidays-greetings',
             text: 'Holidays/Greetings',
           },
-          { id: 'giphy-studios', href: '/giphy-studios', text: 'Memes' },
-          { id: 'giphy-studios', href: '/giphy-studios', text: 'Clips' },
+          { id: 'memes', href: '/memes', text: 'Memes' },
+          { id: 'clips', href: '/clips', text: 'Clips' },
         ],
       },
       {
@@ -157,7 +158,10 @@ export function SubMenu() {
   );
 
   return (
-    <StyledSubMenuWrapper>
+    <StyledSubMenuWrapper
+      ref={subMenuRef}
+      className={classNames('sub-menu', className)}
+    >
       <A11yHidden as="h2">Sub Menu</A11yHidden>
       <StyledTopSection>
         {subMenuTopLinks.map(({ id, href, text, children }) => (
