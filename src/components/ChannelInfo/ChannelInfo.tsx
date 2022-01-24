@@ -18,6 +18,9 @@ export function ChannelInfo({
   channelLink,
   size = 50,
   marginRight = 10,
+  overflow = 'hidden',
+  whiteSpace = 'nowrap',
+  textOverflow = 'ellipsis',
   verified = false,
   isAvailableForWorking = false,
   useUserName = true,
@@ -36,7 +39,13 @@ export function ChannelInfo({
         {!onlyProfileImage && (
           <StyledChnnelNamseWrap>
             {useUserName && (
-              <StyledChannelUserName>{userName}</StyledChannelUserName>
+              <StyledChannelUserName
+                $overflow={overflow}
+                $whiteSapce={whiteSpace}
+                $textOverflow={textOverflow}
+              >
+                {userName}
+              </StyledChannelUserName>
             )}
             {useChannelName ? (
               isAvailableForWorking ? (
