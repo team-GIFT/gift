@@ -15,7 +15,6 @@ import { useGetGifByIdQuery } from '@/services';
 export function DetailRightSide() {
   const { data, isLoading } = useGetGifByIdQuery('3bc9YL28QWi3pYzi1p'); // user 정보 있음
   // const { data, isLoading } = useGetGifByIdQuery('3o6Mb30ZqYK5sNv88o'); // user 정보 없음
-  console.log(data);
 
   const buttonType: string[] = ['favorite', 'share', 'embed'];
   const buttonList = buttonType.map((type) => {
@@ -42,7 +41,7 @@ export function DetailRightSide() {
             <StyledButtonGroup>{buttonList}</StyledButtonGroup>
           </StyledGifButtonWrap>
           <StyledTagList>
-            <TagList />
+            <TagList tags={data.title} />
           </StyledTagList>
         </StyledRightSiedWrap>
       )}
