@@ -9,10 +9,10 @@ function App(): ReactElement {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="404" element={<PageNotFound />} />
-          <Route path="card-detail/:gifId" element={<CardDetail />} />
+          <Route path="pageNotFound" element={<PageNotFound />} />
+          <Route path="detail/:gifId" element={<CardDetail />} />
           <Route path="search/:keyword" element={<SearchResult />} />
-          <Route path="*" element={<Navigate to="404" replace />} />
+          <Route path="*" element={<Navigate to="pageNotFound" replace />} />
         </Route>
       </Routes>
     </Suspense>
