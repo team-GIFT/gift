@@ -5,15 +5,20 @@ import { store } from '@/store';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@/styles';
 import App from '@/App/App';
-
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 render(
   <StrictMode>
-    <StoreProvider store={store}>
-      <ThemeProvider theme={theme.darkMode}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
-    </StoreProvider>
+    <HelmetProvider>
+      <BrowserRouter>
+        <StoreProvider store={store}>
+          <ThemeProvider theme={theme.darkMode}>
+            <GlobalStyle />
+            <App />
+          </ThemeProvider>
+        </StoreProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   </StrictMode>,
   document.getElementById('root')
 );
