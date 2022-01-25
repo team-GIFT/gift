@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'styled-components';
 import { StyledVideoContainer, StyledVideo } from './Video.styled';
 import { VideoProps } from './Video.types';
