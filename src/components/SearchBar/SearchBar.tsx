@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo } from 'react';
+import { SearchBarProps } from './SearchBar.type';
 import { SearchSuggestions, SvgIcon } from '@/components';
 import {
   StyledSearchForm,
@@ -8,8 +9,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from 'react-use/lib';
 
-export function SearchBar(): JSX.Element {
-  const [keyword, setKeyword] = useState('');
+export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
+  const [keyword, setKeyword] = useState(value);
   const [debouncedKeyword, setDebouncedKeyword] = useState<string>('');
 
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ export function SearchBar(): JSX.Element {
     [navigate, keyword]
   );
 
+  // debouncedKeyword 가 바뀌면 재랜더링 되기 때문에 isReady 쓸 일이 없음
   const [isReady, cancel] = useDebounce(
     () => setDebouncedKeyword(keyword),
     300,
