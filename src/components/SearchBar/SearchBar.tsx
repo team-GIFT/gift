@@ -46,6 +46,15 @@ export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
     []
   );
 
+  // debouncedKeyword 가 바뀌면 재랜더링 되기 때문에 isReady 쓸 일이 없음
+  // useCallback 안해줘도 되는지?
+  const [isReady, cancel] = useDebounce(
+    () => setDebouncedKeyword(keyword),
+    300,
+    [keyword]
+  );
+  console.log('SearchBar', debouncedKeyword);
+
   const searchButton = useMemo(() => {
     return (
       <StyledSearchButton aria-label="search">
@@ -54,20 +63,10 @@ export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
     );
   }, []);
 
-  const searchSuggestions = useMemo(
-    () => <SearchSuggestions keyword={debouncedKeyword} />,
-    [debouncedKeyword]
-  );
-
-  // debouncedKeyword 가 바뀌면 재랜더링 되기 때문에 isReady 쓸 일이 없음
-  // useCallback 안해줘도 되는지?
-  // searchSuggestions가 4번 재랜더링된다.
-  const [isReady, cancel] = useDebounce(
-    () => setDebouncedKeyword(keyword),
-    300,
-    [keyword]
-  );
-  console.log('SearchBar', debouncedKeyword);
+  // const searchSuggestions = useMemo(
+  //   () => <SearchSuggestions keyword={debouncedKeyword} />,
+  //   [debouncedKeyword]
+  // );
 
   return (
     <StyledSearchWrapper>
@@ -88,7 +87,8 @@ export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
         </StyledFormInput>
         {searchButton}
       </StyledSearchForm>
-      {isOpen && searchSuggestions}
+      <SearchSuggestions keyword={debouncedKeyword} $isOpen={isOpen} />
+      {/* {isOpen && searchSuggestions} */}
     </StyledSearchWrapper>
   );
 }
