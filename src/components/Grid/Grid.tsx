@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
+import { useAppSelector } from '@/store';
 import { trendingGifsSelector } from '@/store/featrues/giphy/giphy';
-import { useSelector } from 'react-redux';
 import { StyledGridItem, SytledGridContainer } from './Grid.styled';
 import { Card } from '@/components';
 import { getRandomCount } from '@/utils';
 
 export function Grid() {
-  const { isLoading, cards } = useSelector(trendingGifsSelector);
+  const { isLoading, gifs } = useAppSelector(trendingGifsSelector);
 
   const createGridInfos = useCallback((gifs) => {
     const gridColumnVariations = ['1111', '211', '121', '112'];
@@ -42,7 +42,7 @@ export function Grid() {
     return gifsInfo;
   }, []);
 
-  const gridInfos = createGridInfos(cards).join('').split('');
+  const gridInfos = createGridInfos(gifs).join('').split('');
 
   return (
     <>
@@ -52,9 +52,9 @@ export function Grid() {
             <StyledGridItem
               data-width={width}
               className="gridItem"
-              key={cards[index].id}
+              key={gifs[index].id}
             >
-              <Card gridWidth={width} containerType="grid" {...cards[index]} />
+              <Card gridWidth={width} containerType="grid" {...gifs[index]} />
             </StyledGridItem>
           ))}
         </SytledGridContainer>

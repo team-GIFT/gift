@@ -1,14 +1,24 @@
 import React from 'react';
-import { StyledButton } from './CardButton.styled';
+import { StyledButton, StyledIcon, StyledSpan } from './CardButton.styled';
 import { CardButtonProps } from './CardButton.types';
 
-export function CardButton(props: CardButtonProps) {
+export function CardButton({
+  buttonName,
+  isTextMode = false,
+  onClick,
+  children,
+  ...restProps
+}: CardButtonProps) {
   return (
     <StyledButton
       type="button"
-      $name={props.buttonName}
-      // onClick={props.onClick}
-      aria-label={props['aria-label']}
-    />
+      $name={buttonName}
+      $isTextMode={isTextMode}
+      onClick={onClick}
+      {...restProps}
+    >
+      {isTextMode && <StyledIcon $name={buttonName} $isTextMode={isTextMode} />}
+      {isTextMode && <StyledSpan>{children}</StyledSpan>}
+    </StyledButton>
   );
 }

@@ -63,25 +63,23 @@ const buttonInfos: ButtonInfoProps = {
   },
 };
 
-export const StyledButton = styled.button<StyledButtonProps>`
-  width: 36px;
-  height: 36px;
-  overflow: hidden;
-  border: 0;
-  cursor: pointer;
-
-  transform: ${({ $name }) =>
-    /mute/i.test($name) ? 'scale(0.8)' : 'scale(0.9)'};
-
+const controlOpacity = css<{ $name: string }>`
   opacity: ${({ $name }) => (/mute/i.test($name) ? 1 : 0)};
-
-  background: ${({ $name }) => buttonInfos[$name]?.backgroundUrl};
-
   .card.isHovered &,
   .card.isFocus & {
     opacity: 1;
     transition: opacity 0.4s;
   }
+`;
+
+const insertIcon = css<StyledButtonProps>`
+  width: 36px;
+  height: 36px;
+
+  transform: ${({ $name }) =>
+    /mute/i.test($name) ? 'scale(0.8)' : 'scale(0.9)'};
+
+  background: ${({ $name }) => buttonInfos[$name]?.backgroundUrl};
 
   &:hover {
     animation: ${({ $name }) =>
@@ -90,7 +88,24 @@ export const StyledButton = styled.button<StyledButtonProps>`
     transform: ${({ $name }) => /mute/i.test($name) && 'scale(0.9)'};
   }
 
-  button&:focus-visible {
-    outline: solid white 1px;
-  }
+  ${({ $isTextMode }) => !$isTextMode && controlOpacity}
+`;
+
+export const StyledButton = styled.button<StyledButtonProps>`
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+
+  ${({ $isTextMode }) => !$isTextMode && insertIcon}
+`;
+
+export const StyledIcon = styled.i<StyledButtonProps>`
+  ${() => insertIcon}
+`;
+
+export const StyledSpan = styled.span`
+  color: white;
 `;
