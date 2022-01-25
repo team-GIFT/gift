@@ -1,6 +1,6 @@
 import React from 'react';
 import { SearchSuggestionsProps } from './SearchSuggestions.types';
-import { useGetSearchSuggestionsQuery } from '@/services';
+import { useGetAutoCompleteQuery } from '@/services';
 import { Link } from 'react-router-dom';
 import { StyledSuggestionsWrapper } from './SearchSuggestions.styled';
 
@@ -15,7 +15,7 @@ export function SearchSuggestions({ keyword }: SearchSuggestionsProps) {
   let suggestions: string[] = [];
 
   // debounce 된 키워드가 새로 들어오면 검색을 시작
-  const { data, isLoading } = useGetSearchSuggestionsQuery(keyword);
+  const { data, isLoading } = useGetAutoCompleteQuery(keyword);
   // 로딩이 끝나면 받아올 data
   !isLoading && console.log('suggestions', data?.data);
   // 리스트 랜더링을 위한 배열
