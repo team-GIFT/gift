@@ -10,7 +10,7 @@ function Suggestion({ word }: { word: string }) {
 }
 
 export function SearchSuggestions({ keyword }: SearchSuggestionsProps) {
-  let suggestions: string[] = [];
+  let suggestions: string[] | undefined = [];
 
   // debounce 된 키워드가 새로 들어오면 검색을 시작
   const { data, isLoading } = useGetAutoCompleteQuery(keyword);
