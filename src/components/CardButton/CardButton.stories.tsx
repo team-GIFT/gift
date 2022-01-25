@@ -18,52 +18,42 @@ export const FavoriteButton = Template.bind({});
 FavoriteButton.args = {
   buttonName: 'favorite',
   'aria-label': 'favorite',
-  onClick() {
-    console.log('byde');
-  },
+  isTextMode: true,
+  children: 'favorite',
 };
 
 export const ClipboardButton = Template.bind({});
 ClipboardButton.args = {
   buttonName: 'clipboard',
   'aria-label': 'clipboard',
-  // onClick() {
-  // console.log('byde');
-  // },
+  isTextMode: true,
+  children: 'clipboard',
 };
 
 export const ShareButton = Template.bind({});
 ShareButton.args = {
   buttonName: 'share',
   'aria-label': 'share',
-  onClick() {
-    console.log('bye');
-  },
+  isTextMode: true,
+  children: 'share',
 };
 
 export const EmbedButton = Template.bind({});
 EmbedButton.args = {
   buttonName: 'embed',
   'aria-label': 'embed',
-  onClick() {
-    console.log('bye');
-  },
+  isTextMode: true,
+  children: 'embed',
 };
 
 export const MuteButton = Template.bind({});
 MuteButton.args = {
   buttonName: 'mute',
   'aria-label': 'mute',
-  onClick() {
-    console.log('bye');
-  },
 };
 
 export const NonMuteButton = Template.bind({});
 NonMuteButton.args = {
   buttonName: 'nonMute',
   'aria-label': 'non mute',
-  onClick() {
-    console.log('bye');
-  },
 };
