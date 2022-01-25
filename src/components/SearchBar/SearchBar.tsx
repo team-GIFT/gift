@@ -1,25 +1,37 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { SvgIcon } from '@/components';
+import { SearchSuggestions, SvgIcon } from '@/components';
 import {
   StyledSearchForm,
   StyledSearchButton,
   StyledFormInput,
 } from './SearchBar.styled';
+import { useNavigate } from 'react-router-dom';
+import { useDebounce } from 'react-use/lib';
 
 export function SearchBar(): JSX.Element {
-  const [value, setValue] = useState('');
+  const [keyword, setKeyword] = useState('');
+  const [debouncedKeyword, setDebouncedKeyword] = useState<string>('');
+
+  const navigate = useNavigate();
 
   const handleChange = useCallback((e) => {
     const { value } = e.target;
-    setValue(value);
+    setKeyword(value);
   }, []);
 
   const handleSubmit = useCallback(
     (e) => {
+      // TODO: @channel + keyword
       e.preventDefault();
-      console.log(value, '검색 통신 예정');
+      navigate('/search/' + keyword);
     },
-    [value]
+    [navigate, keyword]
+  );
+
+  const [isReady, cancel] = useDebounce(
+    () => setDebouncedKeyword(keyword),
+    300,
+    [keyword]
   );
 
   const searchButton = useMemo(() => {
@@ -30,20 +42,28 @@ export function SearchBar(): JSX.Element {
     );
   }, []);
 
-  return (
-    <StyledSearchForm onSubmit={handleSubmit}>
-      {/* TODO: Need placeholder animation */}
+  const searchSuggestions = useMemo(
+    () => <SearchSuggestions keyword={debouncedKeyword} />,
+    [debouncedKeyword]
+  );
 
-      <StyledFormInput
-        id="test"
-        label="test-label"
-        visibleLabel={false}
-        value={value}
-        inputProps={{ onChange: handleChange }}
-      >
-        플레이스 홀더 테스트 중
-      </StyledFormInput>
-      {searchButton}
-    </StyledSearchForm>
+  return (
+    <>
+      <StyledSearchForm onSubmit={handleSubmit}>
+        {/* TODO: Need placeholder animation */}
+
+        <StyledFormInput
+          id="test"
+          label="test-label"
+          visibleLabel={false}
+          value={keyword}
+          inputProps={{ onChange: handleChange }}
+        >
+          @username + tag to search within a verified channel
+        </StyledFormInput>
+        {searchButton}
+      </StyledSearchForm>
+      {searchSuggestions}
+    </>
   );
 }
