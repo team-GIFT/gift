@@ -9,8 +9,16 @@ import {
   getTrendingClips,
   getArtistGifs,
   getStoryGifs,
+  getRelatedGifs,
+  getRelatedStickers,
 } from '@/services';
-import { GiphyStateProps, CardProps, Response, IGif } from './giphy.types';
+import {
+  GiphyStateProps,
+  CardProps,
+  Response,
+  IGif,
+  RelatedProps,
+} from './giphy.types';
 
 export const fetchTrendingGifs = createAsyncThunk(
   'gifs/trending',
@@ -32,11 +40,24 @@ export const fetchStoryGifs = createAsyncThunk(
   async (offset: number) => await getStoryGifs(offset)
 );
 
+export const fetchRelatedGifs = createAsyncThunk(
+  'gifs/related',
+  async ({ id, num }: RelatedProps) => await getRelatedGifs({ id, num })
+);
+
+export const fetchRelatedStickers = createAsyncThunk(
+  'stickers/related',
+  async ({ id, num, offset }: RelatedProps) =>
+    await getRelatedStickers({ id, num, offset })
+);
+
 const initialState: GiphyStateProps = {
   trendingGifs: { items: [], isLoading: true },
   trendingClips: { items: [], isLoading: true },
   artistGifs: { items: [], isLoading: true },
   storyGifs: { items: [], isLoading: true },
+  relatedGifs: { items: [], isLoading: true },
+  relatedStickers: { items: [], isLoading: true },
 };
 
 const giphySlice = createSlice({
@@ -45,6 +66,38 @@ const giphySlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
+    builder.addCase(fetchRelatedGifs.pending, (state) => {
+      state.relatedGifs.isLoading = true;
+    });
+
+    builder.addCase(
+      fetchRelatedGifs.fulfilled,
+      (state, action: PayloadAction<IGif[]>) => {
+        state.relatedGifs.isLoading = false;
+        state.relatedGifs.items.push(...action.payload);
+      }
+    );
+
+    builder.addCase(fetchRelatedGifs.rejected, (state) => {
+      state.relatedGifs.isLoading = true;
+    });
+
+    builder.addCase(fetchRelatedStickers.pending, (state) => {
+      state.relatedStickers.isLoading = true;
+    });
+
+    builder.addCase(
+      fetchRelatedStickers.fulfilled,
+      (state, action: PayloadAction<IGif[]>) => {
+        state.relatedStickers.isLoading = false;
+        state.relatedStickers.items.push(...action.payload);
+      }
+    );
+
+    builder.addCase(fetchRelatedStickers.rejected, (state) => {
+      state.relatedStickers.isLoading = true;
+    });
+
     builder.addCase(fetchTrendingGifs.pending, (state) => {
       state.trendingGifs.isLoading = true;
     });
@@ -159,6 +212,36 @@ export const trendingClipsSelector = createSelector(
 export const storyGifsSelector = createSelector(
   (state: Response) => state.giphy.storyGifs.isLoading,
   (state: Response) => state.giphy.storyGifs.items,
+  (isLoading, items) => ({
+    isLoading,
+    gifs: items.map(
+      ({ id, title, images }): CardProps => ({
+        id,
+        title,
+        original: images.original_mp4,
+      })
+    ),
+  })
+);
+
+export const relatedGifsSelector = createSelector(
+  (state: Response) => state.giphy.relatedGifs.isLoading,
+  (state: Response) => state.giphy.relatedGifs.items,
+  (isLoading, items) => ({
+    isLoading,
+    gifs: items.map(
+      ({ id, title, images }): CardProps => ({
+        id,
+        title,
+        original: images.original_mp4,
+      })
+    ),
+  })
+);
+
+export const relatedStickersSelector = createSelector(
+  (state: Response) => state.giphy.relatedStickers.isLoading,
+  (state: Response) => state.giphy.relatedStickers.items,
   (isLoading, items) => ({
     isLoading,
     gifs: items.map(

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { TagsProps, TagItemProps } from './TagList.types';
 import {
   StyledTagListWrap,

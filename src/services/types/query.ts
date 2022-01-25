@@ -33,3 +33,9 @@ export interface GetGifByIdQuery {
 export interface GetGifsByIdQuery extends Result {
   data: IGif[];
 }
+
+export interface RelatedProps {
+  id: string;
+  num: number;
+  offset?: number;
+}

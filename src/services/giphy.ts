@@ -6,6 +6,7 @@ import {
   GetSearchSuggestionsQuery,
   GetGifByIdQuery,
   GetGifsByIdQuery,
+  RelatedProps,
 } from './types/query';
 
 const gf = new GiphyFetch(GIPHY_API_KEY);
@@ -30,6 +31,23 @@ export const getStoryGifs = async (offset: number) => {
   return gifs;
 };
 
+export const getRelatedGifs = async ({ id, num }: RelatedProps) => {
+  const { data: gifs } = await gf.related(id, {
+    limit: num,
+    type: 'gifs',
+  });
+  return gifs;
+};
+
+export const getRelatedStickers = async ({ id, num, offset }: RelatedProps) => {
+  const { data: gifs } = await gf.related(id, {
+    limit: num,
+    type: 'stickers',
+    offset: offset,
+  });
+  return gifs;
+};
+
 export const giphySearchApi = createApi({
   reducerPath: 'giphySearchApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.giphy.com/v1/' }),
@@ -45,12 +63,13 @@ export const giphySearchApi = createApi({
 
     getSearchSuggestions: builder.query<GetSearchSuggestionsQuery, string>({
       query: (word) => `tags/related/${word}?api_key=${GIPHY_API_KEY}`,
-      transformResponse: (response) => response.data,
+      transformResponse: (response: { data: GetSearchSuggestionsQuery }) =>
+        response.data,
     }),
 
     getGifById: builder.query<GetGifByIdQuery, string>({
       query: (id) => `gifs/${id}?api_key=${GIPHY_API_KEY}`,
-      transformResponse: (response) => response.data,
+      transformResponse: (response: { data: GetGifByIdQuery }) => response.data,
     }),
 
     getGifsById: builder.query<GetGifsByIdQuery, string>({
