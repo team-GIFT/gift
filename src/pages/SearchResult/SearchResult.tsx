@@ -20,10 +20,9 @@ export default function SearchResult() {
       <Helmet>
         <title> {keyword} GIFs on GIFT</title>
       </Helmet>
-      <A11yHidden as="h2">Search Results</A11yHidden>
       <StyledSection>
         <div>
-          <StyledKeyword>{keyword}</StyledKeyword>
+          <StyledKeyword as="h2">{keyword}</StyledKeyword>
           {/* Stickers || GIFs */}
           <StyledResultCount>000 GIFs</StyledResultCount>
         </div>
