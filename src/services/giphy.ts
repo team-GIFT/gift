@@ -31,19 +31,19 @@ export const getStoryGifs = async (offset: number) => {
   return gifs;
 };
 
-export const getRelatedGifs = async ({ id, num }: RelatedProps) => {
+export const getRelatedGifs = async ({ id, num, offset }: RelatedProps) => {
   const { data: gifs } = await gf.related(id, {
     limit: num,
     type: 'gifs',
+    offset: num * (offset ? offset : 0),
   });
   return gifs;
 };
 
-export const getRelatedStickers = async ({ id, num, offset }: RelatedProps) => {
+export const getRelatedStickers = async ({ id, num }: RelatedProps) => {
   const { data: gifs } = await gf.related(id, {
     limit: num,
     type: 'stickers',
-    offset: offset,
   });
   return gifs;
 };

@@ -27,10 +27,8 @@ export function DetailRightSide() {
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
-    dispatch(fetchRelatedGifs({ id: '3bc9YL28QWi3pYzi1p', num: 5 }));
-    dispatch(
-      fetchRelatedStickers({ id: '3bc9YL28QWi3pYzi1p', num: 5, offset: 1 })
-    );
+    dispatch(fetchRelatedGifs({ id: '3bc9YL28QWi3pYzi1p', num: 5, offset: 1 }));
+    dispatch(fetchRelatedStickers({ id: '3bc9YL28QWi3pYzi1p', num: 5 }));
   }, [dispatch]);
 
   const { isLoading: isRelatedGifsLoading, gifs: relatedGifs } =

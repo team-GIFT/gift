@@ -42,13 +42,13 @@ export const fetchStoryGifs = createAsyncThunk(
 
 export const fetchRelatedGifs = createAsyncThunk(
   'gifs/related',
-  async ({ id, num }: RelatedProps) => await getRelatedGifs({ id, num })
+  async ({ id, num, offset }: RelatedProps) =>
+    await getRelatedGifs({ id, num, offset })
 );
 
 export const fetchRelatedStickers = createAsyncThunk(
   'stickers/related',
-  async ({ id, num, offset }: RelatedProps) =>
-    await getRelatedStickers({ id, num, offset })
+  async ({ id, num }: RelatedProps) => await getRelatedStickers({ id, num })
 );
 
 const initialState: GiphyStateProps = {
