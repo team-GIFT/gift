@@ -31,14 +31,11 @@ export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
     (e: React.FormEvent<HTMLFormElement>) => {
       // TODO: @channel + keyword
       e.preventDefault();
+      setIsOpen(false);
       navigate('/search/' + keyword);
     },
     [navigate, keyword]
   );
-
-  const handleFocus = () => {
-    !isOpen && setIsOpen(true);
-  };
 
   const handleBlur = useCallback(
     (e: React.FocusEvent<HTMLDivElement, Element>) => {
@@ -83,7 +80,6 @@ export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
           inputProps={{
             onChange: handleChange,
             onBlur: handleBlur,
-            onFocus: handleFocus,
           }}
         >
           @username + tag to search within a verified channel
