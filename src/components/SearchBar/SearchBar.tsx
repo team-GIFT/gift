@@ -1,25 +1,49 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { SvgIcon } from '@/components';
+import { SearchBarProps } from './SearchBar.type';
+import { SearchSuggestions, SvgIcon } from '@/components';
 import {
+  StyledSearchWrapper,
   StyledSearchForm,
   StyledSearchButton,
   StyledFormInput,
 } from './SearchBar.styled';
+import { useNavigate } from 'react-router-dom';
+import { useDebounce } from 'react-use/lib';
 
-export function SearchBar(): JSX.Element {
-  const [value, setValue] = useState('');
+export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
+  const [keyword, setKeyword] = useState(value);
+  const [debouncedKeyword, setDebouncedKeyword] = useState<string>('');
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleChange = useCallback((e) => {
-    const { value } = e.target;
-    setValue(value);
-  }, []);
+  const navigate = useNavigate();
+
+  const handleChange = useCallback(
+    (e) => {
+      const { value } = e.target;
+      setKeyword(value);
+      if (!isOpen && value !== '') setIsOpen(true);
+      if (value === '') setIsOpen(false);
+    },
+    [isOpen]
+  );
 
   const handleSubmit = useCallback(
-    (e) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
+      // TODO: @channel + keyword
       e.preventDefault();
-      console.log(value, '검색 통신 예정');
+      setIsOpen(false);
+      navigate('/search/' + keyword);
     },
-    [value]
+    [navigate, keyword]
+  );
+
+  const handleBlur = useCallback(
+    (e: React.FocusEvent<HTMLDivElement, Element>) => {
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        setIsOpen(false);
+      }
+    },
+    []
   );
 
   const searchButton = useMemo(() => {
@@ -30,20 +54,41 @@ export function SearchBar(): JSX.Element {
     );
   }, []);
 
-  return (
-    <StyledSearchForm onSubmit={handleSubmit}>
-      {/* TODO: Need placeholder animation */}
+  const searchSuggestions = useMemo(
+    () => <SearchSuggestions keyword={debouncedKeyword} />,
+    [debouncedKeyword]
+  );
 
-      <StyledFormInput
-        id="test"
-        label="test-label"
-        visibleLabel={false}
-        value={value}
-        inputProps={{ onChange: handleChange }}
-      >
-        플레이스 홀더 테스트 중
-      </StyledFormInput>
-      {searchButton}
-    </StyledSearchForm>
+  // debouncedKeyword 가 바뀌면 재랜더링 되기 때문에 isReady 쓸 일이 없음
+  // useCallback 안해줘도 되는지?
+  // searchSuggestions가 4번 재랜더링된다.
+  const [isReady, cancel] = useDebounce(
+    () => setDebouncedKeyword(keyword),
+    300,
+    [keyword]
+  );
+  console.log('SearchBar', debouncedKeyword);
+
+  return (
+    <StyledSearchWrapper>
+      <StyledSearchForm onSubmit={handleSubmit}>
+        {/* TODO: Need placeholder animation */}
+
+        <StyledFormInput
+          id="test"
+          label="test-label"
+          visibleLabel={false}
+          value={keyword}
+          inputProps={{
+            onChange: handleChange,
+            onBlur: handleBlur,
+          }}
+        >
+          @username + tag to search within a verified channel
+        </StyledFormInput>
+        {searchButton}
+      </StyledSearchForm>
+      {isOpen && searchSuggestions}
+    </StyledSearchWrapper>
   );
 }
