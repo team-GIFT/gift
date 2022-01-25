@@ -1,4 +1,5 @@
 import React from 'react';
+import { SearchSuggestionsProps } from './SearchSuggestions.types';
 import { useGetSearchSuggestionsQuery } from '@/services';
 import { Link } from 'react-router-dom';
 import { StyledSuggestionsWrapper } from './SearchSuggestions.styled';
@@ -8,7 +9,7 @@ function Suggestion({ word }: { word: string }) {
   return <Link to={link}>{word}</Link>;
 }
 
-export function SearchSuggestions({ keyword }: { keyword: string }) {
+export function SearchSuggestions({ keyword }: SearchSuggestionsProps) {
   // suggestions를 상태로 관리하면 Too many re-renders 에러 발생
   // const [suggestions, setSuggestions] = useState([]);
   let suggestions: string[] = [];

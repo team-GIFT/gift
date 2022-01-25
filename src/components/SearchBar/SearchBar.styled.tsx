@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { FormInput } from '@/components/FormInput/FormInput';
 
+export const StyledSearchWrapper = styled.div``;
+
 export const StyledSearchForm = styled.form`
   display: flex;
   height: 44px;
@@ -29,9 +31,9 @@ export const StyledSearchButton = styled.button`
   padding: 5px;
   background-image: linear-gradient(
     45deg,
-    rgb(153, 51, 255) 0%,
-    rgb(255, 102, 102) 50%,
-    rgb(153, 51, 255) 100%
+    ${({ theme }) => theme.color.violet02} 0%,
+    ${({ theme }) => theme.color.pink01} 50%,
+    ${({ theme }) => theme.color.violet02} 100%
   );
   background-size: 400%;
   background-position: 0% 100%;

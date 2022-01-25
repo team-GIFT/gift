@@ -2,6 +2,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { SearchBarProps } from './SearchBar.type';
 import { SearchSuggestions, SvgIcon } from '@/components';
 import {
+  StyledSearchWrapper,
   StyledSearchForm,
   StyledSearchButton,
   StyledFormInput,
@@ -12,16 +13,22 @@ import { useDebounce } from 'react-use/lib';
 export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
   const [keyword, setKeyword] = useState(value);
   const [debouncedKeyword, setDebouncedKeyword] = useState<string>('');
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleChange = useCallback((e) => {
-    const { value } = e.target;
-    setKeyword(value);
-  }, []);
+  const handleChange = useCallback(
+    (e) => {
+      const { value } = e.target;
+      setKeyword(value);
+      if (!isOpen && value !== '') setIsOpen(true);
+      if (value === '') setIsOpen(false);
+    },
+    [isOpen]
+  );
 
   const handleSubmit = useCallback(
-    (e) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       // TODO: @channel + keyword
       e.preventDefault();
       navigate('/search/' + keyword);
@@ -29,11 +36,17 @@ export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
     [navigate, keyword]
   );
 
-  // debouncedKeyword 가 바뀌면 재랜더링 되기 때문에 isReady 쓸 일이 없음
-  const [isReady, cancel] = useDebounce(
-    () => setDebouncedKeyword(keyword),
-    300,
-    [keyword]
+  const handleFocus = () => {
+    !isOpen && setIsOpen(true);
+  };
+
+  const handleBlur = useCallback(
+    (e: React.FocusEvent<HTMLDivElement, Element>) => {
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        setIsOpen(false);
+      }
+    },
+    []
   );
 
   const searchButton = useMemo(() => {
@@ -49,8 +62,16 @@ export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
     [debouncedKeyword]
   );
 
+  // debouncedKeyword 가 바뀌면 재랜더링 되기 때문에 isReady 쓸 일이 없음
+  // useCallback 안해줘도 되는지? 기준
+  const [isReady, cancel] = useDebounce(
+    () => setDebouncedKeyword(keyword),
+    300,
+    [keyword]
+  );
+
   return (
-    <>
+    <StyledSearchWrapper>
       <StyledSearchForm onSubmit={handleSubmit}>
         {/* TODO: Need placeholder animation */}
 
@@ -59,13 +80,17 @@ export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
           label="test-label"
           visibleLabel={false}
           value={keyword}
-          inputProps={{ onChange: handleChange }}
+          inputProps={{
+            onChange: handleChange,
+            onBlur: handleBlur,
+            onFocus: handleFocus,
+          }}
         >
           @username + tag to search within a verified channel
         </StyledFormInput>
         {searchButton}
       </StyledSearchForm>
-      {searchSuggestions}
-    </>
+      {isOpen && searchSuggestions}
+    </StyledSearchWrapper>
   );
 }
