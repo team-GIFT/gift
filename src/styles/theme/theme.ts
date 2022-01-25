@@ -27,6 +27,11 @@ const fontSize = {
   xxl: px2rem(36),
 };
 
+const breakPoint = {
+  // TODO: Need confirm
+  desktop: px2rem(1070),
+};
+
 export const theme: { liteMode: DefaultTheme; darkMode: DefaultTheme } = {
   liteMode: {
     color: {
