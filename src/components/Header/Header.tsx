@@ -9,8 +9,11 @@ import {
   StyledLink,
   StyledUserWrap,
 } from './Header.styled';
+import { useParams } from 'react-router-dom';
 
 export function Header() {
+  const { keyword } = useParams();
+
   return (
     <StyledHeader>
       <StyledMenuWrap>
@@ -38,7 +41,7 @@ export function Header() {
         </StyledUserWrap>
       </StyledMenuWrap>
 
-      <SearchBar />
+      <SearchBar value={keyword ? keyword : ''} />
     </StyledHeader>
   );
 }
