@@ -26,7 +26,7 @@ export const getTrendingClips = async () => {
 };
 
 export const getStoryGifs = async (offset: number) => {
-  const { data: gifs } = await gf.trending({ limit: 25, offset });
+  const { data: gifs } = await gf.trending({ limit: 25, offset: 25 * offset });
   return gifs;
 };
 
