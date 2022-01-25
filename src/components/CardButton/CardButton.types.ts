@@ -35,7 +35,7 @@ export interface CardButtonProps {
   buttonName: keyof ButtonInfoProps;
   ['aria-label']: string;
   isTextMode?: boolean;
-  children: string;
+  children?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
