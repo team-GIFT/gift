@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { GiphyFetch } from '@giphy/js-fetch-api';
 import {
-  GetAutoCompleteQuery,
-  GetChannelsQuery,
-  GetSearchSuggestionsQuery,
-  GetGifByIdQuery,
-  GetGifsByIdQuery,
+  AutoComplete,
+  Channels,
+  SearchSuggestions,
+  MultiGifsById,
+  IGif,
   RelatedProps,
 } from './types/query';
 
@@ -53,26 +53,26 @@ export const giphySearchApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.giphy.com/v1/' }),
 
   endpoints: (builder) => ({
-    getAutoComplete: builder.query<GetAutoCompleteQuery, string>({
+    getAutoComplete: builder.query<AutoComplete, string>({
       query: (word) => `gifs/search/tags?api_key=${GIPHY_API_KEY}&q=${word}`,
     }),
 
-    getChannels: builder.query<GetChannelsQuery, string>({
+    getChannels: builder.query<Channels, string>({
       query: (word) => `channels/search?api_key=${GIPHY_API_KEY}&q=${word}`,
     }),
 
-    getSearchSuggestions: builder.query<GetSearchSuggestionsQuery, string>({
+    getSearchSuggestions: builder.query<SearchSuggestions, string>({
       query: (word) => `tags/related/${word}?api_key=${GIPHY_API_KEY}`,
-      transformResponse: (response: { data: GetSearchSuggestionsQuery }) =>
+      transformResponse: (response: { data: SearchSuggestions }) =>
         response.data,
     }),
 
-    getGifById: builder.query<GetGifByIdQuery, string>({
+    getGifById: builder.query<IGif, string>({
       query: (id) => `gifs/${id}?api_key=${GIPHY_API_KEY}`,
-      transformResponse: (response: { data: GetGifByIdQuery }) => response.data,
+      transformResponse: (response: { data: IGif }) => response.data,
     }),
 
-    getGifsById: builder.query<GetGifsByIdQuery, string>({
+    getGifsById: builder.query<MultiGifsById, string>({
       query: (id) => `gifs?api_key=${GIPHY_API_KEY}&ids=${id}`,
     }),
   }),

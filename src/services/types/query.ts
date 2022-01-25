@@ -11,26 +11,21 @@ interface Term {
   name: string;
 }
 
-export interface GetAutoCompleteQuery {
+export interface AutoComplete {
   data: Term[];
   meta: Meta;
 }
 
-export interface GetChannelsQuery extends Result {
+export interface Channels extends Result {
   data: IChannel[];
 }
 
-export interface GetSearchSuggestionsQuery {
+export interface SearchSuggestions {
   data: Term[];
   meta: Meta;
 }
 
-export interface GetGifByIdQuery {
-  data: IGif;
-  meta: Meta;
-}
-
-export interface GetGifsByIdQuery extends Result {
+export interface MultiGifsById extends Result {
   data: IGif[];
 }
 
@@ -39,3 +34,4 @@ export interface RelatedProps {
   num: number;
   offset?: number;
 }
+export { IGif } from '@giphy/js-types';
