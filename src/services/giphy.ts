@@ -6,6 +6,7 @@ import {
   SearchSuggestions,
   MultiGifsById,
   IGif,
+  RelatedProps,
 } from './types/query';
 
 const gf = new GiphyFetch(GIPHY_API_KEY);
@@ -30,6 +31,23 @@ export const getStoryGifs = async (offset: number) => {
   return gifs;
 };
 
+export const getRelatedGifs = async ({ id, num, offset }: RelatedProps) => {
+  const { data: gifs } = await gf.related(id, {
+    limit: num,
+    type: 'gifs',
+    offset: num * (offset ? offset : 0),
+  });
+  return gifs;
+};
+
+export const getRelatedStickers = async ({ id, num }: RelatedProps) => {
+  const { data: gifs } = await gf.related(id, {
+    limit: num,
+    type: 'stickers',
+  });
+  return gifs;
+};
+
 export const giphySearchApi = createApi({
   reducerPath: 'giphySearchApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.giphy.com/v1/' }),
@@ -45,6 +63,8 @@ export const giphySearchApi = createApi({
 
     getSearchSuggestions: builder.query<SearchSuggestions, string>({
       query: (word) => `tags/related/${word}?api_key=${GIPHY_API_KEY}`,
+      transformResponse: (response: { data: SearchSuggestions }) =>
+        response.data,
     }),
 
     getGifById: builder.query<IGif, string>({

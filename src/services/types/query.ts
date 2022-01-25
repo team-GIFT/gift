@@ -29,4 +29,9 @@ export interface MultiGifsById extends Result {
   data: IGif[];
 }
 
+export interface RelatedProps {
+  id: string;
+  num: number;
+  offset?: number;
+}
 export { IGif } from '@giphy/js-types';
