@@ -1,5 +1,5 @@
 import { theme } from '@/styles';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { GlobalNav, Logo, SearchBar, SvgIcon } from '@/components';
 import {
   StyledHeader,
@@ -14,7 +14,6 @@ import { useWindowSize } from 'react-use';
 
 export function Header() {
   const { keyword } = useParams();
-  // const { width } = useWindowDimensions();
   const { width } = useWindowSize();
   const [isMobile, setIsMobile] = useState(width < 1070);
 
@@ -23,8 +22,9 @@ export function Header() {
       setIsMobile(width < 1070);
   }, [isMobile, width]);
 
-  return (
-    <StyledHeader>
+  // Header 상당 재랜더링 방지를 위해 메모
+  const styledMenuWrap = useMemo(
+    () => (
       <StyledMenuWrap>
         <StyledLogoWrap>
           <a href="/">
@@ -33,7 +33,20 @@ export function Header() {
         </StyledLogoWrap>
 
         {isMobile ? (
-          <>hello</>
+          <>
+            <a href="/">
+              <SvgIcon id="plus" height={39} width={39} />
+            </a>
+            <a href="/">
+              <SvgIcon
+                id="user"
+                height={39}
+                width={39}
+                fill={theme.darkMode.color.gray05}
+              />
+            </a>
+            <GlobalNav activeClassName="isActive" isMobile={true} />
+          </>
         ) : (
           <>
             <GlobalNav activeClassName="isActive" />
@@ -55,7 +68,13 @@ export function Header() {
           </>
         )}
       </StyledMenuWrap>
+    ),
+    [isMobile]
+  );
 
+  return (
+    <StyledHeader>
+      {styledMenuWrap}
       <SearchBar value={keyword ? keyword : ''} />
     </StyledHeader>
   );
