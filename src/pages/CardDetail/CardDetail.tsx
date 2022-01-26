@@ -19,11 +19,9 @@ export default function CardDetail() {
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
-    dispatch(
-      fetchRelatedGifs({ id: '3bc9YL28QWi3pYzi1p', num: 20, offset: 1 })
-    );
-    dispatch(fetchRelatedStickers({ id: '3bc9YL28QWi3pYzi1p', num: 12 }));
-  }, [dispatch]);
+    dispatch(fetchRelatedGifs({ id: gifId as string, num: 20, offset: 1 }));
+    dispatch(fetchRelatedStickers({ id: gifId as string, num: 12 }));
+  }, [dispatch, gifId]);
 
   const { isLoading: isRelatedGifsLoading, gifs: relatedGifs } =
     useAppSelector(relatedGifsSelector);
