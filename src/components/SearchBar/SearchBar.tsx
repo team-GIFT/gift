@@ -53,7 +53,6 @@ export function SearchBar({ value = '' }: SearchBarProps): JSX.Element {
     300,
     [keyword]
   );
-  console.log('SearchBar', debouncedKeyword);
 
   const searchButton = useMemo(() => {
     return (
