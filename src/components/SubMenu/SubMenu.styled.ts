@@ -35,6 +35,10 @@ export const StyledTopSection = styled.ul`
   & a {
     margin-bottom: ${px2rem(15)};
   }
+  @media screen and (max-width: 1069px) {
+    flex-direction: column;
+    gap: ${px2rem(30)};
+  }
 `;
 
 export const StyledTopSectionListItemUl = styled.ul`
@@ -71,4 +75,10 @@ export const StyledBottomSectionList = styled.ul`
   width: 100%;
   font-size: ${({ theme: { fontSize } }) => fontSize.xs};
   font-weight: 300;
+
+  @media screen and (max-width: ${px2rem(1069)}) {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+  }
 `;

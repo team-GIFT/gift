@@ -51,12 +51,14 @@ export const StyledGlobalNav = styled.ul`
   display: flex;
   justify-content: space-around;
   min-width: 496px;
+  @media screen and (max-width: 1069px) {
+    min-width: 0;
+  }
 `;
 
 export const StyledGlobalNavItems = styled.li`
   height: ${globalNavHeight};
   border-right: 5px solid ${({ theme }) => theme.color.black};
-  /* position: relative; */
   display: flex;
   justify-content: center;
   flex-grow: 1;

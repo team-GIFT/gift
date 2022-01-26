@@ -28,7 +28,10 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   button {
+    // TODO: Need confirm
     cursor: pointer;
+    background-color: transparent;
+    border: none;
   }
 
   button:focus:not(:focus-visible) {
