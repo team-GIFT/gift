@@ -25,6 +25,10 @@ export interface GiphyStateProps {
     items: IGif[];
     isLoading: boolean;
   };
+  searchGifs: {
+    items: IGif[];
+    isLoading: boolean;
+  };
 }
 
 export interface Response {
@@ -33,6 +37,11 @@ export interface Response {
 
 export interface RelatedProps {
   id: string;
+  num: number;
+  offset?: number;
+}
+export interface SearchProps {
+  term: string;
   num: number;
   offset?: number;
 }

@@ -11,6 +11,7 @@ import {
   getStoryGifs,
   getRelatedGifs,
   getRelatedStickers,
+  getSearchGifs,
 } from '@/services';
 import {
   GiphyStateProps,
@@ -18,6 +19,7 @@ import {
   Response,
   IGif,
   RelatedProps,
+  SearchProps,
 } from './giphy.types';
 
 export const fetchTrendingGifs = createAsyncThunk(
@@ -51,6 +53,12 @@ export const fetchRelatedStickers = createAsyncThunk(
   async ({ id, num }: RelatedProps) => await getRelatedStickers({ id, num })
 );
 
+export const fetchSearchGifs = createAsyncThunk(
+  'gifs/search',
+  async ({ term, num, offset }: SearchProps) =>
+    await getSearchGifs({ term, num, offset })
+);
+
 const initialState: GiphyStateProps = {
   trendingGifs: { items: [], isLoading: true },
   trendingClips: { items: [], isLoading: true },
@@ -58,6 +66,7 @@ const initialState: GiphyStateProps = {
   storyGifs: { items: [], isLoading: true },
   relatedGifs: { items: [], isLoading: true },
   relatedStickers: { items: [], isLoading: true },
+  searchGifs: { items: [], isLoading: true },
 };
 
 const giphySlice = createSlice({
@@ -161,6 +170,22 @@ const giphySlice = createSlice({
     builder.addCase(fetchStoryGifs.rejected, (state) => {
       state.storyGifs.isLoading = true;
     });
+
+    builder.addCase(fetchSearchGifs.pending, (state) => {
+      state.searchGifs.isLoading = true;
+    });
+
+    builder.addCase(
+      fetchSearchGifs.fulfilled,
+      (state, action: PayloadAction<IGif[]>) => {
+        state.searchGifs.isLoading = false;
+        state.searchGifs.items.push(...action.payload);
+      }
+    );
+
+    builder.addCase(fetchSearchGifs.rejected, (state) => {
+      state.searchGifs.isLoading = true;
+    });
   },
 });
 
@@ -242,6 +267,21 @@ export const relatedGifsSelector = createSelector(
 export const relatedStickersSelector = createSelector(
   (state: Response) => state.giphy.relatedStickers.isLoading,
   (state: Response) => state.giphy.relatedStickers.items,
+  (isLoading, items) => ({
+    isLoading,
+    gifs: items.map(
+      ({ id, title, images }): CardProps => ({
+        id,
+        title,
+        original: images.original_mp4,
+      })
+    ),
+  })
+);
+
+export const searchGifsSelector = createSelector(
+  (state: Response) => state.giphy.searchGifs.isLoading,
+  (state: Response) => state.giphy.searchGifs.items,
   (isLoading, items) => ({
     isLoading,
     gifs: items.map(
