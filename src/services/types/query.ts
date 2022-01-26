@@ -39,15 +39,16 @@ export type TermObject = {
 
 export type TermObjectList = TermObject[];
 
-export type GifWithTagsResult = GifResult & {
-  source: string;
-  title: string;
-  images: {
-    original: {
-      webp: string;
+export type GifWithTagsResult = GifResult &
+  IGif & {
+    source: string;
+    title: string;
+    images: {
+      original: {
+        webp: string;
+      };
     };
+    tags: string[];
   };
-  tags: string[];
-};
 
 export { IGif } from '@giphy/js-types';
