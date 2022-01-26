@@ -22,16 +22,6 @@ export const StyledButtonGroup = styled.div`
   flex-direction: column;
 `;
 
-export const StyledButton = styled.button`
-  color: ${({ theme: { color } }) => color.white};
-  text-align: left;
-  font-weight: bold;
-  font-size: ${({ theme: { fontSize } }) => fontSize.m};
-  border: none;
-  background: transparent;
-  padding: ${px2rem(10)} 0;
-`;
-
 export const StyledTagList = styled(StyledTagListWrap)`
   margin-top: ${px2rem(30)};
 `;
