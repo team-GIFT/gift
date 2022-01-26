@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -11,42 +11,62 @@ import {
   relatedStickersSelector,
 } from '@/store/featrues/giphy/giphy';
 import { StyledDetailWrap } from './CardDetail.styled';
+import { useInView } from 'react-intersection-observer';
 
 export default function CardDetail() {
   const { gifId } = useParams();
+  const gridOffset = useRef<number>(1);
+  const dispatch = useAppDispatch();
   const { data, isLoading } = useGetGifWithTagsByIdQuery(gifId as string);
 
-  const dispatch = useAppDispatch();
-
   useLayoutEffect(() => {
-    dispatch(fetchRelatedGifs({ id: gifId as string, num: 20, offset: 1 }));
+    dispatch(
+      fetchRelatedGifs({
+        id: gifId as string,
+        num: 20,
+        offset: gridOffset.current,
+      })
+    );
     dispatch(fetchRelatedStickers({ id: gifId as string, num: 12 }));
   }, [dispatch, gifId]);
 
-  const { isLoading: isRelatedGifsLoading, gifs: relatedGifs } =
-    useAppSelector(relatedGifsSelector);
+  const { gifs: relatedGifs } = useAppSelector(relatedGifsSelector);
   const { isLoading: isRelatedStickersLoading, gifs: relatedStickers } =
     useAppSelector(relatedStickersSelector);
 
-  // (임시) gifId로 파일 이름 받았다 치고
-  const fakeTitle = 'fake 파일 이름';
-  console.log(fakeTitle);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.6 });
+
+  useEffect(() => {
+    if (inView) {
+      gridOffset.current += 1;
+      dispatch(
+        fetchRelatedGifs({
+          id: gifId as string,
+          num: 20,
+          offset: gridOffset.current,
+        })
+      );
+    }
+  }, [dispatch, gifId, inView]);
 
   return (
     <>
-      <Helmet>
-        <title>{fakeTitle} on GIFT</title>
-      </Helmet>
+      {!isLoading && !isRelatedStickersLoading && data && (
+        <>
+          <Helmet>
+            <title>{data.title} on GIFT</title>
+          </Helmet>
 
-      {!isLoading && data && (
-        <StyledDetailWrap>
-          <DetailLeftSide data={data} />
-          <DetailRightSide
-            data={data}
-            relatedGifs={relatedGifs}
-            relatedStickers={relatedStickers}
-          />
-        </StyledDetailWrap>
+          <StyledDetailWrap>
+            <DetailLeftSide data={data} />
+            <DetailRightSide
+              data={data}
+              relatedGifs={relatedGifs}
+              relatedStickers={relatedStickers}
+              forwardRef={ref}
+            />
+          </StyledDetailWrap>
+        </>
       )}
     </>
   );

@@ -8,12 +8,13 @@ import {
   StyledButtonGroup,
   StyledTagList,
 } from './DetailRightSide.styled';
-import { TagList, Title, Carousel, CardButton } from '@/components';
+import { TagList, Title, Carousel, CardButton, Grid } from '@/components';
 
 export function DetailRightSide({
   data,
   relatedGifs,
   relatedStickers,
+  forwardRef,
 }: DetailRightSideProps) {
   const buttonType: ('favorite' | 'share' | 'embed')[] = [
     'favorite',
@@ -69,7 +70,7 @@ export function DetailRightSide({
           marginBottom={10}
           marginTop={20}
         />
-        <Carousel height={140} cards={relatedGifs} />
+        <Grid gifs={relatedGifs} forwardRef={forwardRef} />
       </section>
     </StyledRightSiedWrap>
   );
