@@ -6,7 +6,7 @@ import {
   StyledMoreButton,
 } from './TagList.styled';
 
-export function TagList({ tags }: TagsProps): JSX.Element {
+export function TagList({ tags, mode }: TagsProps): JSX.Element {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isMore, setIsMore] = useState(false);
   const [initialList, setInitialList] = useState<(string | null)[]>([]);
@@ -17,6 +17,7 @@ export function TagList({ tags }: TagsProps): JSX.Element {
       const initialTags = tags;
       setInitialList(initialTags);
     } else if (initialList.length) {
+      if (mode === 'nomore') return;
       // 더보기 버튼 크기
       const MORE_BUTTON_WIDTH = 53;
       // 요소별 간격

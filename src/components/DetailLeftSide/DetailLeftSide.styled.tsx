@@ -23,8 +23,8 @@ export const StyledLeftSideFollowon = styled.div`
   }
   a {
     display: inline-block;
-    width: ${px2rem(24)};
-    height: ${px2rem(24)};
+    width: ${px2rem(30)};
+    height: ${px2rem(30)};
     background: url(${insta}) no-repeat center center / cover;
   }
   & + div {
@@ -39,8 +39,16 @@ export const StyledLeftSideSource = styled.div`
     margin-top: 0;
     margin-bottom: ${px2rem(8)};
     color: ${({ theme: { color } }) => color.gray04};
+    word-break: break-all;
   }
 
+  a {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   svg {
     margin-right: ${px2rem(6)};
   }
