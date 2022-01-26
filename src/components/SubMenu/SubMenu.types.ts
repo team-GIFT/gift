@@ -3,6 +3,7 @@ import { RefObject } from 'react';
 export interface SubMenuProps {
   subMenuRef?: RefObject<HTMLDivElement>;
   className?: string;
+  isMobile?: boolean;
 }
 
 export interface LinkProps {

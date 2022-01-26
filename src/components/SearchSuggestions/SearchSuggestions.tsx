@@ -9,7 +9,11 @@ function Suggestion({ word }: { word: string }) {
   return <Link to={link}>{word}</Link>;
 }
 
-export function SearchSuggestions({ keyword }: SearchSuggestionsProps) {
+export function SearchSuggestions({
+  keyword,
+  $isOpen,
+  className,
+}: SearchSuggestionsProps) {
   let suggestions: string[] | undefined = [];
 
   // debounce 된 키워드가 새로 들어오면 검색을 시작
@@ -25,7 +29,7 @@ export function SearchSuggestions({ keyword }: SearchSuggestionsProps) {
   return isLoading ? (
     <></>
   ) : (
-    <StyledSuggestionsWrapper>
+    <StyledSuggestionsWrapper $isOpen={$isOpen} className={className}>
       {suggestions?.map((suggestion) => (
         <Suggestion key={suggestion} word={suggestion} />
       ))}
