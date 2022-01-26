@@ -14,7 +14,10 @@ import {
   TermObject,
   TermObjectList,
   GifWithTagsResult,
+  SearchProps,
+  IUser,
 } from './types/query';
+import { IChannel } from '@giphy/js-types';
 
 const gf = new GiphyFetch(GIPHY_API_KEY);
 
@@ -55,6 +58,14 @@ export const getRelatedStickers = async ({ id, num }: RelatedProps) => {
   return gifs;
 };
 
+export const getSearchGifs = async ({ term, num, offset }: SearchProps) => {
+  const { data: gifs } = await gf.search(term, {
+    limit: num,
+    offset: num * (offset ? offset : 0),
+  });
+  return gifs;
+};
+
 export const giphySearchApi = createApi({
   reducerPath: 'giphySearchApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.giphy.com/v1/' }),
@@ -64,8 +75,11 @@ export const giphySearchApi = createApi({
       query: (word) => `gifs/search/tags?api_key=${GIPHY_API_KEY}&q=${word}`,
     }),
 
-    getChannels: builder.query<Channels, string>({
-      query: (word) => `channels/search?api_key=${GIPHY_API_KEY}&q=${word}`,
+    getChannels: builder.query<IUser[], string>({
+      query: (word) =>
+        `channels/search?api_key=${GIPHY_API_KEY}&q=${word}&limit=4`,
+      transformResponse: (response: { data: IChannel[] }) =>
+        response.data.map((channel: IChannel) => channel.user),
     }),
 
     getSearchSuggestions: builder.query<SearchSuggestions, string>({
