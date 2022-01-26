@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useAppDispatch, useAppSelector } from '@/store';
 import {
@@ -7,24 +7,37 @@ import {
   fetchTrendingGifs,
   fetchArtistGifs,
   fetchTrendingClips,
+  fetchStoryGifs,
+  storyGifsSelector,
 } from '@/store/featrues/giphy/giphy';
 import { StyledSection } from './Home.styled';
-
 import { Header, Wrapper, Title, Carousel, Clips, Grid } from '@/components';
+import { useInView } from 'react-intersection-observer';
 
 export default function Home() {
+  const offset = useRef<number>(1);
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     dispatch(fetchTrendingGifs());
     dispatch(fetchArtistGifs());
     dispatch(fetchTrendingClips());
+    dispatch(fetchStoryGifs(1));
   }, [dispatch]);
 
+  const { gifs } = useAppSelector(storyGifsSelector);
   const { isLoading: isTrendingGifsLoading, gifs: trendingGifs } =
     useAppSelector(trendingGifsSelector);
   const { isLoading: isArtistGifsLoading, gifs: artistGifs } =
     useAppSelector(artistGifsSelector);
+
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.6 });
+  useEffect(() => {
+    if (inView) {
+      offset.current += 1;
+      dispatch(fetchStoryGifs(offset.current));
+    }
+  }, [dispatch, inView]);
 
   return (
     <>
@@ -44,7 +57,7 @@ export default function Home() {
           </StyledSection>
           <StyledSection>
             <Title title="Stories" as="h2" iconType="stories" />
-            <Grid />
+            <Grid forwardRef={ref} gifs={gifs} />
           </StyledSection>
         </Wrapper>
       )}
