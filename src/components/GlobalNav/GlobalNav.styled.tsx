@@ -20,8 +20,7 @@ export const StyledNav = styled.nav`
       opacity: 1;
     }
   }
-
-  .sub-menu.isActive {
+  .sub-menu {
     animation: fadeIn 0.2s ease-out;
     display: flex;
     position: absolute;
@@ -30,10 +29,6 @@ export const StyledNav = styled.nav`
     left: 0;
     opacity: 1;
     transition: opacity 0.35s ease 0s;
-  }
-
-  .sub-menu {
-    display: none;
   }
 `;
 

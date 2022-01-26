@@ -11,7 +11,7 @@ import {
 import { LinkProps, SubMenuProps } from './SubMenu.types';
 import classNames from 'classnames';
 
-export function SubMenu({ subMenuRef, className }: SubMenuProps) {
+export function SubMenu({ className }: SubMenuProps) {
   const subMenuTopLinks: LinkProps[] = useMemo(
     () => [
       {
@@ -158,10 +158,7 @@ export function SubMenu({ subMenuRef, className }: SubMenuProps) {
   );
 
   return (
-    <StyledSubMenuWrapper
-      ref={subMenuRef}
-      className={classNames('sub-menu', className)}
-    >
+    <StyledSubMenuWrapper className={classNames('sub-menu', className)}>
       <A11yHidden as="h2">Sub Menu</A11yHidden>
       <StyledTopSection>
         {subMenuTopLinks.map(({ id, href, text, children }) => (

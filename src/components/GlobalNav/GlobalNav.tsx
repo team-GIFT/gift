@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { A11yHidden } from '@/components';
 import { GlobalNavItemProps, GlobalNavProps } from './GlobalNav.types';
 import classNames from 'classnames';
@@ -26,11 +26,7 @@ import { SubMenu, SvgIcon } from '@/components';
  * - [x] 높이 지정 고민하기
  */
 
-export function GlobalNav({
-  activeClassName = 'isActive',
-  className,
-  isMobile = false,
-}: GlobalNavProps) {
+export function GlobalNav({ className, isMobile = false }: GlobalNavProps) {
   const listItems: GlobalNavItemProps[] = [
     { id: 'reactions', href: '/reactions', text: 'Reactions' },
     { id: 'entertainment', href: '/entertainment', text: 'Entertainment' },
@@ -40,33 +36,33 @@ export function GlobalNav({
     { id: 'more', href: '', text: '...' },
   ];
 
-  const subMenuRef = useRef<HTMLDivElement>();
+  const [isActive, setIsActive] = useState(false);
 
   // TODO: 기기가 모바일일 때 클릭 이벤트 고려 해야 함
 
-  const active = useCallback(() => {
-    subMenuRef.current?.classList.add(activeClassName);
-  }, [activeClassName, subMenuRef]);
+  const handleBlur = useCallback((e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setIsActive(false);
+    }
+  }, []);
 
-  const deactive = useCallback(() => {
-    subMenuRef.current?.classList.remove(activeClassName);
-  }, [activeClassName, subMenuRef]);
+  const handleClick = useCallback(() => {
+    setIsActive(!isActive);
+  }, [isActive]);
 
   return (
-    <StyledNav aria-labelledby="mainmenulabel">
+    <StyledNav aria-labelledby="mainmenulabel" onBlur={handleBlur}>
       {isMobile ? (
         <>
           <button
-            onMouseEnter={active}
-            onMouseLeave={deactive}
+            onClick={handleClick}
             className={classNames('more-button', className)}
           >
             <SvgIcon id="list" height={35} width={35} />
           </button>
-          <SubMenu
-            className={classNames('isMobile', className)}
-            subMenuRef={subMenuRef}
-          />
+          {isActive && (
+            <SubMenu className={classNames('isMobile', className)} />
+          )}
         </>
       ) : (
         <>
@@ -77,13 +73,12 @@ export function GlobalNav({
                 {id === 'more' ? (
                   <>
                     <StyledButton
-                      onMouseEnter={active}
-                      onMouseLeave={deactive}
+                      onClick={handleClick}
                       className={classNames('more-button', className)}
                     >
                       <span>{text}</span>
                     </StyledButton>
-                    <SubMenu className={className} subMenuRef={subMenuRef} />
+                    {isActive && <SubMenu className={className} />}
                   </>
                 ) : (
                   <StyledLink href={href}>

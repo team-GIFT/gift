@@ -13,7 +13,6 @@ export interface GlobalNavItemProps {
 }
 
 export interface GlobalNavProps {
-  activeClassName?: string;
   className?: string;
   isMobile?: boolean;
 }
