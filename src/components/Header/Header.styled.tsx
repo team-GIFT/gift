@@ -8,6 +8,7 @@ export const StyledHeader = styled.header`
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
+  background-color: ${({ theme: { color } }) => color.black};
 `;
 
 export const StyledMenuWrap = styled.div`
@@ -15,12 +16,16 @@ export const StyledMenuWrap = styled.div`
   align-items: flex-end;
   gap: 10px;
   position: relative;
+  @media screen and (max-width: 1069px) {
+    gap: 15px;
+  }
 `;
 
 export const StyledLogoWrap = styled.h1`
   min-width: 164px;
   width: auto;
   margin: 0;
+  margin-right: auto;
 `;
 
 export const StyledLinkWrap = styled.div`
