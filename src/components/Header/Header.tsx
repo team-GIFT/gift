@@ -49,7 +49,7 @@ export function Header() {
           </>
         ) : (
           <>
-            <GlobalNav activeClassName="isActive" />
+            <GlobalNav />
 
             <StyledLinkWrap>
               <StyledLink href="#">Upload</StyledLink>

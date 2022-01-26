@@ -25,7 +25,6 @@ export const StyledNav = styled.nav`
     display: flex;
     position: absolute;
     top: 100%;
-    transform: translateY(${px2rem(10)});
     left: 0;
     opacity: 1;
     transition: opacity 0.35s ease 0s;

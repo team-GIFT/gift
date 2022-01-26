@@ -28,11 +28,15 @@ import { SubMenu, SvgIcon } from '@/components';
 
 export function GlobalNav({ className, isMobile = false }: GlobalNavProps) {
   const listItems: GlobalNavItemProps[] = [
-    { id: 'reactions', href: '/reactions', text: 'Reactions' },
-    { id: 'entertainment', href: '/entertainment', text: 'Entertainment' },
-    { id: 'sports', href: '/sports', text: 'Sports' },
-    { id: 'stickers', href: '/stickers', text: 'Stickers' },
-    { id: 'artists', href: '/artists', text: 'Artists' },
+    { id: 'reactions', href: '/search/reactions', text: 'Reactions' },
+    {
+      id: 'entertainment',
+      href: '/search/entertainment',
+      text: 'Entertainment',
+    },
+    { id: 'sports', href: '/search/sports', text: 'Sports' },
+    { id: 'stickers', href: '/search/stickers', text: 'Stickers' },
+    { id: 'artists', href: '/search/artists', text: 'Artists' },
     { id: 'more', href: '', text: '...' },
   ];
 
@@ -46,22 +50,33 @@ export function GlobalNav({ className, isMobile = false }: GlobalNavProps) {
     }
   }, []);
 
-  const handleClick = useCallback(() => {
-    setIsActive(!isActive);
-  }, [isActive]);
+  const handleMouseEnter = useCallback((e) => {
+    setIsActive(true);
+  }, []);
+
+  const handleMouseLeave = useCallback((e) => {
+    setIsActive(false);
+  }, []);
 
   return (
-    <StyledNav aria-labelledby="mainmenulabel" onBlur={handleBlur}>
+    <StyledNav
+      aria-labelledby="mainmenulabel"
+      onBlur={handleBlur}
+      onMouseLeave={handleMouseLeave}
+    >
       {isMobile ? (
         <>
           <button
-            onClick={handleClick}
+            onMouseEnter={handleMouseEnter}
             className={classNames('more-button', className)}
           >
             <SvgIcon id="list" height={35} width={35} />
           </button>
           {isActive && (
-            <SubMenu className={classNames('isMobile', className)} />
+            <SubMenu
+              isMobile={isMobile}
+              className={classNames('isMobile', className)}
+            />
           )}
         </>
       ) : (
@@ -73,7 +88,7 @@ export function GlobalNav({ className, isMobile = false }: GlobalNavProps) {
                 {id === 'more' ? (
                   <>
                     <StyledButton
-                      onClick={handleClick}
+                      onMouseEnter={handleMouseEnter}
                       className={classNames('more-button', className)}
                     >
                       <span>{text}</span>
