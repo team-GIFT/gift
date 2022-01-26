@@ -33,6 +33,12 @@ export interface RelatedProps {
   offset?: number;
 }
 
+export interface SearchProps {
+  term: string;
+  num: number;
+  offset?: number;
+}
+
 export type TermObject = {
   name: string;
 };
@@ -51,4 +57,4 @@ export type GifWithTagsResult = GifResult &
     tags: string[];
   };
 
-export { IGif } from '@giphy/js-types';
+export { IGif, IUser } from '@giphy/js-types';
