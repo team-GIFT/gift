@@ -48,7 +48,7 @@ export function DetailRightSide({
         <StyledButtonGroup>{buttonList}</StyledButtonGroup>
       </StyledGifButtonWrap>
       <StyledTagList>
-        <TagList tags={data.tags} />
+        <TagList tags={data.tags} mode="more" />
       </StyledTagList>
       <section>
         <Title
