@@ -67,14 +67,15 @@ export const StyledTopSectionListItemUl = styled.ul`
   columns: ${({ $columns }: StyledTopSectionListItemUlProps) =>
     $columns ? `auto ${$columns}` : ''};
   & a {
-    margin-bottom: ${px2rem(20)};
+    /* margin-bottom: ${px2rem(20)}; */
   }
   @media screen and (max-width: 1069px) {
     & li {
       padding: 0;
       border-right: ${px2rem(1)} solid rgba(255, 255, 255, 0.4);
-      padding: 0 15px;
-      margin: 5px 0;
+      padding-right: ${px2rem(15)};
+      margin-right: ${px2rem(5)};
+      margin-bottom: ${px2rem(10)};
     }
     display: flex;
     flex-wrap: wrap;
