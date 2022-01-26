@@ -1,5 +1,5 @@
 export interface TagsProps {
-  tags: object;
+  tagTitle: string;
 }
 
 export interface TagItemProps {

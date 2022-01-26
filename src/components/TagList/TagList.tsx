@@ -6,13 +6,13 @@ import {
   StyledMoreButton,
 } from './TagList.styled';
 import { useGetSearchSuggestionsQuery } from '@/services';
-export function TagList({ tags }: TagsProps): JSX.Element {
+export function TagList({ tagTitle }: TagsProps): JSX.Element {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isMore, setIsMore] = useState(false);
   const [initialList, setInitialList] = useState<(string | null)[]>([]);
   const [moreList, setMoreList] = useState<(string | null)[]>([]);
 
-  const { data, isLoading } = useGetSearchSuggestionsQuery(tags);
+  const { data, isLoading } = useGetSearchSuggestionsQuery(tagTitle);
 
   useLayoutEffect(() => {
     if (data && !initialList.length) {

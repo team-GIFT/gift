@@ -7,10 +7,9 @@ import {
   StyledGifButtonWrap,
   StyledGifLink,
   StyledButtonGroup,
-  StyledButton,
   StyledTagList,
 } from './DetailRightSide.styled';
-import { TagList, Title, Carousel } from '@/components';
+import { TagList, Title, Carousel, CardButton } from '@/components';
 import { useGetGifByIdQuery } from '@/services';
 import {
   fetchRelatedGifs,
@@ -18,11 +17,11 @@ import {
   fetchRelatedStickers,
   relatedStickersSelector,
 } from '@/store/featrues/giphy/giphy';
+import { IGif } from '@giphy/js-types';
 
 export function DetailRightSide() {
   const { data, isLoading } = useGetGifByIdQuery('3bc9YL28QWi3pYzi1p'); // user 정보 있음
   // const { data, isLoading } = useGetGifByIdQuery('3o6Mb30ZqYK5sNv88o'); // user 정보 없음
-  console.log(data);
 
   const dispatch = useAppDispatch();
 
@@ -36,34 +35,44 @@ export function DetailRightSide() {
   const { isLoading: isRelatedStickersLoading, gifs: stickersGifs } =
     useAppSelector(relatedStickersSelector);
 
-  console.log(relatedGifs);
-
-  const buttonType: string[] = ['favorite', 'share', 'embed'];
+  const buttonType: ('favorite' | 'share' | 'embed')[] = [
+    'favorite',
+    'share',
+    'embed',
+  ];
   const buttonList = buttonType.map((type) => {
     return (
-      <StyledButton type="button" key={type}>
+      <CardButton
+        key={type}
+        isTextMode={true}
+        buttonName={type}
+        aria-label={type}
+      >
         {type}
-      </StyledButton>
+      </CardButton>
     );
   });
   return (
     <>
       {!isLoading && (
         <StyledRightSiedWrap>
-          <StyledDetailTitle>{data.title}</StyledDetailTitle>
+          <StyledDetailTitle>{(data as IGif).title}</StyledDetailTitle>
           <StyledGifButtonWrap>
             <StyledGifLink
-              href={`//${data.source}`}
+              href={`//${(data as IGif).source}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="바로가기"
             >
-              <img src={data.images.original.webp} alt={data.title} />
+              <img
+                src={(data as IGif).images.original.webp}
+                alt={(data as IGif).title}
+              />
             </StyledGifLink>
             <StyledButtonGroup>{buttonList}</StyledButtonGroup>
           </StyledGifButtonWrap>
           <StyledTagList>
-            <TagList tags={data.title} />
+            <TagList tagTitle={(data as IGif).title} />
           </StyledTagList>
           <Title
             isIcon={false}

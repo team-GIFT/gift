@@ -9,6 +9,7 @@ interface Meta {
 
 interface Term {
   name: string;
+  analytics_response_payload: string;
 }
 
 export interface AutoComplete {
@@ -20,10 +21,7 @@ export interface Channels extends Result {
   data: IChannel[];
 }
 
-export interface SearchSuggestions {
-  data: Term[];
-  meta: Meta;
-}
+export type SearchSuggestions = Term[];
 
 export interface MultiGifsById extends Result {
   data: IGif[];
