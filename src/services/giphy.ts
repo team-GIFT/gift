@@ -1,5 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { GiphyFetch } from '@giphy/js-fetch-api';
+import {
+  createApi,
+  fetchBaseQuery,
+  FetchBaseQueryError,
+} from '@reduxjs/toolkit/query/react';
+import { GiphyFetch, GifResult } from '@giphy/js-fetch-api';
 import {
   AutoComplete,
   Channels,
@@ -7,6 +11,9 @@ import {
   MultiGifsById,
   IGif,
   RelatedProps,
+  TermObject,
+  TermObjectList,
+  GifWithTagsResult,
 } from './types/query';
 
 const gf = new GiphyFetch(GIPHY_API_KEY);
@@ -72,6 +79,37 @@ export const giphySearchApi = createApi({
       transformResponse: (response: { data: IGif }) => response.data,
     }),
 
+    getGifWithTagsById: builder.query<GifWithTagsResult, string>({
+      async queryFn(arg, queryApi, extraOptions, fetchWithBQ) {
+        const responseDataById = await fetchWithBQ(
+          `gifs/${arg}?api_key=${GIPHY_API_KEY}`
+        );
+
+        if (responseDataById.error) throw responseDataById.error;
+
+        const { data: dataById } = responseDataById.data as GifResult;
+
+        const result = await fetchWithBQ(
+          `tags/related/${dataById.title}?api_key=${GIPHY_API_KEY}`
+        );
+
+        if (result.data) {
+          const { data: tagsByTitle } = result.data as {
+            data: TermObjectList;
+          };
+
+          return {
+            data: {
+              ...dataById,
+              tags: tagsByTitle.map((o: TermObject) => o.name),
+            } as unknown as GifWithTagsResult,
+          };
+        } else {
+          return { error: result.error as FetchBaseQueryError };
+        }
+      },
+    }),
+
     getGifsById: builder.query<MultiGifsById, string>({
       query: (id) => `gifs?api_key=${GIPHY_API_KEY}&ids=${id}`,
     }),
@@ -84,4 +122,5 @@ export const {
   useGetSearchSuggestionsQuery,
   useGetGifByIdQuery,
   useGetGifsByIdQuery,
+  useGetGifWithTagsByIdQuery,
 } = giphySearchApi;

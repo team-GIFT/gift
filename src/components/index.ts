@@ -19,3 +19,5 @@ export * from './Grid/Grid';
 export * from './Clips/Clips';
 export * from './DetailLeftSide/DetailLeftSide';
 export * from './SearchSuggestions/SearchSuggestions';
+export * from './DetailLeftSide/DetailLeftSide';
+export * from './DetailRightSide/DetailRightSide';

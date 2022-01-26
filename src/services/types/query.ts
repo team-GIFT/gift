@@ -1,4 +1,4 @@
-import { Result } from '@giphy/js-fetch-api';
+import { Result, GifResult } from '@giphy/js-fetch-api';
 import { IChannel, IGif } from '@giphy/js-types';
 
 interface Meta {
@@ -32,4 +32,22 @@ export interface RelatedProps {
   num: number;
   offset?: number;
 }
+
+export type TermObject = {
+  name: string;
+};
+
+export type TermObjectList = TermObject[];
+
+export type GifWithTagsResult = GifResult & {
+  source: string;
+  title: string;
+  images: {
+    original: {
+      webp: string;
+    };
+  };
+  tags: string[];
+};
+
 export { IGif } from '@giphy/js-types';

@@ -1,22 +1,20 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import { TagsProps, TagItemProps } from './TagList.types';
+import { TagsProps } from './TagList.types';
 import {
   StyledTagListWrap,
   StyledTagListLink,
   StyledMoreButton,
 } from './TagList.styled';
-import { useGetSearchSuggestionsQuery } from '@/services';
-export function TagList({ tagTitle }: TagsProps): JSX.Element {
+
+export function TagList({ tags }: TagsProps): JSX.Element {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isMore, setIsMore] = useState(false);
   const [initialList, setInitialList] = useState<(string | null)[]>([]);
   const [moreList, setMoreList] = useState<(string | null)[]>([]);
 
-  const { data, isLoading } = useGetSearchSuggestionsQuery(tagTitle);
-
   useLayoutEffect(() => {
-    if (data && !initialList.length) {
-      const initialTags = data.map((item: TagItemProps) => item.name);
+    if (!initialList.length) {
+      const initialTags = tags;
       setInitialList(initialTags);
     } else if (initialList.length) {
       // 더보기 버튼 크기
@@ -66,7 +64,7 @@ export function TagList({ tagTitle }: TagsProps): JSX.Element {
       setInitialList([...tempInitailList]);
       setMoreList([...tempMoreList]);
     }
-  }, [data, initialList.length, isLoading]);
+  }, [initialList.length, tags]);
 
   const handleChange = () => setIsMore(false);
 
