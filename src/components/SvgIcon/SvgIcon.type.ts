@@ -10,7 +10,8 @@ export type SvgIconId =
   | 'user'
   | 'flech-sharp'
   | 'new-window'
-  | 'plus';
+  | 'plus'
+  | 'list';
 
 export interface SvgIconProps {
   id: SvgIconId;
