@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -17,7 +18,13 @@ export default function CardDetail() {
   const { gifId } = useParams();
   const gridOffset = useRef<number>(1);
   const dispatch = useAppDispatch();
-  const { data, isLoading } = useGetGifWithTagsByIdQuery(gifId as string);
+  const { data, isLoading, error } = useGetGifWithTagsByIdQuery(
+    gifId as string
+  );
+
+  const navigate = useNavigate();
+
+  console.log(error);
 
   useLayoutEffect(() => {
     dispatch(
@@ -37,6 +44,9 @@ export default function CardDetail() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.6 });
 
   useEffect(() => {
+    if (error) {
+      navigate('pageNotFound');
+    }
     if (inView) {
       gridOffset.current += 1;
       dispatch(
@@ -47,7 +57,7 @@ export default function CardDetail() {
         })
       );
     }
-  }, [dispatch, gifId, inView]);
+  }, [dispatch, error, gifId, inView, navigate]);
 
   return (
     <>
