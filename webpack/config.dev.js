@@ -70,9 +70,6 @@ const devConfig = {
       '@': path.resolve(rootDir, 'src'),
     },
   },
-  devServer: {
-    historyApiFallback: true,
-  },
 };
 
 module.exports = devConfig;

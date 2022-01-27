@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useRef } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import { StyledCard, StyledDetailLink, StyledButtonGroup } from './Card.styled';
 import { CardProps } from './Card.types';
@@ -48,7 +48,7 @@ export function Card({
       <>
         <StyledDetailLink
           className={classNames({ clipsLink: containerType === 'clips' })}
-          href={`/detail/${id}`}
+          to={`/detail/${id}`}
           aria-label={title}
         >
           <Video
