@@ -69,6 +69,7 @@ export function GlobalNav({ className, isMobile = false }: GlobalNavProps) {
           <button
             onMouseEnter={handleMouseEnter}
             className={classNames('more-button', className)}
+            aria-label="sub menu"
           >
             <SvgIcon id="list" height={35} width={35} />
           </button>
