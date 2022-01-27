@@ -9,7 +9,7 @@ import {
   StyledLink,
   StyledUserWrap,
 } from './Header.styled';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useWindowSize } from 'react-use';
 
 export function Header() {
@@ -22,29 +22,29 @@ export function Header() {
       setIsMobile(width < 1070);
   }, [isMobile, width]);
 
-  // Header 상당 재랜더링 방지를 위해 메모
+  // Header 상단 재랜더링 방지를 위해 메모
   const styledMenuWrap = useMemo(
     () => (
       <StyledMenuWrap>
         <StyledLogoWrap>
-          <a href="/">
+          <Link to="/">
             <Logo title="GIFT" />
-          </a>
+          </Link>
         </StyledLogoWrap>
 
         {isMobile ? (
           <>
-            <a href="/" aria-label="create GIF">
+            <Link to="/" aria-label="create GIF">
               <SvgIcon id="plus" height={39} width={39} />
-            </a>
-            <a href="/" aria-label="user">
+            </Link>
+            <Link to="/" aria-label="user">
               <SvgIcon
                 id="user"
                 height={39}
                 width={39}
                 fill={theme.darkMode.color.gray05}
               />
-            </a>
+            </Link>
             <GlobalNav isMobile={true} />
           </>
         ) : (
@@ -52,8 +52,8 @@ export function Header() {
             <GlobalNav />
 
             <StyledLinkWrap>
-              <StyledLink href="#">Upload</StyledLink>
-              <StyledLink href="#">Create</StyledLink>
+              <StyledLink to="/">Upload</StyledLink>
+              <StyledLink to="/">Create</StyledLink>
             </StyledLinkWrap>
             <StyledUserWrap>
               {/* login */}
@@ -63,7 +63,7 @@ export function Header() {
                 height={35}
                 width={35}
               />
-              <a href="/">Log in</a>
+              <Link to="/">Log in</Link>
             </StyledUserWrap>
           </>
         )}

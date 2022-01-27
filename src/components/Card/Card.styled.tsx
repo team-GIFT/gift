@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { StyledCardProps, StyledUserLinkProps } from './Card.types';
 
@@ -7,7 +8,7 @@ export const StyledCard = styled.div<StyledCardProps>`
   height: ${({ $height }) => $height}px;
 `;
 
-export const StyledDetailLink = styled.a`
+export const StyledDetailLink = styled(Link)`
   display: block;
   height: 100%;
 
@@ -27,11 +28,7 @@ export const StyledButtonGroup = styled.div`
   display: flex;
 `;
 
-export const StyledUserLink = styled.a.attrs(
-  ({ $userLinkUrl }: StyledUserLinkProps) => ({
-    href: $userLinkUrl,
-  })
-)<StyledUserLinkProps>`
+export const StyledUserLink = styled(Link)<StyledUserLinkProps>`
   position: absolute;
   left: 0;
   bottom: 0;

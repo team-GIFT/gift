@@ -97,7 +97,7 @@ export function GlobalNav({ className, isMobile = false }: GlobalNavProps) {
                     {isActive && <SubMenu className={className} />}
                   </>
                 ) : (
-                  <StyledLink href={href}>
+                  <StyledLink to={href}>
                     <span>{text}</span>
                   </StyledLink>
                 )}
