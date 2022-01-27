@@ -38,12 +38,18 @@ export function DetailRightSide({
       <StyledDetailTitle>{data.title}</StyledDetailTitle>
       <StyledGifButtonWrap>
         <StyledGifLink
-          href={`//${data.source}`}
+          href={data.source ? `//${data.source}` : undefined}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="바로가기"
         >
-          <img src={data.images.original.webp} alt={data.title} />
+          {data.type === 'video' ? (
+            <video autoPlay loop muted playsInline>
+              <source src={data.images.original_mp4.mp4} type="video/mp4" />
+            </video>
+          ) : (
+            <img src={data.images.original.webp} alt={data.title} />
+          )}
         </StyledGifLink>
         <StyledButtonGroup>{buttonList}</StyledButtonGroup>
       </StyledGifButtonWrap>

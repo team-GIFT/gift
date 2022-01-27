@@ -30,3 +30,11 @@ export const StyledTitle = styled.h2`
   font-weight: 900;
   font-size: ${({ theme }) => theme.fontSize.m};
 `;
+
+export const StyledNoResult = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  color: ${({ theme }) => theme.color.gray04};
+  span {
+    color: ${({ theme }) => theme.color.gray03};
+  }
+`;

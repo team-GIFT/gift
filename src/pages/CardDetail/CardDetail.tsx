@@ -22,9 +22,9 @@ export default function CardDetail() {
     gifId as string
   );
 
-  const navigate = useNavigate();
+  console.log(data);
 
-  console.log(error);
+  const navigate = useNavigate();
 
   useLayoutEffect(() => {
     dispatch(

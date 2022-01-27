@@ -49,7 +49,7 @@ export const StyledUserWrap = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.color.gray06};
   min-width: 124px;
-  span {
+  a {
     flex-grow: 1;
     text-align: center;
   }
