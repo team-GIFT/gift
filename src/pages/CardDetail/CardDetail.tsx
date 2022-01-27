@@ -24,8 +24,6 @@ export default function CardDetail() {
 
   const navigate = useNavigate();
 
-  console.log(error);
-
   useLayoutEffect(() => {
     dispatch(
       fetchRelatedGifs({

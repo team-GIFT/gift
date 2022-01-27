@@ -13,6 +13,8 @@ export const StyledGifButtonWrap = styled.div`
   gap: ${px2rem(30)};
 `;
 export const StyledGifLink = styled.a`
+  width: 100%;
+  background-color: ${({ theme: { color } }) => color.pink01};
   img {
     max-width: 100%;
   }
