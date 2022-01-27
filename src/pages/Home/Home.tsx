@@ -1,5 +1,4 @@
 import React, { useEffect, useLayoutEffect, useRef } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useAppDispatch, useAppSelector } from '@/store';
 import {
   trendingGifsSelector,
@@ -41,9 +40,6 @@ export default function Home() {
 
   return (
     <>
-      <Helmet>
-        <title>GIFT - Be Animated</title>
-      </Helmet>
       {!isTrendingGifsLoading && !isArtistGifsLoading && (
         <>
           <StyledSection>
