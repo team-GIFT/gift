@@ -72,7 +72,12 @@ const initialState: GiphyStateProps = {
 const giphySlice = createSlice({
   name: 'giphy',
   initialState,
-  reducers: {},
+
+  reducers: {
+    resetSearchGifs(state) {
+      state.searchGifs.items = [];
+    },
+  },
 
   extraReducers: (builder) => {
     builder.addCase(fetchRelatedGifs.pending, (state) => {
@@ -293,5 +298,7 @@ export const searchGifsSelector = createSelector(
     ),
   })
 );
+
+export const { resetSearchGifs } = giphySlice.actions;
 
 export default giphySlice.reducer;

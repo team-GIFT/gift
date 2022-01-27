@@ -13,6 +13,7 @@ export function TagList({ tags, mode }: TagsProps): JSX.Element {
   const [moreList, setMoreList] = useState<(string | null)[]>([]);
 
   useLayoutEffect(() => {
+    tags && setInitialList(tags);
     if (!initialList.length) {
       const initialTags = tags;
       setInitialList(initialTags);
@@ -65,13 +66,13 @@ export function TagList({ tags, mode }: TagsProps): JSX.Element {
       setInitialList([...tempInitailList]);
       setMoreList([...tempMoreList]);
     }
-  }, [initialList.length, tags]);
+  }, [initialList.length, mode, tags]);
 
   const handleChange = () => setIsMore(false);
 
   const initialItems = initialList.map((item) => {
     return (
-      <StyledTagListLink key={item} href="#">
+      <StyledTagListLink key={item} href={`/search/${item}`}>
         #{item}
       </StyledTagListLink>
     );

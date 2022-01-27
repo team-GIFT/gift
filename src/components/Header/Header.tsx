@@ -34,10 +34,10 @@ export function Header() {
 
         {isMobile ? (
           <>
-            <a href="/">
+            <a href="/" aria-label="create GIF">
               <SvgIcon id="plus" height={39} width={39} />
             </a>
-            <a href="/">
+            <a href="/" aria-label="user">
               <SvgIcon
                 id="user"
                 height={39}
@@ -45,7 +45,7 @@ export function Header() {
                 fill={theme.darkMode.color.gray05}
               />
             </a>
-            <GlobalNav activeClassName="isActive" isMobile={true} />
+            <GlobalNav isMobile={true} />
           </>
         ) : (
           <>
@@ -63,7 +63,7 @@ export function Header() {
                 height={35}
                 width={35}
               />
-              <span>Log in</span>
+              <a href="/">Log in</a>
             </StyledUserWrap>
           </>
         )}
