@@ -15,8 +15,14 @@ export const StyledGifButtonWrap = styled.div`
 export const StyledGifLink = styled.a`
   width: 100%;
   background-color: ${({ theme: { color } }) => color.pink01};
+
   img {
-    max-width: 100%;
+    width: 100%;
+  }
+
+  video {
+    width: 100%;
+    vertical-align: middle;
   }
 `;
 export const StyledButtonGroup = styled.div`

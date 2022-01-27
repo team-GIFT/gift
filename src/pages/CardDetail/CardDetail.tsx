@@ -22,6 +22,8 @@ export default function CardDetail() {
     gifId as string
   );
 
+  console.log(data);
+
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
