@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   StyledChannelProfileImageProps,
@@ -5,7 +6,7 @@ import {
 } from './ChannelInfo.types';
 
 export const StyledChannelInfoWrap = styled.div``;
-export const StyledChannelInfoLink = styled.a`
+export const StyledChannelInfoLink = styled(Link)`
   display: flex;
 `;
 

@@ -29,7 +29,7 @@ export function ChannelInfo({
 }: ChannelInfoProps): JSX.Element {
   return (
     <StyledChannelInfoWrap>
-      <StyledChannelInfoLink className="channel" href={channelLink}>
+      <StyledChannelInfoLink className="channel" to={channelLink}>
         <A11yHidden>{userName}님의 페이지로 이동</A11yHidden>
         <StyledChannelProfileImage
           $size={size}
