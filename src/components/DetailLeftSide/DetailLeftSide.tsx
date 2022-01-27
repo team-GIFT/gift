@@ -30,7 +30,7 @@ export function DetailLeftSide({ data }: DetailLeftSideProps) {
               <StyledLeftSideFollowon>
                 <p>Follow on:</p>
                 <a
-                  href={`//${data.user.instagram_url}`}
+                  href={data.user.instagram_url}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -43,11 +43,7 @@ export function DetailLeftSide({ data }: DetailLeftSideProps) {
         {data.source ? (
           <StyledLeftSideSource>
             <p>source:</p>
-            <a
-              href={`//${data.source}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={data.source} target="_blank" rel="noopener noreferrer">
               <SvgIcon
                 id="new-window"
                 fill="none"
