@@ -10,10 +10,10 @@ export const StyledDetailTitle = styled.h2`
 `;
 export const StyledGifButtonWrap = styled.div`
   display: flex;
-  gap: ${px2rem(30)};
+  gap: ${px2rem(10)};
 `;
 export const StyledGifLink = styled.a`
-  width: 100%;
+  width: 70%;
   background-color: ${({ theme: { color } }) => color.pink01};
 
   img {
