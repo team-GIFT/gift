@@ -40,23 +40,25 @@ export function DetailLeftSide({ data }: DetailLeftSideProps) {
             )}
           </StyledLeftSideChannelInfoWrap>
         ) : null}
-        <StyledLeftSideSource>
-          <p>source:</p>
-          <a
-            href={`//${data.source}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <SvgIcon
-              id="new-window"
-              fill="none"
-              width={14}
-              height={14}
-              aria-hidden={true}
-            />
-            {data.source}
-          </a>
-        </StyledLeftSideSource>
+        {data.source ? (
+          <StyledLeftSideSource>
+            <p>source:</p>
+            <a
+              href={`//${data.source}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SvgIcon
+                id="new-window"
+                fill="none"
+                width={14}
+                height={14}
+                aria-hidden={true}
+              />
+              {data.source}
+            </a>
+          </StyledLeftSideSource>
+        ) : null}
       </StyledLeftSideWrap>
     </>
   );
