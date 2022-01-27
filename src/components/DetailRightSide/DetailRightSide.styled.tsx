@@ -10,11 +10,19 @@ export const StyledDetailTitle = styled.h2`
 `;
 export const StyledGifButtonWrap = styled.div`
   display: flex;
-  gap: ${px2rem(30)};
+  gap: ${px2rem(10)};
 `;
 export const StyledGifLink = styled.a`
+  width: 70%;
+  background-color: ${({ theme: { color } }) => color.pink01};
+
   img {
-    max-width: 100%;
+    width: 100%;
+  }
+
+  video {
+    width: 100%;
+    vertical-align: middle;
   }
 `;
 export const StyledButtonGroup = styled.div`
