@@ -8,17 +8,29 @@ const fallbackLoadable = {
   fallback: <LoadingSpinner />,
 };
 
-const Home = loadable(() => import('@/pages/Home/Home'), fallbackLoadable);
+const Home = loadable(
+  () => import(/* webpackChunkName: "Home" */ '@/pages/Home/Home'),
+  fallbackLoadable
+);
 const SearchResult = loadable(
-  () => import('@/pages/SearchResult/SearchResult'),
+  () =>
+    import(
+      /* webpackChunkName: "SearchResult" */ '@/pages/SearchResult/SearchResult'
+    ),
   fallbackLoadable
 );
 const CardDetail = loadable(
-  () => import('@/pages/CardDetail/CardDetail'),
+  () =>
+    import(
+      /* webpackChunkName: "CardDetail" */ '@/pages/CardDetail/CardDetail'
+    ),
   fallbackLoadable
 );
 const PageNotFound = loadable(
-  () => import('@/pages/PageNotFound/PageNotFound'),
+  () =>
+    import(
+      /* webpackChunkName: "PageNotFound" */ '@/pages/PageNotFound/PageNotFound'
+    ),
   fallbackLoadable
 );
 
