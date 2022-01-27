@@ -56,7 +56,7 @@ export function ChannelInfo({
                 <StyledChannelName>
                   {channelName}
                   {verified && (
-                    <button type="button">
+                    <span>
                       <SvgIcon
                         id="verified"
                         label="verified"
@@ -64,7 +64,7 @@ export function ChannelInfo({
                         height={14}
                         fill="#fff"
                       />
-                    </button>
+                    </span>
                   )}
                 </StyledChannelName>
               )

@@ -16,6 +16,7 @@ export const StyledChannelProfileImage = styled.span<StyledChannelProfileImagePr
   margin-right: ${({ $marginRight }) => $marginRight}px;
   background: url(${({ $imageUrl }) => $imageUrl}) no-repeat center center /
     cover;
+  background-color: ${({ theme: { color } }) => color.violet01};
   transition: all 0.3s;
 `;
 export const StyledChnnelNamseWrap = styled.div`
@@ -41,11 +42,9 @@ export const StyledChannelName = styled.p`
   white-space: nowrap;
   margin: 0;
 
-  button {
-    padding: 0;
+  span {
+    vertical-align: text-top;
     margin-left: 3px;
-    background: transparent;
-    border: none;
   }
 `;
 

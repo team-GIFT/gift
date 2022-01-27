@@ -5,6 +5,7 @@ import { CardProps } from './Card.types';
 import { Video, CardButton, ChannelInfo } from '@/components';
 
 export function Card({
+  id,
   original,
   title,
   className,
@@ -47,7 +48,7 @@ export function Card({
       <>
         <StyledDetailLink
           className={classNames({ clipsLink: containerType === 'clips' })}
-          href="#"
+          href={`/detail/${id}`}
           aria-label={title}
         >
           <Video
@@ -100,7 +101,7 @@ export function Card({
         )}
       </>
     );
-  }, [containerType, gridWidth, original.mp4, title]);
+  }, [containerType, gridWidth, id, original.mp4, title]);
 
   return (
     <StyledCard
