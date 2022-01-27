@@ -127,6 +127,11 @@ export const giphySearchApi = createApi({
     getGifsById: builder.query<MultiGifsById, string>({
       query: (id) => `gifs?api_key=${GIPHY_API_KEY}&ids=${id}`,
     }),
+
+    getRandomGif: builder.query<IGif, string>({
+      query: (word) => `gifs/random?api_key=${GIPHY_API_KEY}&tag=${word}`,
+      transformResponse: (response: { data: IGif }) => response.data,
+    }),
   }),
 });
 
@@ -137,4 +142,5 @@ export const {
   useGetGifByIdQuery,
   useGetGifsByIdQuery,
   useGetGifWithTagsByIdQuery,
+  useGetRandomGifQuery,
 } = giphySearchApi;

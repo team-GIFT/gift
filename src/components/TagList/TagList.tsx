@@ -13,7 +13,8 @@ export function TagList({ tags, mode }: TagsProps): JSX.Element {
   const [moreList, setMoreList] = useState<(string | null)[]>([]);
 
   useLayoutEffect(() => {
-    tags && setInitialList(tags);
+    if (mode === 'nomore') tags && setInitialList(tags);
+
     if (!initialList.length) {
       const initialTags = tags;
       setInitialList(initialTags);
