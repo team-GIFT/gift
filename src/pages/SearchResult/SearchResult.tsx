@@ -10,6 +10,7 @@ import {
   StyledKeyword,
   StyledChannels,
   StyledTitleSection,
+  StyledNoResult,
 } from './SearchResult.styled';
 import { useGetChannelsQuery, useGetSearchSuggestionsQuery } from '@/services';
 import { useAppDispatch, useAppSelector } from '@/store';
@@ -26,6 +27,8 @@ export default function SearchResult() {
 
   const offset = useRef<number>(0);
   const { gifs, isLoading: gifIsLoading } = useAppSelector(searchGifsSelector);
+  const temp = useAppSelector(searchGifsSelector);
+  // console.log({ temp });
   const { ref, inView } = useInView();
 
   const { data: relatedTags, isFetching: tagsIsFetching } =
@@ -81,43 +84,54 @@ export default function SearchResult() {
 
   return (
     <>
-      {!tagsIsFetching && !gifIsLoading && (
+      <Helmet>
+        <title> {keyword} GIFs on GIFT</title>
+      </Helmet>
+      {!tagsIsFetching && (
+        <StyledSection>
+          <StyledTitleSection>
+            <StyledKeyword as="h2">{keyword}</StyledKeyword>
+            <StyledResultCount aria-hidden={true}>
+              every GIFs in GIFT
+            </StyledResultCount>
+          </StyledTitleSection>
+          <StyledTagList>
+            <A11yHidden as="h3">Related tags</A11yHidden>
+            {relatedTags?.length ? (
+              <TagList
+                mode="nomore"
+                tags={relatedTags?.map((tag) => tag.name)}
+              />
+            ) : (
+              ''
+            )}
+          </StyledTagList>
+        </StyledSection>
+      )}
+
+      {!gifIsLoading && gifs.length === 0 ? (
+        <StyledNoResult>
+          No GIFs found for <span>{keyword}</span>. Try searching with another
+          keyword instead?
+        </StyledNoResult>
+      ) : (
         <>
-          <Helmet>
-            <title> {keyword} GIFs on GIFT</title>
-          </Helmet>
+          {!channelsIsLoading && $channels?.length ? (
+            <StyledSection>
+              <StyledTitle as="h3">channels</StyledTitle>
+              <StyledChannels>{$channels}</StyledChannels>
+            </StyledSection>
+          ) : (
+            ''
+          )}
           <StyledSection>
-            <StyledTitleSection>
-              <StyledKeyword as="h2">{keyword}</StyledKeyword>
-              <StyledResultCount>every GIFs in GIFT</StyledResultCount>
-            </StyledTitleSection>
-            <StyledTagList>
-              <A11yHidden as="h3">Related tags</A11yHidden>
-              {relatedTags?.length && (
-                <TagList
-                  mode="nomore"
-                  tags={relatedTags?.map((tag) => tag.name)}
-                />
-              )}
-            </StyledTagList>
+            <StyledTitle as="h3">GIFs</StyledTitle>
+            {!gifIsLoading && gifs.length && (
+              <Grid forwardRef={ref} gifs={gifs} />
+            )}
           </StyledSection>
         </>
       )}
-      <StyledSection>
-        <StyledTitle as="h3">channels</StyledTitle>
-        {!channelsIsLoading && $channels?.length && (
-          <StyledChannels>{$channels}</StyledChannels>
-        )}
-      </StyledSection>
-      <StyledSection>
-        <StyledTitle as="h3">GIFs</StyledTitle>
-        {gifs.length ? (
-          <Grid forwardRef={ref} gifs={gifs} />
-        ) : (
-          `No GIFs found for ${keyword}
-Try searching for Stickers instead?`
-        )}
-      </StyledSection>
     </>
   );
 }

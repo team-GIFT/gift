@@ -72,7 +72,7 @@ export function TagList({ tags, mode }: TagsProps): JSX.Element {
 
   const initialItems = initialList.map((item) => {
     return (
-      <StyledTagListLink key={item} href="#">
+      <StyledTagListLink key={item} href={`/search/${item}`}>
         #{item}
       </StyledTagListLink>
     );
