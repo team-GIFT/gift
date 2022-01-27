@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   font-family:'Spoqa Han Sans Neo', 'Helvetica Neue', helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: ${({ theme: { color } }) => color.primary};
+  background-color: ${({ theme: { color } }) => color.black};
   color: ${({ theme: { color } }) => color.white};
   }
 

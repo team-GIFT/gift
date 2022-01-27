@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { Card } from '@/components';
+import { px2rem } from '@/styles';
 
 export const StyledSection = styled.section`
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
+  gap: ${px2rem(12)};
 `;
 
 export const StyledPrimaryCard = styled(Card)`
