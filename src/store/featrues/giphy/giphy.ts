@@ -203,7 +203,7 @@ export const trendingGifsSelector = createSelector(
       ({ id, title, images }): CardProps => ({
         id,
         title,
-        original: images.original_mp4,
+        original: images.fixed_height,
       })
     ),
   })
@@ -218,7 +218,7 @@ export const artistGifsSelector = createSelector(
       ({ id, title, images }): CardProps => ({
         id,
         title,
-        original: images.original_mp4,
+        original: images.fixed_height,
       })
     ),
   })
@@ -248,7 +248,7 @@ export const storyGifsSelector = createSelector(
       ({ id, title, images }): CardProps => ({
         id,
         title,
-        original: images.original_mp4,
+        original: images.fixed_height,
       })
     ),
   })
@@ -263,7 +263,7 @@ export const relatedGifsSelector = createSelector(
       ({ id, title, images }): CardProps => ({
         id,
         title,
-        original: images.original_mp4,
+        original: images.fixed_height,
       })
     ),
   })
@@ -278,7 +278,7 @@ export const relatedStickersSelector = createSelector(
       ({ id, title, images }): CardProps => ({
         id,
         title,
-        original: images.original_mp4,
+        original: images.fixed_height,
       })
     ),
   })
