@@ -12,15 +12,12 @@ function Suggestion({ word }: { word: string }) {
 export function SearchSuggestions({
   keyword,
   $isOpen,
-  className,
+  className = 'search-suggestions-wrapper',
 }: SearchSuggestionsProps) {
   let suggestions: string[] | undefined = [];
 
   // debounce 된 키워드가 새로 들어오면 검색을 시작
   const { data, isLoading } = useGetAutoCompleteQuery(keyword);
-
-  // 로딩이 끝나면 받아올 data
-  // !isLoading && console.log('suggestions', data?.data);
 
   // 로딩이 끝나면 필요한 값(연관 검색어)를 suggestions 배열에 담는다
   if (!isLoading)
