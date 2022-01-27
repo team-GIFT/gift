@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { px2rem } from '@/styles';
+import { NavLink } from 'react-router-dom';
 
 const globalNavHeight = px2rem(36);
 
@@ -79,7 +80,7 @@ export const StyledGlobalNavItems = styled.li`
   }
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled(NavLink)`
   position: relative;
   z-index: 2;
   width: 100%;

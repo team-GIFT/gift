@@ -27,8 +27,7 @@ export default function SearchResult() {
 
   const offset = useRef<number>(0);
   const { gifs, isLoading: gifIsLoading } = useAppSelector(searchGifsSelector);
-  const temp = useAppSelector(searchGifsSelector);
-  // console.log({ temp });
+
   const { ref, inView } = useInView();
 
   const { data: relatedTags, isFetching: tagsIsFetching } =
