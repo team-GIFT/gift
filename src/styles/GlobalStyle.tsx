@@ -3,12 +3,17 @@ import { normalize } from 'styled-normalize';
 
 export const GlobalStyle = createGlobalStyle`
  ${normalize}
+
+ html {
+   overflow-y: visible;
+   min-height: 101vh;
+ }
  
  body {
   font-family:'Spoqa Han Sans Neo', 'Helvetica Neue', helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: ${({ theme: { color } }) => color.primary};
+  background-color: ${({ theme: { color } }) => color.black};
   color: ${({ theme: { color } }) => color.white};
   }
 
@@ -28,7 +33,10 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   button {
+    // TODO: Need confirm
     cursor: pointer;
+    background-color: transparent;
+    border: none;
   }
 
   button:focus:not(:focus-visible) {

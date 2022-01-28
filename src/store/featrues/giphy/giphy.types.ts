@@ -1,15 +1,33 @@
 import { IGif } from '@giphy/js-types';
 
 export interface GiphyStateProps {
-  isLoading: {
-    trendingGifs: boolean;
-    artistGifs: boolean;
-    trendingClips: boolean;
+  trendingGifs: {
+    items: IGif[];
+    isLoading: boolean;
   };
-  gifs: {
-    trendingGifs: IGif[];
-    artistGifs: IGif[];
-    trendingClips: IGif[];
+  artistGifs: {
+    items: IGif[];
+    isLoading: boolean;
+  };
+  trendingClips: {
+    items: IGif[];
+    isLoading: boolean;
+  };
+  storyGifs: {
+    items: IGif[];
+    isLoading: boolean;
+  };
+  relatedGifs: {
+    items: IGif[];
+    isLoading: boolean;
+  };
+  relatedStickers: {
+    items: IGif[];
+    isLoading: boolean;
+  };
+  searchGifs: {
+    items: IGif[];
+    isLoading: boolean;
   };
 }
 
@@ -17,4 +35,17 @@ export interface Response {
   giphy: GiphyStateProps;
 }
 
+export interface RelatedProps {
+  id: string;
+  num: number;
+  offset?: number;
+}
+export interface SearchProps {
+  term: string;
+  num: number;
+  offset?: number;
+}
+
 export { CardProps } from '@/components/Card/Card.types';
+
+export { IGif } from '@giphy/js-types';

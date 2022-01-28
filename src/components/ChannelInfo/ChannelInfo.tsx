@@ -29,7 +29,7 @@ export function ChannelInfo({
 }: ChannelInfoProps): JSX.Element {
   return (
     <StyledChannelInfoWrap>
-      <StyledChannelInfoLink className="channel" href={channelLink}>
+      <StyledChannelInfoLink className="channel" to={channelLink}>
         <A11yHidden>{userName}님의 페이지로 이동</A11yHidden>
         <StyledChannelProfileImage
           $size={size}
@@ -56,7 +56,7 @@ export function ChannelInfo({
                 <StyledChannelName>
                   {channelName}
                   {verified && (
-                    <button type="button">
+                    <span>
                       <SvgIcon
                         id="verified"
                         label="verified"
@@ -64,7 +64,7 @@ export function ChannelInfo({
                         height={14}
                         fill="#fff"
                       />
-                    </button>
+                    </span>
                   )}
                 </StyledChannelName>
               )

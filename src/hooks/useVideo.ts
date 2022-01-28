@@ -5,9 +5,7 @@ export const useVideo = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [width, setWidth] = useState<string | null>(null);
 
-  const { ref: observerRef, inView } = useInView({
-    triggerOnce: true,
-  });
+  const { ref: observerRef, inView } = useInView({ triggerOnce: true });
 
   useLayoutEffect(() => {
     if (!videoRef.current) return;

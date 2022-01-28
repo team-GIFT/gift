@@ -10,6 +10,11 @@ export function Video({ src, className }: VideoProps): JSX.Element {
 
   return (
     <StyledVideoContainer
+      style={{
+        backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
+          16
+        )}`,
+      }}
       className={className}
       ref={observerRef}
       $width={width}
@@ -21,6 +26,9 @@ export function Video({ src, className }: VideoProps): JSX.Element {
           ref={videoRef}
           muted
           playsInline
+          onLoadedData={(e) => {
+            e.target.parentNode.style.removeProperty('background-color');
+          }}
         >
           <source src={src} type="video/mp4" />
           <p>

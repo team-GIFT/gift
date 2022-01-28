@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { px2rem } from '@/styles';
+import { NavLink } from 'react-router-dom';
 
 const globalNavHeight = px2rem(36);
 
@@ -20,20 +21,14 @@ export const StyledNav = styled.nav`
       opacity: 1;
     }
   }
-
-  .sub-menu.isActive {
+  .sub-menu {
     animation: fadeIn 0.2s ease-out;
     display: flex;
     position: absolute;
     top: 100%;
-    transform: translateY(${px2rem(10)});
     left: 0;
     opacity: 1;
     transition: opacity 0.35s ease 0s;
-  }
-
-  .sub-menu {
-    display: none;
   }
 `;
 
@@ -51,12 +46,14 @@ export const StyledGlobalNav = styled.ul`
   display: flex;
   justify-content: space-around;
   min-width: 496px;
+  @media screen and (max-width: 1069px) {
+    min-width: 0;
+  }
 `;
 
 export const StyledGlobalNavItems = styled.li`
   height: ${globalNavHeight};
   border-right: 5px solid ${({ theme }) => theme.color.black};
-  /* position: relative; */
   display: flex;
   justify-content: center;
   flex-grow: 1;
@@ -83,7 +80,7 @@ export const StyledGlobalNavItems = styled.li`
   }
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled(NavLink)`
   position: relative;
   z-index: 2;
   width: 100%;

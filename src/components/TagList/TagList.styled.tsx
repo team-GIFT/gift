@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledTagListWrap = styled.div`
@@ -6,9 +7,9 @@ export const StyledTagListWrap = styled.div`
   list-style: none;
   padding: 0;
   margin: 0;
-  max-width: 500px;
+  width: 100%;
 `;
-export const StyledTagListLink = styled.a`
+export const StyledTagListLink = styled(Link)`
   display: block;
   padding: 10px 16px;
   margin-right: 8px;

@@ -7,10 +7,14 @@ import { Card } from '@/components';
 import { getFocusableElements } from '@/utils';
 
 export function Carousel({ cards, height }: CarouselCardsProps): JSX.Element {
-  const createSlide = (cardProps: CardProps) => {
+  const createSlide = (cardProps: CardProps, index: number) => {
     return (
-      <SwiperSlide key={cardProps.id}>
-        <Card height={height} {...cardProps} />
+      <SwiperSlide key={index}>
+        <Card
+          containerType={height === 270 ? 'artists' : undefined}
+          height={height}
+          {...cardProps}
+        />
       </SwiperSlide>
     );
   };

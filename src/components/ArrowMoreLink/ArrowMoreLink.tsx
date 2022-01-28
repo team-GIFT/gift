@@ -5,10 +5,10 @@ import { SvgIcon } from '@/components';
 
 export function ArrowMoreLink({
   label,
-  href = '#',
+  href = '/',
 }: ArrowMoreLinkProps): JSX.Element {
   return (
-    <StyledArrowMoreLink href={href}>
+    <StyledArrowMoreLink to={href}>
       {label}
       <SvgIcon id="flech-sharp" width={11} height={13} />
     </StyledArrowMoreLink>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /        
+Sitemap: http://gift.barumweb.co.kr/sitemap.xml
