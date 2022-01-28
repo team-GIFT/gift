@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 export const StyledHeader = styled.header`
   position: fixed;
   padding: 15px;
@@ -33,7 +33,7 @@ export const StyledLinkWrap = styled.div`
   gap: 6px;
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.violet01};
   padding: 8.5px 16px;

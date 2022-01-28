@@ -3,6 +3,11 @@ import { normalize } from 'styled-normalize';
 
 export const GlobalStyle = createGlobalStyle`
  ${normalize}
+
+ html {
+   overflow-y: visible;
+   min-height: 101vh;
+ }
  
  body {
   font-family:'Spoqa Han Sans Neo', 'Helvetica Neue', helvetica, sans-serif;

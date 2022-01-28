@@ -38,7 +38,7 @@ export function DetailRightSide({
       <StyledDetailTitle>{data.title}</StyledDetailTitle>
       <StyledGifButtonWrap>
         <StyledGifLink
-          href={data.source ? `//${data.source}` : undefined}
+          href={data.source ? data.source : undefined}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="바로가기"
