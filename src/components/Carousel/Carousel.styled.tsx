@@ -248,7 +248,7 @@ export const StyledSlider = styled(Swiper)`
   }
   .swiper-button-prev,
   .swiper-rtl .swiper-button-next {
-    left: 10px;
+    left: 0px;
     right: auto;
   }
   .swiper-button-prev:after,
@@ -257,7 +257,7 @@ export const StyledSlider = styled(Swiper)`
   }
   .swiper-button-next,
   .swiper-rtl .swiper-button-prev {
-    right: 10px;
+    right: 0px;
     left: auto;
   }
   .swiper-button-next:after,

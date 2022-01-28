@@ -6,6 +6,15 @@ export interface CardProps {
   className?: string;
   containerType?: string;
   gridWidth?: string;
+  user?: {
+    avatar_url: string;
+    display_name: string;
+    username: string;
+    profile_url: string;
+    is_verified: false;
+    description: string;
+    instagram_url: string;
+  };
 }
 
 export interface StyledCardProps {

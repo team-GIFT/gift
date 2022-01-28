@@ -200,10 +200,11 @@ export const trendingGifsSelector = createSelector(
   (isLoading, items) => ({
     isLoading,
     gifs: items.map(
-      ({ id, title, images }): CardProps => ({
+      ({ id, title, images, user }): CardProps => ({
         id,
         title,
         original: images.fixed_height,
+        user,
       })
     ),
   })
@@ -215,10 +216,11 @@ export const artistGifsSelector = createSelector(
   (isLoading, items) => ({
     isLoading,
     gifs: items.map(
-      ({ id, title, images }): CardProps => ({
+      ({ id, title, images, user }): CardProps => ({
         id,
         title,
         original: images.fixed_height,
+        user,
       })
     ),
   })
@@ -230,10 +232,11 @@ export const trendingClipsSelector = createSelector(
   (isLoading, items) => ({
     isLoading,
     gifs: items.map(
-      ({ id, title, images }): CardProps => ({
+      ({ id, title, images, user }): CardProps => ({
         id,
         title,
         original: images.original_mp4,
+        user,
       })
     ),
   })
@@ -245,10 +248,11 @@ export const storyGifsSelector = createSelector(
   (isLoading, items) => ({
     isLoading,
     gifs: items.map(
-      ({ id, title, images }): CardProps => ({
+      ({ id, title, images, user }): CardProps => ({
         id,
         title,
         original: images.fixed_height,
+        user,
       })
     ),
   })

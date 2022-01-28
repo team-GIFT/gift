@@ -9,6 +9,7 @@ import {
   StyledBottomSectionList,
 } from './SubMenu.styled';
 import { LinkProps, SubMenuProps } from './SubMenu.types';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 export function SubMenu({ className, isMobile }: SubMenuProps) {
@@ -178,7 +179,7 @@ export function SubMenu({ className, isMobile }: SubMenuProps) {
               >
                 {children.map(({ id, href, text }) => (
                   <li key={id}>
-                    <a href={href}>{text}</a>
+                    <Link to={href}>{text}</Link>
                   </li>
                 ))}
               </StyledTopSectionListItemUl>
@@ -191,7 +192,7 @@ export function SubMenu({ className, isMobile }: SubMenuProps) {
         <StyledBottomSectionList>
           {subMenuBottomLinks.map(({ id, href, text }) => (
             <li key={id}>
-              <a href={href}>{text}</a>
+              <Link to={href}>{text}</Link>
             </li>
           ))}
         </StyledBottomSectionList>

@@ -1,6 +1,12 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import classNames from 'classnames';
-import { StyledCard, StyledDetailLink, StyledButtonGroup } from './Card.styled';
+import {
+  StyledCard,
+  StyledDetailLink,
+  StyledButtonGroup,
+  StyledUserLink,
+  StyledTitle,
+} from './Card.styled';
 import { CardProps } from './Card.types';
 import { Video, CardButton, ChannelInfo } from '@/components';
 
@@ -12,6 +18,7 @@ export function Card({
   containerType,
   height,
   gridWidth,
+  user,
 }: CardProps): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
@@ -61,43 +68,80 @@ export function Card({
           />
         </StyledDetailLink>
         <StyledButtonGroup className="buttonGroup">
-          <CardButton
-            buttonName="clipboard"
-            aria-label="clipboard"
-            onClick={() => {
-              console.log('bye');
-            }}
-          />
-          <CardButton
-            buttonName="favorite"
-            aria-label="favorite"
-            onClick={() => {
-              console.log('hi');
-            }}
-          />
+          <CardButton buttonName="clipboard" aria-label="clipboard" />
+          <CardButton buttonName="favorite" aria-label="favorite" />
           {containerType === 'clips' && (
-            <CardButton
-              buttonName="mute"
-              aria-label="mute"
-              onClick={() => {
-                console.log('hi');
-              }}
-            />
+            <CardButton buttonName="mute" aria-label="mute" />
           )}
         </StyledButtonGroup>
-        {containerType === 'clips' && (
-          <ChannelInfo
-            {...{
-              imgUrl: 'http://placehold.it/50x50',
-              channelLink: '#',
-              userName: '임씨 유저 소형',
-              channelName: '@sosoyim',
-              size: 50,
-              verified: true,
-              useUserName: true,
-              useChannelName: true,
-            }}
-          />
+        {!containerType && user && (
+          <StyledUserLink className="trending">
+            <ChannelInfo
+              {...{
+                imgUrl: user?.avatar_url,
+                channelLink: user.profile_url,
+                userName: user?.display_name,
+                channelName: user?.username,
+                size: 28,
+                verified: user?.is_verified,
+                onlyProfileImage: true,
+              }}
+            />
+          </StyledUserLink>
+        )}
+        {containerType === 'artists' && user && (
+          <>
+            <StyledUserLink className="artists">
+              <ChannelInfo
+                {...{
+                  imgUrl: user?.avatar_url,
+                  channelLink: user?.avatar_url,
+                  userName: user?.display_name,
+                  channelName: user?.username,
+                  size: 36,
+                  verified: user?.is_verified,
+                }}
+              />
+            </StyledUserLink>
+          </>
+        )}
+        {containerType === 'clips' && user && (
+          <>
+            <StyledTitle className="clips">{title}</StyledTitle>
+            <StyledUserLink className="clips">
+              <ChannelInfo
+                {...{
+                  imgUrl: user?.avatar_url,
+                  channelLink: user?.avatar_url,
+                  userName: user?.display_name,
+                  channelName: user?.username,
+                  size: 25,
+                  verified: user?.is_verified,
+                  useUserName: false,
+                }}
+              />
+            </StyledUserLink>
+          </>
+        )}
+        {containerType === 'grid' && (
+          <>
+            {user && (
+              <StyledUserLink className="grid">
+                <ChannelInfo
+                  {...{
+                    imgUrl: user?.avatar_url,
+                    channelLink: user.profile_url,
+                    userName: user?.display_name,
+                    channelName: user?.username,
+                    size: 50,
+                    verified: user?.is_verified,
+                    onlyProfileImage: true,
+                  }}
+                />
+              </StyledUserLink>
+            )}
+            <StyledTitle className="grid">{title}</StyledTitle>
+          </>
         )}
       </>
     );
@@ -116,4 +160,33 @@ export function Card({
       {children}
     </StyledCard>
   );
+}
+
+{
+  /* <ChannelInfo
+{...{
+  imgUrl: user?.avatar_url,
+  channelLink: '#',
+  userName: user?.display_name,
+  channelName: user?.username,
+  size: 50,
+  verified: user?.is_verified,
+  useUserName: true,
+  useChannelName: true,
+}}
+/> */
+}
+
+{
+  /* <ChannelInfo
+{...{
+  imgUrl: user?.avatar_url,
+  channelLink: user.profile_url,
+  userName: user?.display_name,
+  channelName: user?.username,
+  size: 28,
+  verified: user?.is_verified,
+  onlyProfileImage: true,
+}}
+/> */
 }
