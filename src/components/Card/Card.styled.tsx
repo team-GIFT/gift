@@ -28,20 +28,51 @@ export const StyledButtonGroup = styled.div`
   display: flex;
 `;
 
-export const StyledUserLink = styled(Link)<StyledUserLinkProps>`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 24px;
-  height: 24px;
-  margin: 0 0 8px 4px;
-  background-position: 0 0;
-  background-size: cover;
-  background-image: url(${({ $userImageUrl }: StyledUserLinkProps) =>
-    $userImageUrl});
-  opacity: 0;
-  .card.isHovered & {
-    opacity: 1;
-    transition: opacity 0.4s;
+export const StyledUserLink = styled.div<StyledUserLinkProps>`
+  &.trending {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0 0 8px 8px;
+    opacity: 0;
+    .card.isHovered & {
+      opacity: 1;
+      transition: opacity 0.4s;
+    }
+  }
+
+  &.artists {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0 0 8px 8px;
+  }
+
+  &.clips {
+    font-size: ${({ theme }) => theme.fontSize.m};
+  }
+
+  &.grid {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 8px 0 0px 8px;
+  }
+`;
+
+export const StyledTitle = styled.p`
+  margin: 4px 0;
+  font-size: ${({ theme }) => theme.fontSize.s};
+
+  &.clips {
+    color: ${({ theme }) => theme.color.gray03};
+  }
+
+  &.grid {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0 0 8px 8px;
+    width: 60%;
   }
 `;
