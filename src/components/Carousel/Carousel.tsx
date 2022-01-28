@@ -10,7 +10,11 @@ export function Carousel({ cards, height }: CarouselCardsProps): JSX.Element {
   const createSlide = (cardProps: CardProps, index: number) => {
     return (
       <SwiperSlide key={index}>
-        <Card height={height} {...cardProps} />
+        <Card
+          containerType={height === 270 ? 'artists' : undefined}
+          height={height}
+          {...cardProps}
+        />
       </SwiperSlide>
     );
   };
