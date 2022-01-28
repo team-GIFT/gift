@@ -1,14 +1,19 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv').config();
 const rootDir = process.cwd();
-
+const srcDir = path.resolve(rootDir, 'src');
 const { GIPHY_API_KEY } = dotenv.parsed;
 
 const devConfig = {
+  cache: true,
   target: ['web', 'es5'],
   mode: 'development',
-  devtool: 'source-map',
+  devtool: 'eval-cheap-module-source-map',
+  entry: {
+    main: './src/index.tsx',
+  },
   output: {
     path: path.resolve(rootDir, 'public'),
     filename: 'js/[name].js',
@@ -42,6 +47,7 @@ const devConfig = {
             },
           },
         ],
+        include: srcDir,
       },
       {
         test: /\.(jpe?g|png|gif|webp|bmp)/,
@@ -51,11 +57,13 @@ const devConfig = {
             maxSize: 40 * 1024,
           },
         },
+        include: srcDir,
       },
       {
         test: /\.[jt]sx?$/i,
         exclude: /node_modules|public/,
         use: 'babel-loader',
+        include: srcDir,
       },
     ],
   },
@@ -63,8 +71,14 @@ const devConfig = {
     new webpack.DefinePlugin({
       GIPHY_API_KEY: JSON.stringify(GIPHY_API_KEY),
     }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(rootDir, './public/index.html'),
+      base: '/',
+      title: 'GIFT',
+    }),
   ],
   resolve: {
+    symlinks: false,
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(rootDir, 'src'),
