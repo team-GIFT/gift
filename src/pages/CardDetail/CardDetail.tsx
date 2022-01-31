@@ -41,7 +41,7 @@ export default function CardDetail() {
   const { isLoading: isRelatedStickersLoading, gifs: relatedStickers } =
     useAppSelector(relatedStickersSelector);
 
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.6 });
+  const { ref, inView } = useInView({ triggerOnce: true });
 
   useEffect(() => {
     if (error) {
