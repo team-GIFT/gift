@@ -6,10 +6,11 @@ export const SytledGridContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-  gap: ${px2rem(6)};
+  gap: 1%;
 `;
 
 export const StyledGridItem = styled.div<StyledGridItemProps>`
-  width: ${(props) => (props['data-width'] === '1' ? '24.5' : '49')}%;
+  width: ${(props) => (props['data-width'] === '1' ? '24.25' : '49.5')}%;
   overflow: hidden;
+  margin-top: 1%;
 `;
