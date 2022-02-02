@@ -4,7 +4,7 @@ import { StyledVideoContainer, StyledVideo } from './Video.styled';
 import { VideoProps } from './Video.types';
 import { useVideo } from '@/hooks';
 
-export function Video({ src, className }: VideoProps): JSX.Element {
+export function Video({ src, ...restProps }: VideoProps): JSX.Element {
   const isAutoPlayMode = true; // redux global 상태를 받아올 것
   const { width, observerRef, videoRef, inView } = useVideo();
 
@@ -15,9 +15,9 @@ export function Video({ src, className }: VideoProps): JSX.Element {
           16
         )}`,
       }}
-      className={className}
       ref={observerRef}
       $width={width}
+      {...restProps}
     >
       {inView && (
         <StyledVideo
