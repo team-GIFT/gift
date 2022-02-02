@@ -11,7 +11,7 @@ export interface CardProps {
     display_name: string;
     username: string;
     profile_url: string;
-    is_verified: false;
+    is_verified: boolean;
     description: string;
     instagram_url: string;
   };

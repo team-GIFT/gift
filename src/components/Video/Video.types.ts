@@ -1,7 +1,10 @@
 export interface VideoProps {
-  width?: string;
   src: string;
   className?: string;
+  style?: {
+    width: number;
+    height: number;
+  };
 }
 
 export interface StyledVideoContainerProps {
