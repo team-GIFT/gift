@@ -46,7 +46,7 @@ export function Card({
     [containerType, user]
   );
 
-  const children = useMemo(() => {
+  const childrenOfCard = useMemo(() => {
     return (
       <>
         <StyledDetailLink
@@ -94,7 +94,7 @@ export function Card({
       $ratio={original.width / original.height}
       $height={height as number}
     >
-      {children}
+      {childrenOfCard}
     </StyledCard>
   );
 }
