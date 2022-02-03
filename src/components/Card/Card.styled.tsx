@@ -28,7 +28,7 @@ export const StyledButtonGroup = styled.div`
   display: flex;
 `;
 
-export const StyledUserLink = styled.div<StyledUserLinkProps>`
+export const StyledUserLink = styled.div`
   &.trending {
     position: absolute;
     left: 0;

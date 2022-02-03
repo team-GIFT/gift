@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import {
   StyledCard,
@@ -50,6 +50,28 @@ export function Card({
     [containerType]
   );
 
+  const channelProps = useMemo(
+    () =>
+      user && {
+        imgUrl: user.avatar_url,
+        channelLink: user.profile_url,
+        userName: user.display_name,
+        channelName: user.username,
+        size:
+          containerType === 'grid'
+            ? 50
+            : containerType === 'artists'
+            ? 36
+            : containerType === 'clips'
+            ? 25
+            : 28,
+        verified: user.is_verified,
+        onlyProfileImage: !containerType || containerType === 'grid',
+        useUserName: containerType !== 'clips',
+      },
+    [containerType, user]
+  );
+
   const children = useMemo(() => {
     return (
       <>
@@ -64,7 +86,7 @@ export function Card({
               { gridVideo: containerType === 'grid' }
             )}
             src={original.mp4}
-            width={gridWidth}
+            widthRatio={gridWidth}
           />
         </StyledDetailLink>
         <StyledButtonGroup className="buttonGroup">
@@ -74,78 +96,19 @@ export function Card({
             <CardButton buttonName="mute" aria-label="mute" />
           )}
         </StyledButtonGroup>
-        {!containerType && user && (
-          <StyledUserLink className="trending">
-            <ChannelInfo
-              {...{
-                imgUrl: user?.avatar_url,
-                channelLink: user.profile_url,
-                userName: user?.display_name,
-                channelName: user?.username,
-                size: 28,
-                verified: user?.is_verified,
-                onlyProfileImage: true,
-              }}
-            />
-          </StyledUserLink>
-        )}
-        {containerType === 'artists' && user && (
+        {channelProps && (
           <>
-            <StyledUserLink className="artists">
-              <ChannelInfo
-                {...{
-                  imgUrl: user?.avatar_url,
-                  channelLink: user?.avatar_url,
-                  userName: user?.display_name,
-                  channelName: user?.username,
-                  size: 36,
-                  verified: user?.is_verified,
-                }}
-              />
-            </StyledUserLink>
-          </>
-        )}
-        {containerType === 'clips' && user && (
-          <>
-            <StyledTitle className="clips">{title}</StyledTitle>
-            <StyledUserLink className="clips">
-              <ChannelInfo
-                {...{
-                  imgUrl: user?.avatar_url,
-                  channelLink: user?.avatar_url,
-                  userName: user?.display_name,
-                  channelName: user?.username,
-                  size: 25,
-                  verified: user?.is_verified,
-                  useUserName: false,
-                }}
-              />
-            </StyledUserLink>
-          </>
-        )}
-        {containerType === 'grid' && (
-          <>
-            {user && (
-              <StyledUserLink className="grid">
-                <ChannelInfo
-                  {...{
-                    imgUrl: user?.avatar_url,
-                    channelLink: user.profile_url,
-                    userName: user?.display_name,
-                    channelName: user?.username,
-                    size: 50,
-                    verified: user?.is_verified,
-                    onlyProfileImage: true,
-                  }}
-                />
-              </StyledUserLink>
+            {containerType?.match(/clips|grid/) && (
+              <StyledTitle className={containerType}>{title}</StyledTitle>
             )}
-            <StyledTitle className="grid">{title}</StyledTitle>
+            <StyledUserLink className={containerType ?? 'trending'}>
+              <ChannelInfo {...channelProps} />
+            </StyledUserLink>
           </>
         )}
       </>
     );
-  }, [containerType, gridWidth, id, original.mp4, title]);
+  }, [channelProps, containerType, gridWidth, id, original.mp4, title]);
 
   return (
     <StyledCard
@@ -160,33 +123,4 @@ export function Card({
       {children}
     </StyledCard>
   );
-}
-
-{
-  /* <ChannelInfo
-{...{
-  imgUrl: user?.avatar_url,
-  channelLink: '#',
-  userName: user?.display_name,
-  channelName: user?.username,
-  size: 50,
-  verified: user?.is_verified,
-  useUserName: true,
-  useChannelName: true,
-}}
-/> */
-}
-
-{
-  /* <ChannelInfo
-{...{
-  imgUrl: user?.avatar_url,
-  channelLink: user.profile_url,
-  userName: user?.display_name,
-  channelName: user?.username,
-  size: 28,
-  verified: user?.is_verified,
-  onlyProfileImage: true,
-}}
-/> */
 }
