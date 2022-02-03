@@ -21,8 +21,3 @@ export interface StyledCardProps {
   $height: number;
   $ratio: number;
 }
-
-export interface StyledUserLinkProps {
-  $userImageUrl: string;
-  $userLinkUrl: string;
-}
