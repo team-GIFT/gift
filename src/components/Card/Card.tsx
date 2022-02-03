@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import {
   StyledCard,
@@ -8,6 +8,7 @@ import {
   StyledTitle,
 } from './Card.styled';
 import { CardProps } from './Card.types';
+import { useCardEvent } from '@/hooks';
 import { Video, CardButton, ChannelInfo } from '@/components';
 
 export function Card({
@@ -20,35 +21,8 @@ export function Card({
   gridWidth,
   user,
 }: CardProps): JSX.Element {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isFocus, setIsFocus] = useState(false);
-
-  const handleIsHovered = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      e.type === 'mouseenter' ? setIsHovered(true) : setIsHovered(false);
-    },
-    []
-  );
-
-  const handleIsFocus = useCallback(
-    (e: React.FocusEvent<HTMLDivElement, Element>) => {
-      const { type, relatedTarget, target } = e;
-
-      const isOutOfRange =
-        containerType === 'clips' &&
-        (target.closest('.channel') || relatedTarget?.closest('.channel'));
-
-      if (isOutOfRange) {
-        setIsFocus(false);
-        return;
-      }
-
-      type === 'blur' && !relatedTarget?.closest('.card')
-        ? setIsFocus(false)
-        : setIsFocus(true);
-    },
-    [containerType]
-  );
+  const { isHovered, handleIsHovered, isFocus, handleIsFocus } =
+    useCardEvent(containerType);
 
   const channelProps = useMemo(
     () =>
