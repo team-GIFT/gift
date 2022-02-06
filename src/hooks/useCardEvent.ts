@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-export const useCardEvent = (containerType: string | undefined) => {
+export const useCardEvent = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
 
@@ -15,20 +15,16 @@ export const useCardEvent = (containerType: string | undefined) => {
     (e: React.FocusEvent<HTMLDivElement, Element>) => {
       const { type, relatedTarget, target } = e;
 
-      const isOutOfRange =
-        containerType === 'clips' &&
-        (target.closest('.channel') || relatedTarget?.closest('.channel'));
+      const [targetId, relatedTargetId] = [target, relatedTarget].map(
+        (eventTarget) =>
+          (eventTarget?.closest('.card') as HTMLDivElement)?.dataset.id
+      );
 
-      if (isOutOfRange) {
-        setIsFocus(false);
-        return;
-      }
-
-      type === 'blur' && !relatedTarget?.closest('.card')
+      type === 'blur' && targetId !== relatedTargetId
         ? setIsFocus(false)
         : setIsFocus(true);
     },
-    [containerType]
+    []
   );
 
   return { isHovered, handleIsHovered, isFocus, handleIsFocus };

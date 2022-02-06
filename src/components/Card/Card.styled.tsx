@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { StyledCardProps, StyledUserLinkProps } from './Card.types';
+import { StyledCardProps } from './Card.types';
 
 export const StyledCard = styled.div<StyledCardProps>`
   position: relative;
@@ -35,7 +35,9 @@ export const StyledUserLink = styled.div`
     bottom: 0;
     margin: 0 0 8px 8px;
     opacity: 0;
-    .card.isHovered & {
+
+    .card.isHovered &,
+    .card.isFocus & {
       opacity: 1;
       transition: opacity 0.4s;
     }

@@ -21,8 +21,7 @@ export function Card({
   gridWidth,
   user,
 }: CardProps): JSX.Element {
-  const { isHovered, handleIsHovered, isFocus, handleIsFocus } =
-    useCardEvent(containerType);
+  const { isHovered, handleIsHovered, isFocus, handleIsFocus } = useCardEvent();
 
   const channelProps = useMemo(
     () =>
@@ -93,6 +92,7 @@ export function Card({
       onBlur={handleIsFocus}
       $ratio={original.width / original.height}
       $height={height as number}
+      data-id={id}
     >
       {childrenOfCard}
     </StyledCard>
