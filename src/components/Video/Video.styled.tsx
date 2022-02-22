@@ -9,7 +9,7 @@ export const StyledVideoContainer = styled.div<StyledVideoContainerProps>`
   &.clipsVideo,
   &.gridVideo {
     height: 0;
-    padding-top: ${({ $width }) => ($width === '1' ? '112.5%' : '56.25%')};
+    padding-top: ${({ $width }) => ($width === '1' ? '112.5%' : '55.113%')};
   }
   overflow: hidden;
 

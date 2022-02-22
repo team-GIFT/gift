@@ -11,7 +11,7 @@ export interface CardProps {
     display_name: string;
     username: string;
     profile_url: string;
-    is_verified: false;
+    is_verified: boolean;
     description: string;
     instagram_url: string;
   };
@@ -20,9 +20,4 @@ export interface CardProps {
 export interface StyledCardProps {
   $height: number;
   $ratio: number;
-}
-
-export interface StyledUserLinkProps {
-  $userImageUrl: string;
-  $userLinkUrl: string;
 }

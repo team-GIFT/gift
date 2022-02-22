@@ -545,7 +545,7 @@ export const StyledSlider = styled(Swiper)`
     }
   }
   /* a11y */
-  .swiper .swiper-notification {
+  .swiper-notification {
     position: absolute;
     left: 0;
     top: 0;
